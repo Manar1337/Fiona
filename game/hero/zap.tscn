@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctc6p2ayrtmtu"]
+
+[ext_resource type="Script" path="res://game/hero/zap.gd" id="1_ub5il"]
+[ext_resource type="Texture2D" uid="uid://b8shht3o6mjo3" path="res://assets/graphics/FlyingLevel/Zap.png" id="2_6a30c"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="3_fxkmk"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="4_to3or"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_krgev"]
+size = Vector2(22, 6)
+
+[node name="Zap" type="Node2D"]
+script = ExtResource("1_ub5il")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_6a30c")
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("3_fxkmk")
+actor = NodePath("..")
+velocity = Vector2(500, 0)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(5.96046e-08, 0)
+rect = Rect2(-11, -3, 22, 6)
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_to3or")
+damage = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_krgev")

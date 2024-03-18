@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxqvelackaop3"]
+
+[ext_resource type="PackedScene" uid="uid://bdnuk6p5n635l" path="res://game/hero/player_walking.tscn" id="1_ftcvv"]
+[ext_resource type="Texture2D" uid="uid://5wsyuie5q30e" path="res://assets/graphics/WalkingLevel/BackgroundGraveyard.png" id="2_8cnsu"]
+
+[node name="Level2" type="Node"]
+
+[node name="WalkingEnemyGenerator" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="BackgroundGraveyard" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(160, 100)
+texture = ExtResource("2_8cnsu")
+
+[node name="PlayerWalking" parent="." instance=ExtResource("1_ftcvv")]
+position = Vector2(149, 156)
+scale = Vector2(2, 2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(10, 10)
+polygon = PackedVector2Array(310, 182, 294, 182, 294, 166, 270, 166, 270, 182, 238, 182, 238, 142, 222, 142, 222, 134, 214, 134, 214, 142, 198, 142, 198, 182, 150, 182, 150, 166, 126, 166, 126, 182, 86, 182, 86, 166, 62, 166, 62, 158, 54, 158, 54, 118, 70, 118, 70, 110, 86, 110, 86, 102, 62, 102, 62, 62, 86, 62, 86, 54, 102, 54, 102, 62, 110, 62, 110, 70, 142, 70, 142, 78, 182, 78, 182, 70, 206, 70, 206, 62, 150, 62, 150, 30, 102, 30, 102, -10, 310, -10, 310, 190, 318, 190, 318, -18, -10, -18, -10, 190, 310, 190)

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnw54h72n11dd"]
+
+[ext_resource type="Script" path="res://enemy_generator.gd" id="1_8prre"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="1_xwrdj"]
+
+[node name="EnemyGenerator" type="Node2D"]
+script = ExtResource("1_8prre")
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("1_xwrdj")
+
+[node name="WitchSpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true

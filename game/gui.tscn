@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://bi8ogy8yef1o0"]
+
+[ext_resource type="Script" path="res://game/gui.gd" id="1_413mj"]
+[ext_resource type="FontFile" uid="uid://c5c50h8m5nfnb" path="res://assets/fonts/Commodore Pixelized v1.2.ttf" id="2_c0a48"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qcojq"]
+font = ExtResource("2_c0a48")
+font_size = 10
+font_color = Color(0.360784, 0.698039, 0.329412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c35h4"]
+font = ExtResource("2_c0a48")
+font_size = 10
+
+[sub_resource type="Theme" id="Theme_fmtmo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cyygv"]
+font = ExtResource("2_c0a48")
+font_size = 10
+font_color = Color(0.890196, 0.905882, 0.431373, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_e7ybs"]
+font = ExtResource("2_c0a48")
+font_size = 10
+font_color = Color(0.592157, 0.27451, 0.627451, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j28iy"]
+font = ExtResource("2_c0a48")
+font_size = 10
+font_color = Color(0.890196, 0.905882, 0.431373, 1)
+
+[node name="GUI" type="Node"]
+script = ExtResource("1_413mj")
+
+[node name="Score" type="Label" parent="."]
+texture_filter = 1
+offset_top = -1.0
+offset_right = 48.0
+offset_bottom = 9.0
+text = "SCORE:"
+label_settings = SubResource("LabelSettings_qcojq")
+
+[node name="ScoreValue" type="Label" parent="."]
+offset_left = 48.0
+offset_top = -1.0
+offset_right = 96.0
+offset_bottom = 9.0
+text = "000000"
+label_settings = SubResource("LabelSettings_c35h4")
+
+[node name="Spell" type="Label" parent="."]
+offset_left = 104.0
+offset_top = -1.0
+offset_right = 152.0
+offset_bottom = 9.0
+text = "SPELL:"
+label_settings = SubResource("LabelSettings_qcojq")
+
+[node name="SpellValue" type="Label" parent="."]
+offset_left = 152.0
+offset_top = -1.0
+offset_right = 200.0
+offset_bottom = 9.0
+theme = SubResource("Theme_fmtmo")
+theme_override_colors/font_color = Color(0.890196, 0.905882, 0.431373, 1)
+text = "000000"
+label_settings = SubResource("LabelSettings_cyygv")
+
+[node name="Lev" type="Label" parent="."]
+offset_left = 208.0
+offset_top = -1.0
+offset_right = 256.0
+offset_bottom = 9.0
+text = "LEV:"
+label_settings = SubResource("LabelSettings_qcojq")
+
+[node name="LevValue" type="Label" parent="."]
+offset_left = 240.0
+offset_top = -1.0
+offset_right = 256.0
+offset_bottom = 9.0
+text = "00"
+label_settings = SubResource("LabelSettings_e7ybs")
+
+[node name="Lives" type="Label" parent="."]
+offset_left = 264.0
+offset_top = -1.0
+offset_right = 312.0
+offset_bottom = 9.0
+text = "LIVES:
+"
+label_settings = SubResource("LabelSettings_qcojq")
+
+[node name="LivesValue" type="Label" parent="."]
+offset_left = 312.0
+offset_top = -1.0
+offset_right = 320.0
+offset_bottom = 9.0
+text = "0"
+label_settings = SubResource("LabelSettings_j28iy")
