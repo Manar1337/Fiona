@@ -1,11 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxqvelackaop3"]
+[gd_scene load_steps=2 format=3 uid="uid://bm7148dbxrgi"]
 
-[ext_resource type="PackedScene" uid="uid://bdnuk6p5n635l" path="res://game/hero/player_walking.tscn" id="1_ftcvv"]
-[ext_resource type="Texture2D" uid="uid://5wsyuie5q30e" path="res://assets/graphics/WalkingLevel/BackgroundGraveyard.png" id="2_8cnsu"]
+[ext_resource type="Texture2D" uid="uid://5wsyuie5q30e" path="res://assets/graphics/WalkingLevel/BackgroundGraveyard.png" id="1_k4lrj"]
 
-[node name="Level2" type="Node"]
-
-[node name="WalkingEnemyGenerator" type="Node2D" parent="."]
+[node name="BackgroundWalking" type="Node"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -15,11 +12,7 @@
 
 [node name="BackgroundGraveyard" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(160, 100)
-texture = ExtResource("2_8cnsu")
-
-[node name="PlayerWalking" parent="." instance=ExtResource("1_ftcvv")]
-position = Vector2(149, 156)
-scale = Vector2(2, 2)
+texture = ExtResource("1_k4lrj")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

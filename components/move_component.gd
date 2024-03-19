@@ -4,9 +4,8 @@ extends Node
 @export var actor: Node2D
 @export var velocity: Vector2
 
-func _process(delta):
+#func _process(delta):
 	#actor.translate(velocity * delta)
-	print(actor)
 
 func set_velocity(speed):
 	velocity = speed

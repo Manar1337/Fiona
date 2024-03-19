@@ -4,8 +4,8 @@ extends Node
 
 var current_level: Node = null
 var level_paths = [
-	"res://game/levels/level_1.tscn",
-	"res://game/levels/level_2.tscn"
+	"res://game/levels/flying_level.tscn",
+	"res://game/levels/walking_level.tscn"
 	]
 
 func _ready():

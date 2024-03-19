@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdnuk6p5n635l"]
+[gd_scene load_steps=16 format=3 uid="uid://bdnuk6p5n635l"]
 
 [ext_resource type="Texture2D" uid="uid://3uj4i17hrhww" path="res://assets/graphics/WalkingLevel/FionaWalkingFrames.png" id="1_6nrn6"]
 [ext_resource type="Script" path="res://game/hero/player_walking.gd" id="1_sttxx"]
 [ext_resource type="Script" path="res://components/stats_component.gd" id="3_bqhc7"]
+[ext_resource type="Script" path="res://game/hero/player_walking_movement.gd" id="4_lbrml"]
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="5_6m34h"]
+[ext_resource type="Script" path="res://components/hurt_component.gd" id="6_8542t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_myv37"]
 atlas = ExtResource("1_6nrn6")
@@ -83,9 +86,24 @@ sprite_frames = SubResource("SpriteFrames_7k0tf")
 animation = &"walk_right"
 autoplay = "walk_right"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, -4, 3, -4, 10, 2, 10, 2, 6, 3, 3)
-
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("3_bqhc7")
 health = 2000
+
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("4_lbrml")
+actor = NodePath("..")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+script = ExtResource("5_6m34h")
+
+[node name="HurtArea" type="CollisionPolygon2D" parent="HurtboxComponent"]
+polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, -4, 3, -4, 10, 2, 10, 2, 6, 3, 3)
+
+[node name="BodyArea" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, -4, 3, -4, 10, 2, 10, 2, 6, 3, 3)
+
+[node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
+script = ExtResource("6_8542t")
+stats_component = NodePath("../StatsComponent")
+hurtbox_component = NodePath("../HurtboxComponent")

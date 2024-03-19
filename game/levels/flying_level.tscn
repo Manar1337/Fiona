@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dnw54h72n11dd" path="res://game/scenes/flying_enemy_generator.tscn" id="2_j1507"]
 [ext_resource type="PackedScene" uid="uid://csinmdoj74g6t" path="res://game/backgrounds/background_flying.tscn" id="4_loi3w"]
 
-[node name="Level1" type="Node"]
+[node name="FlyingLevel" type="Node"]
 
 [node name="PlayerFlying" parent="." instance=ExtResource("2_7d1xw")]
 position = Vector2(50, 51)
