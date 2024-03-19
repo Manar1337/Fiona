@@ -1,4 +1,4 @@
-class_name MoveComponent
+class_name WalkComponent
 extends Node
 
 @export var actor: Node2D

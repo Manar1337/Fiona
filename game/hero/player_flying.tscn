@@ -91,7 +91,6 @@ collision_mask = 4
 script = ExtResource("9_fiybi")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent"]
-visible = false
 position = Vector2(-9.53674e-07, 0.5)
 scale = Vector2(1.2, 0.95)
 polygon = PackedVector2Array(2.5, -10, 5.83333, -3.68421, 10.8333, 1.57895, 10.8333, 3.68421, 5.83333, 8.94737, 1.66667, 10, -9.16667, 10, -9.16667, 5.78947, -0.833333, 0.526316, -0.833333, -6.84211, 0.833334, -10)
