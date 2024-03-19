@@ -1,4 +1,5 @@
 extends CharacterBody2D
+@onready var animated_sprite_2d = $AnimatedSprite2D as AnimatedSprite2D
 
 
 const SPEED = 75.0
@@ -21,11 +22,15 @@ func _physics_process(delta):
 	var directionX = Input.get_axis("ui_left", "ui_right")
 	if directionX:
 		velocity.x = directionX * SPEED
+		print(velocity.x)
+		if velocity.x > 0:
+			animated_sprite_2d.flip_h = false
+		else:
+			animated_sprite_2d.flip_h = true
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 	var directionY = Input.get_axis("ui_up", "ui_down")
-	print(directionY)
 	if directionY:
 		if directionY != 0:
 			velocity.y = directionY * FLY_VELOCITY
