@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bdnuk6p5n635l"]
 
-[ext_resource type="Script" path="res://components/move_component.gd" id="1_1jypn"]
 [ext_resource type="Texture2D" uid="uid://3uj4i17hrhww" path="res://assets/graphics/WalkingLevel/FionaWalkingFrames.png" id="1_6nrn6"]
+[ext_resource type="Script" path="res://game/hero/player_walking.gd" id="1_sttxx"]
 [ext_resource type="Script" path="res://components/stats_component.gd" id="3_bqhc7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_myv37"]
@@ -75,7 +75,7 @@ animations = [{
 
 [node name="PlayerWalking" type="CharacterBody2D"]
 floor_constant_speed = true
-script = ExtResource("1_1jypn")
+script = ExtResource("1_sttxx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
