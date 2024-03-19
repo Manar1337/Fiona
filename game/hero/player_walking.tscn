@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://bdnuk6p5n635l"]
+
+[ext_resource type="Texture2D" uid="uid://3uj4i17hrhww" path="res://assets/graphics/WalkingLevel/FionaWalkingFrames.png" id="1_6nrn6"]
+[ext_resource type="Script" path="res://game/hero/player_walking.gd" id="1_sttxx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myv37"]
+atlas = ExtResource("1_6nrn6")
+region = Rect2(0, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ger2c"]
+atlas = ExtResource("1_6nrn6")
+region = Rect2(8, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nu1wi"]
+atlas = ExtResource("1_6nrn6")
+region = Rect2(16, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kg2w3"]
+atlas = ExtResource("1_6nrn6")
+region = Rect2(24, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpsef"]
+atlas = ExtResource("1_6nrn6")
+region = Rect2(24, 20, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiq1p"]
+atlas = ExtResource("1_6nrn6")
+region = Rect2(16, 20, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjhg7"]
+atlas = ExtResource("1_6nrn6")
+region = Rect2(8, 20, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utt0r"]
+atlas = ExtResource("1_6nrn6")
+region = Rect2(0, 20, 8, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7k0tf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myv37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ger2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nu1wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kg2w3")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpsef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xiq1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjhg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utt0r")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 10.0
+}]
+
+[node name="PlayerWalking" type="CharacterBody2D"]
+floor_constant_speed = true
+script = ExtResource("1_sttxx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_7k0tf")
+animation = &"walk_right"
+autoplay = "walk_right"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, -4, 3, -4, 10, 2, 10, 2, 6, 3, 3)

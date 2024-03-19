@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnw54h72n11dd"]
+
+[ext_resource type="Script" path="res://game/scenes/enemy_generator.gd" id="1_omjc8"]
+[ext_resource type="PackedScene" uid="uid://dvnbvm8bydpao" path="res://game/enemies/witch/witch.tscn" id="2_q8sgj"]
+[ext_resource type="Script" path="res://game/scenes/WitchSpawner.gd" id="3_elffp"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="4_sp23v"]
+
+[node name="EnemyGenerator" type="Node2D"]
+script = ExtResource("1_omjc8")
+
+[node name="WitchSpawner" type="Node" parent="."]
+script = ExtResource("3_elffp")
+what_to_spawn = ExtResource("2_q8sgj")
+
+[node name="Timer" type="Timer" parent="WitchSpawner"]
+autostart = true
+
+[node name="SpawnerComponent" type="Node2D" parent="WitchSpawner"]
+script = ExtResource("4_sp23v")
+what_to_spawn = ExtResource("2_q8sgj")

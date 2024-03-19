@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://be5x47esm6583"]
+
+[ext_resource type="Script" path="res://game/scenes/timed_random_spawner.gd" id="1_s7r0f"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="2_k538b"]
+
+[node name="TimedRandomSpawner" type="Node"]
+script = ExtResource("1_s7r0f")
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("2_k538b")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

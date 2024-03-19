@@ -1,0 +1,95 @@
+[gd_scene load_steps=16 format=3 uid="uid://d3iqt6cleme8e"]
+
+[ext_resource type="Texture2D" uid="uid://d1vubed5r6mvt" path="res://assets/graphics/FlyingLevel/FionaFlyingl.png" id="1_4sogb"]
+[ext_resource type="Script" path="res://levels/flying/hero/player_flying.gd" id="1_xqhu7"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="2_4f2hd"]
+[ext_resource type="Script" path="res://components/move_input_component.gd" id="3_0haco"]
+[ext_resource type="Script" path="res://components/position_clamp_component.gd" id="4_1l2n7"]
+[ext_resource type="Script" path="res://components/move_stats.gd" id="5_e8lfh"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="7_y5k6p"]
+[ext_resource type="PackedScene" uid="uid://ctc6p2ayrtmtu" path="res://levels/flying/hero/zap.tscn" id="8_3mbd2"]
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="9_fiybi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lar7r"]
+atlas = ExtResource("1_4sogb")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwjnn"]
+atlas = ExtResource("1_4sogb")
+region = Rect2(24, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcdve"]
+atlas = ExtResource("1_4sogb")
+region = Rect2(48, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f58hx"]
+atlas = ExtResource("1_4sogb")
+region = Rect2(72, 0, 24, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_elakc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lar7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwjnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcdve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f58hx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_qk8yv"]
+script = ExtResource("5_e8lfh")
+speed = 200
+
+[node name="PlayerFlying" type="Node2D"]
+z_index = 2
+script = ExtResource("1_xqhu7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_elakc")
+autoplay = "default"
+frame = 1
+frame_progress = 0.0730367
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_4f2hd")
+actor = NodePath("..")
+
+[node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
+script = ExtResource("3_0haco")
+move_stats = SubResource("Resource_qk8yv")
+move_component = NodePath("../MoveComponent")
+
+[node name="PositionClampComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("4_1l2n7")
+actor = NodePath("..")
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("7_y5k6p")
+what_to_spawn = ExtResource("8_3mbd2")
+
+[node name="FireRateTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ZapMarker" type="Marker2D" parent="."]
+position = Vector2(19, 3)
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_mask = 0
+script = ExtResource("9_fiybi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent"]
+visible = false
+position = Vector2(-9.53674e-07, 0.5)
+scale = Vector2(1.2, 0.95)
+polygon = PackedVector2Array(2.5, -10, 5.83333, -3.68421, 10.8333, 1.57895, 10.8333, 3.68421, 5.83333, 8.94737, 1.66667, 10, -9.16667, 10, -9.16667, 5.78947, -0.833333, 0.526316, -0.833333, -6.84211, 0.833334, -10)

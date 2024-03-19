@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://nnuw52nnceid"]
+
+[ext_resource type="PackedScene" uid="uid://d3iqt6cleme8e" path="res://game/hero/player_flying.tscn" id="2_7d1xw"]
+[ext_resource type="PackedScene" uid="uid://dnw54h72n11dd" path="res://game/scenes/flying_enemy_generator.tscn" id="2_j1507"]
+[ext_resource type="PackedScene" uid="uid://csinmdoj74g6t" path="res://game/backgrounds/background_flying.tscn" id="4_loi3w"]
+
+[node name="Level1" type="Node"]
+
+[node name="PlayerFlying" parent="." instance=ExtResource("2_7d1xw")]
+position = Vector2(50, 51)
+
+[node name="FlyingEnemyGenerator" parent="." instance=ExtResource("2_j1507")]
+
+[node name="Background" parent="." instance=ExtResource("4_loi3w")]
+
+[node name="Level" type="Node" parent="."]
