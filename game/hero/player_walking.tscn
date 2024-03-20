@@ -95,6 +95,7 @@ script = ExtResource("4_lbrml")
 actor = NodePath("..")
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
+collision_mask = 4
 script = ExtResource("5_6m34h")
 
 [node name="HurtArea" type="CollisionPolygon2D" parent="HurtboxComponent"]

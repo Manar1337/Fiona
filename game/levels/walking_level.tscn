@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bm7148dbxrgi" path="res://game/backgrounds/background_walking.tscn" id="1_dmdmp"]
 [ext_resource type="PackedScene" uid="uid://bdnuk6p5n635l" path="res://game/hero/player_walking.tscn" id="2_hpdu1"]
-[ext_resource type="PackedScene" uid="uid://ctc6p2ayrtmtu" path="res://game/hero/zap.tscn" id="3_iy503"]
+[ext_resource type="PackedScene" uid="uid://csyevsiffel1" path="res://game/enemies/witch/witch_zap.tscn" id="3_uub4o"]
 
 [node name="WalkingLevel" type="Node"]
 
@@ -14,5 +14,5 @@
 position = Vector2(149, 156)
 scale = Vector2(2, 2)
 
-[node name="Zap" parent="." instance=ExtResource("3_iy503")]
-position = Vector2(222, 134)
+[node name="WitchZap" parent="." instance=ExtResource("3_uub4o")]
+position = Vector2(225, 133)
