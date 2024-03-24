@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://cfylsexis6mon"]
+
+[ext_resource type="Texture2D" uid="uid://dncoj732ggvar" path="res://assets/graphics/WalkingLevel/Skeleton.png" id="1_0epit"]
+[ext_resource type="Script" path="res://game/enemies/skeleton/skeleton.gd" id="1_pj8hc"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="2_ujbqt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e33v0"]
+atlas = ExtResource("1_0epit")
+region = Rect2(0, 0, 20, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7x6u"]
+atlas = ExtResource("1_0epit")
+region = Rect2(20, 0, 20, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53nhk"]
+atlas = ExtResource("1_0epit")
+region = Rect2(40, 0, 20, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q1pf"]
+atlas = ExtResource("1_0epit")
+region = Rect2(60, 0, 20, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dsjlo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e33v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7x6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53nhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2q1pf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Skeleton" type="Node2D"]
+script = ExtResource("1_pj8hc")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dsjlo")
+autoplay = "default"
+frame_progress = 0.880534
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_ujbqt")
+actor = NodePath("..")
+velocity = Vector2(-40, 0)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-4, -1.26316)
+scale = Vector2(1, 2.52632)
+rect = Rect2(-6, -8, 18, 17)
