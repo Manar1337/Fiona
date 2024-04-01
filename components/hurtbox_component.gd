@@ -2,6 +2,9 @@
 class_name HurtboxComponent
 extends Area2D
 
+@export var sprites = false
+@export var tiles = false
+
 signal tilemap_hit(tilemap)
 signal hitbox_hit(hitbox)
 signal hurt(hitbox)
@@ -9,9 +12,9 @@ signal hurt(hitbox)
 func _ready():
 	area_entered.connect(_on_area_entered)
 	body_entered.connect(_on_body_entered)
-
 	
 func _on_area_entered(area: Area2D):
+	if !sprites: return
 	if not area is HitboxComponent: return
 	if self.is_invincible: return
 
@@ -19,6 +22,7 @@ func _on_area_entered(area: Area2D):
 	hurt.emit(area)
 
 func _on_body_entered(tilemap: TileMap):
+	if !tiles: return
 	if not tilemap is TileMap: return
 	tilemap_hit.emit(tilemap)
 	

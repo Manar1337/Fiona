@@ -1,13 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bdnuk6p5n635l"]
+[gd_scene load_steps=16 format=3 uid="uid://bdnuk6p5n635l"]
 
 [ext_resource type="Texture2D" uid="uid://3uj4i17hrhww" path="res://assets/graphics/WalkingLevel/FionaWalkingFrames.png" id="1_6nrn6"]
 [ext_resource type="Script" path="res://game/hero/player_walking.gd" id="1_sttxx"]
 [ext_resource type="Script" path="res://components/stats_component.gd" id="3_bqhc7"]
-[ext_resource type="Script" path="res://components/walking_component.gd" id="4_lbrml"]
+[ext_resource type="Script" path="res://game/hero/player_walking_movement.gd" id="4_lbrml"]
 [ext_resource type="Script" path="res://components/hurtbox_component.gd" id="5_6m34h"]
 [ext_resource type="Script" path="res://components/hurt_component.gd" id="6_8542t"]
-[ext_resource type="Script" path="res://components/spawner_component.gd" id="7_qhypj"]
-[ext_resource type="PackedScene" uid="uid://ctc6p2ayrtmtu" path="res://game/hero/zap.tscn" id="8_83h76"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_myv37"]
 atlas = ExtResource("1_6nrn6")
@@ -110,13 +108,3 @@ polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, 
 script = ExtResource("6_8542t")
 stats_component = NodePath("../StatsComponent")
 hurtbox_component = NodePath("../HurtboxComponent")
-
-[node name="ZapMarker" type="Marker2D" parent="."]
-position = Vector2(7, 2)
-
-[node name="SpawnerComponent" type="Node2D" parent="."]
-script = ExtResource("7_qhypj")
-what_to_spawn = ExtResource("8_83h76")
-
-[node name="FireRateTimer" type="Timer" parent="SpawnerComponent"]
-one_shot = true

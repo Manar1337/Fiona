@@ -6,7 +6,10 @@ extends Node2D
 
 func _ready():
 	visible_on_screen_enabler_2d.screen_exited.connect(queue_free)
-	hitbox_component.hit_hurtbox.connect(queue_free.unbind(1))
+	hitbox_component.hit_hurtbox.connect(zapDie.unbind(1))
 
 func set_speed(speed):
 	move_component.set_velocity(speed)
+	
+func zapDie():
+	queue_free()
