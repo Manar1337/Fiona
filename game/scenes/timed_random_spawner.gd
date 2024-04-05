@@ -9,6 +9,7 @@ extends Node
 @export var timer_min: float
 
 @export_group("Spawn position")
+@export var random: bool = true
 @export var spawn_top: float
 @export var spawn_bottom: float
 @export var spawn_left: float
@@ -24,6 +25,8 @@ func _ready():
 	
 func handle_spawn():
 	spawner_component.what_to_spawn = what_to_spawn
-	spawner_component.spawn(Vector2(randf_range(spawn_left,spawn_right), randf_range(spawn_top,spawn_bottom)))
+	var spawnpos: Vector2 = Vector2(randf_range(spawn_left,spawn_right), randf_range(spawn_top,spawn_bottom))
+	print(spawnpos)
+	spawner_component.spawn(spawnpos)
 	timer.set_wait_time(randf_range(timer_min,timer_max))
 	timer.start()

@@ -18,7 +18,6 @@ func load_level(level_index: int):
 
 	if level_index >= 0 and level_index < level_paths.size():
 		var level_scene = load(level_paths[level_index])
-		print(level_scene)
 		current_level = level_scene.instantiate()
 		level_holder.add_child(current_level)
 	else:

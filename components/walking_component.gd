@@ -10,7 +10,7 @@ const FLY_VELOCITY = 75.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not actor.is_on_floor():
 		actor.velocity.y = 75
 

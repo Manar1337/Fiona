@@ -5,6 +5,7 @@
 
 [node name="TimedRandomSpawner" type="Node"]
 script = ExtResource("1_s7r0f")
+spawn_right = 312.0
 
 [node name="SpawnerComponent" type="Node2D" parent="."]
 script = ExtResource("2_k538b")

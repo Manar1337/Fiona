@@ -7,16 +7,19 @@ extends CharacterBody2D
 @onready var zap_marker = $ZapMarker as Marker2D
 @onready var fire_rate_timer = $SpawnerComponent/FireRateTimer as Timer
 @onready var spawner_component = $SpawnerComponent
+@onready var hurtbox_component = $HurtboxComponent
+
 
 var fire_lock = false
 var dir = "left"
 
 func _ready():
-	stats_component.health_changed.connect(get_hurt)
+	#stats_component.health_changed.connect(get_hurt)
+	hurtbox_component.hurt.connect(got_hurt.unbind(1))
 	movement_component.connect("turn", on_turn)
 	fire_rate_timer.timeout.connect(unlock_fire)
 
-func get_hurt():
+func got_hurt():
 	print("Ouch")
 	
 func on_turn(direction):
@@ -36,9 +39,9 @@ func _input(_event: InputEvent):
 func fire_zap():
 	var zap = spawner_component.spawn(zap_marker.global_position)
 	if dir =="left":
-		zap.set_speed(Vector2(300, 0))
+		zap.set_speed(Vector2(500, 0))
 	if dir =="right":
-		zap.set_speed(Vector2(-300, 0))
+		zap.set_speed(Vector2(-500, 0))
 	lock_fire()
 	
 func lock_fire():

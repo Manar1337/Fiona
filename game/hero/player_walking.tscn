@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bdnuk6p5n635l"]
+[gd_scene load_steps=19 format=3 uid="uid://bdnuk6p5n635l"]
 
 [ext_resource type="Texture2D" uid="uid://3uj4i17hrhww" path="res://assets/graphics/WalkingLevel/FionaWalkingFrames.png" id="1_6nrn6"]
 [ext_resource type="Script" path="res://game/hero/player_walking.gd" id="1_sttxx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://components/walking_component.gd" id="4_lbrml"]
 [ext_resource type="Script" path="res://components/hurtbox_component.gd" id="5_6m34h"]
 [ext_resource type="Script" path="res://components/hurt_component.gd" id="6_8542t"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="6_qpct8"]
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="7_qhypj"]
 [ext_resource type="PackedScene" uid="uid://ctc6p2ayrtmtu" path="res://game/hero/zap.tscn" id="8_83h76"]
 
@@ -79,6 +80,7 @@ animations = [{
 }]
 
 [node name="PlayerWalking" type="CharacterBody2D"]
+collision_mask = 12
 floor_constant_speed = true
 script = ExtResource("1_sttxx")
 
@@ -97,10 +99,17 @@ script = ExtResource("4_lbrml")
 actor = NodePath("..")
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
-collision_mask = 4
+collision_mask = 2
 script = ExtResource("5_6m34h")
 
 [node name="HurtArea" type="CollisionPolygon2D" parent="HurtboxComponent"]
+polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, -4, 3, -4, 10, 2, 10, 2, 6, 3, 3)
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("6_qpct8")
+
+[node name="HitArea" type="CollisionPolygon2D" parent="HitboxComponent"]
 polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, -4, 3, -4, 10, 2, 10, 2, 6, 3, 3)
 
 [node name="BodyArea" type="CollisionPolygon2D" parent="."]
