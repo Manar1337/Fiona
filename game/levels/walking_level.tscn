@@ -1,23 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxqvelackaop3"]
+[gd_scene load_steps=4 format=3 uid="uid://dxqvelackaop3"]
 
 [ext_resource type="PackedScene" uid="uid://bm7148dbxrgi" path="res://game/backgrounds/background_walking.tscn" id="1_dmdmp"]
 [ext_resource type="PackedScene" uid="uid://bdnuk6p5n635l" path="res://game/hero/player_walking.tscn" id="2_hpdu1"]
-[ext_resource type="PackedScene" uid="uid://cfylsexis6mon" path="res://game/enemies/skeleton/skeleton.tscn" id="4_4e1tk"]
 [ext_resource type="PackedScene" uid="uid://ctkqsiv15thk8" path="res://components/walking_enemy_generator.tscn" id="4_tmp2m"]
 
 [node name="WalkingLevel" type="Node"]
-
-[node name="Skeleton" parent="." instance=ExtResource("4_4e1tk")]
-visible = false
-position = Vector2(312, 179)
 
 [node name="BackgroundWalking" parent="." instance=ExtResource("1_dmdmp")]
 
 [node name="PlayerWalking" parent="." instance=ExtResource("2_hpdu1")]
 position = Vector2(149, 156)
 scale = Vector2(2, 2)
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(312, 160)
 
 [node name="WalkingEnemyGenerator" parent="." instance=ExtResource("4_tmp2m")]

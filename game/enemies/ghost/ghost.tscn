@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://0g5pc4u58gsd"]
+
+[ext_resource type="Script" path="res://game/enemies/ghost/ghost.gd" id="1_1tgvm"]
+[ext_resource type="Texture2D" uid="uid://bbg33koyaha0w" path="res://assets/graphics/WalkingLevel/Ghost-small.png" id="1_a7ali"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="2_14byl"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="4_4ocmc"]
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="4_hhoik"]
+[ext_resource type="Script" path="res://components/stats_component.gd" id="5_d3msc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62v3v"]
+atlas = ExtResource("1_a7ali")
+region = Rect2(0, 0, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_of0go"]
+atlas = ExtResource("1_a7ali")
+region = Rect2(23, 0, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lhgd"]
+atlas = ExtResource("1_a7ali")
+region = Rect2(46, 0, 23, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s7ud0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62v3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_of0go")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lhgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_of0go")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g75ck"]
+size = Vector2(21, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ws3a"]
+size = Vector2(21, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ng47o"]
+size = Vector2(21, 21.5)
+
+[node name="Ghost" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_1tgvm")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s7ud0")
+autoplay = "default"
+frame_progress = 0.919708
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_14byl")
+actor = NodePath("..")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-0.5, 5.96046e-08)
+scale = Vector2(1.05, 1.1)
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("4_4ocmc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_g75ck")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("4_hhoik")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_4ws3a")
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("5_d3msc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_ng47o")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
