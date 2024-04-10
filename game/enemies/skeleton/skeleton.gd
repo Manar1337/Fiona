@@ -11,8 +11,7 @@ var state = states.WALKING
 func _ready():
 	move_component.velocity.x = speed
 	hurtbox_component.hurt.connect(was_hit.unbind(1))
-	#hitbox_component.hit_hurtbox.connect(die)
-	
+
 func _physics_process(_delta):
 	if is_on_floor():
 		if state == states.FALLING: die()

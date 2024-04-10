@@ -45,7 +45,7 @@ func _process(_delta):
 
 func set_target(new_target):
 	target = new_target
-	
+
 func fire_zap():
 	var zap = spawner_component.spawn(zap_marker.global_position)
 	zap.set_speed(Vector2(target.global_transform.origin - global_transform.origin).normalized() * 300)

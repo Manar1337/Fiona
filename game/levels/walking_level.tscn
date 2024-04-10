@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bm7148dbxrgi" path="res://game/backgrounds/background_walking.tscn" id="1_dmdmp"]
 [ext_resource type="PackedScene" uid="uid://bdnuk6p5n635l" path="res://game/hero/player_walking.tscn" id="2_hpdu1"]
-[ext_resource type="PackedScene" uid="uid://ctkqsiv15thk8" path="res://components/walking_enemy_generator.tscn" id="4_tmp2m"]
+[ext_resource type="PackedScene" uid="uid://ctkqsiv15thk8" path="res://game/scenes/walking_enemy_generator.tscn" id="4_tmp2m"]
 
 [node name="WalkingLevel" type="Node"]
 

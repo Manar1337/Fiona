@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 @onready var animated_sprite_2d = $AnimatedSprite2D as AnimatedSprite2D
 @onready var stats_component = $StatsComponent
 @onready var movement_component = $MovementComponent
@@ -8,7 +7,6 @@ extends CharacterBody2D
 @onready var fire_rate_timer = $SpawnerComponent/FireRateTimer as Timer
 @onready var spawner_component = $SpawnerComponent
 @onready var hurtbox_component = $HurtboxComponent
-
 
 var fire_lock = false
 var dir = "left"
@@ -31,6 +29,7 @@ func on_turn(direction):
 	if(direction=="right"):
 		animated_sprite_2d.flip_h = true
 		zap_marker.transform.origin.x = -7
+
 func _input(_event: InputEvent):
 	if Input.is_action_pressed("ui_select"):
 		if !fire_lock:
@@ -43,11 +42,10 @@ func fire_zap():
 	if dir =="right":
 		zap.set_speed(Vector2(-500, 0))
 	lock_fire()
-	
+
 func lock_fire():
 	fire_lock = true
 	fire_rate_timer.start(1)
 
 func unlock_fire():
 	fire_lock = false;
-	

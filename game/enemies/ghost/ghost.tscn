@@ -89,5 +89,8 @@ script = ExtResource("5_d3msc")
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_ng47o")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="MoveTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true

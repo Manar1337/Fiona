@@ -6,10 +6,10 @@ extends Node2D
 
 var where_to_spawn = null
 func _ready():
-	witch_spawner.connect("witch_spawned", _on_Witch_Spawned)
+	witch_spawner.connect("witch_spawned", _on_witch_spawned)
 	start_generating()
 
-func _on_Witch_Spawned(witch_instance):
+func _on_witch_spawned(witch_instance):
 	if witch_instance.has_method("set_target"):
 		witch_instance.set_target(player_flying)
 		

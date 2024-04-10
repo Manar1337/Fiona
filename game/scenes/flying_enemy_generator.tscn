@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://be5x47esm6583" path="res://game/scenes/timed_random_spawner.tscn" id="5_b00kw"]
 [ext_resource type="PackedScene" uid="uid://ddrdrwh1uvpgh" path="res://game/enemies/cloud/cloud.tscn" id="6_o2wp6"]
 
-[node name="EnemyGenerator" type="Node2D"]
+[node name="FlyingEnemyGenerator" type="Node2D"]
 script = ExtResource("1_166sa")
 
 [node name="WitchSpawner" parent="." instance=ExtResource("5_b00kw")]

@@ -3,42 +3,52 @@ extends CharacterBody2D
 @onready var move_component = $MoveComponent
 @onready var hitbox_component = $HitboxComponent
 @onready var hurtbox_component = $HurtboxComponent
-@onready var timer = $Timer
+@onready var move_timer = $MoveTimer as Timer
+@onready var death_timer = $DeathTimer as Timer
 
-enum directions {up, down, left, right}
+enum directions {UP, DOWN, LEFT, RIGHT}
+enum states {FLYING, DYING}
+
 const SPEED = 50.0
 var direction:directions
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var state:states
+var target = null
 
 func _ready():
 	move_component.velocity.y = -SPEED
-	direction = directions.up
-	hurtbox_component.hurt.connect(die.unbind(1))
-	timer.timeout.connect(change_direction)
+	direction = directions.UP
+	state = states.FLYING
+	hurtbox_component.hurt.connect(was_hit.unbind(1))
+	move_timer.timeout.connect(change_direction)
+	death_timer.timeout.connect(die)
 
 func _physics_process(_delta):
 	move_and_slide()
 
 func change_direction():
+	if state != states.FLYING: return
+	
 	direction = directions.values().pick_random()
 	match direction:
-		directions.up:
+		directions.UP:
 			move_component.velocity.x = 0
 			move_component.velocity.y = SPEED
-		directions.down:
+		directions.DOWN:
 			move_component.velocity.x = 0
 			move_component.velocity.y = -SPEED
-		directions.left:
+		directions.LEFT:
 			move_component.velocity.x = -SPEED
 			move_component.velocity.y = 0
-		directions.right:
+		directions.RIGHT:
 			move_component.velocity.x = SPEED
 			move_component.velocity.y = 0
+func set_target(new_target):
+	target = new_target
 
 func was_hit():
-	die()
+	state = states.DYING
+	move_timer.stop()
+	death_timer.start()
 	
 func die():
 	queue_free()
