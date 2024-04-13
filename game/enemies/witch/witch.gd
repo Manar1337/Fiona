@@ -31,11 +31,11 @@ func _ready():
 	hitbox_component.hit_hurtbox.connect(die.unbind(1))
 
 func _process(_delta):
+	if state == states.FALLING:
+		fall()
 	if target != null && is_instance_valid(target):
 		if state == states.CHASING:
 			chase()
-		if state == states.FALLING:
-			fall()
 		if global_transform.origin.distance_to(target.global_transform.origin) < sight:
 			if global_transform.origin.x > target.global_transform.origin.x + sight/3:
 				if !fire_lock:

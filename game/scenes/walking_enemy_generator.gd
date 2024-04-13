@@ -1,11 +1,11 @@
 extends Node2D
 
+@onready var ghost_spawner = $GhostSpawner
+@onready var player_walking = $"../PlayerWalking"
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	ghost_spawner.connect("ghost_spawned", _on_ghost_spawned)
+	
+func _on_ghost_spawned(ghost_instance):
+	if ghost_instance.has_method("set_target"):
+		ghost_instance.set_target(player_walking)

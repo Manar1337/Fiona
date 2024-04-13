@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctkqsiv15thk8"]
+[gd_scene load_steps=7 format=3 uid="uid://ctkqsiv15thk8"]
 
 [ext_resource type="PackedScene" uid="uid://be5x47esm6583" path="res://game/scenes/timed_random_spawner.tscn" id="1_et1q6"]
+[ext_resource type="Script" path="res://game/scenes/walking_enemy_generator.gd" id="1_eysra"]
 [ext_resource type="PackedScene" uid="uid://cfylsexis6mon" path="res://game/enemies/skeleton/skeleton.tscn" id="2_cl40q"]
 [ext_resource type="PackedScene" uid="uid://bb1o15ujvq82k" path="res://game/scenes/timed_random_multispawner.tscn" id="3_jt2bb"]
 [ext_resource type="PackedScene" uid="uid://0g5pc4u58gsd" path="res://game/enemies/ghost/ghost.tscn" id="4_ushv4"]
 [ext_resource type="Script" path="res://game/scenes/ghost_spawner.gd" id="5_e6msv"]
 
 [node name="WalkingEnemyGenerator" type="Node2D"]
+script = ExtResource("1_eysra")
 
 [node name="SkeletonSpawner" parent="." instance=ExtResource("1_et1q6")]
 what_to_spawn = ExtResource("2_cl40q")

@@ -18,7 +18,7 @@ func _ready():
 	move_component.velocity.y = -SPEED
 	direction = directions.UP
 	state = states.FLYING
-	hurtbox_component.hurt.connect(was_hit.unbind(1))
+	hurtbox_component.hurt.connect(was_hit)
 	move_timer.timeout.connect(change_direction)
 	death_timer.timeout.connect(die)
 
@@ -45,10 +45,17 @@ func change_direction():
 func set_target(new_target):
 	target = new_target
 
-func was_hit():
-	state = states.DYING
-	move_timer.stop()
-	death_timer.start()
+func was_hit(obstacle:HitboxComponent):
+	if state != states.DYING:
+		var deathdir = position.direction_to(target.position)
+		move_component.velocity.x = deathdir.x * SPEED * 4
+		move_component.velocity.y = deathdir.y * SPEED * 4
+
+		state = states.DYING
+		move_timer.stop()
+		death_timer.start()
+	elif obstacle.get_parent() == target:
+		die()
 	
 func die():
 	queue_free()

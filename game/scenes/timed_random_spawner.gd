@@ -9,7 +9,6 @@ extends Node
 @export var timer_min: float
 
 @export_group("Spawn position")
-@export var random: bool = true
 @export var spawn_top: float
 @export var spawn_bottom: float
 @export var spawn_left: float

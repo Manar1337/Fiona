@@ -93,4 +93,5 @@ shape = SubResource("RectangleShape2D_ng47o")
 autostart = true
 
 [node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.4
 one_shot = true
