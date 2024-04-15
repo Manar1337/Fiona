@@ -22,9 +22,6 @@ func _ready():
 	move_timer.timeout.connect(change_direction)
 	death_timer.timeout.connect(die)
 
-func _physics_process(_delta):
-	move_and_slide()
-
 func change_direction():
 	if state != states.FLYING: return
 	

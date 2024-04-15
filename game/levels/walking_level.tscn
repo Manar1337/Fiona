@@ -9,7 +9,7 @@
 [node name="BackgroundWalking" parent="." instance=ExtResource("1_dmdmp")]
 
 [node name="PlayerWalking" parent="." instance=ExtResource("2_hpdu1")]
-position = Vector2(149, 156)
+position = Vector2(184, 52)
 scale = Vector2(2, 2)
 
 [node name="WalkingEnemyGenerator" parent="." instance=ExtResource("4_tmp2m")]
