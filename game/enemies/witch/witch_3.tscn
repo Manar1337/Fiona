@@ -1,0 +1,94 @@
+[gd_scene load_steps=16 format=3 uid="uid://b7ixi2bpxuuj6"]
+
+[ext_resource type="Texture2D" uid="uid://ou6q7we48gkw" path="res://assets/graphics/FlyingLevel/Witch.png" id="1_iy80e"]
+[ext_resource type="Texture2D" uid="uid://buoklgn5jc7hn" path="res://assets/graphics/FlyingLevel/Witch-cloth.png" id="2_u6h4b"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="3_3fsqf"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="4_14wm2"]
+[ext_resource type="PackedScene" uid="uid://csyevsiffel1" path="res://game/enemies/witch/witch_zap.tscn" id="5_0f51v"]
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="6_uhnds"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="7_hyvhi"]
+[ext_resource type="Script" path="res://components/stats_component.gd" id="8_ufjqf"]
+[ext_resource type="Script" path="res://components/hurt_component.gd" id="9_3lynr"]
+[ext_resource type="Script" path="res://components/color_flicker_component.gd" id="10_q70t0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_at2mi"]
+atlas = ExtResource("1_iy80e")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ev7q2"]
+atlas = ExtResource("1_iy80e")
+region = Rect2(24, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lvki"]
+atlas = ExtResource("1_iy80e")
+region = Rect2(48, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ismp"]
+atlas = ExtResource("1_iy80e")
+region = Rect2(72, 0, 24, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0lm7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_at2mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ev7q2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lvki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ismp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Witch3" type="Node2D"]
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m0lm7")
+
+[node name="Dress" type="Sprite2D" parent="."]
+texture = ExtResource("2_u6h4b")
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("3_3fsqf")
+actor = NodePath("..")
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("4_14wm2")
+what_to_spawn = ExtResource("5_0f51v")
+
+[node name="FireRateTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShootingMarker" type="Marker2D" parent="."]
+position = Vector2(-17, 3)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-12, -9, 24, 19)
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("6_uhnds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("7_hyvhi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("8_ufjqf")
+
+[node name="HurtComponent" type="Node" parent="."]
+script = ExtResource("9_3lynr")
+
+[node name="ColorFlickerComponent" type="Node" parent="."]
+script = ExtResource("10_q70t0")
