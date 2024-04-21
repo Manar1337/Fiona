@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ou6q7we48gkw" path="res://assets/graphics/FlyingLevel/Witch.png" id="2_mglg0"]
 [ext_resource type="PackedScene" uid="uid://csyevsiffel1" path="res://game/enemies/witch/witch_zap.tscn" id="4_p4n4a"]
 [ext_resource type="Script" path="res://game/enemies/witch/witch_2.gd" id="5_2xyhm"]
-[ext_resource type="Script" path="res://game/enemies/witch/ColorFlickerComponent.gd" id="5_vvble"]
+[ext_resource type="Script" path="res://components/color_flicker_component.gd" id="6_pguie"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbuo5"]
 atlas = ExtResource("2_mglg0")
@@ -63,7 +63,6 @@ one_shot = true
 position = Vector2(-17, 3)
 
 [node name="VisibleOnScreenEnabler2D" parent="." index="6"]
-visible = true
 rect = Rect2(-12, -9, 24, 19)
 
 [node name="HurtboxComponent" parent="." index="7"]
@@ -73,5 +72,6 @@ collision_mask = 0
 [node name="HitboxComponent" parent="." index="8"]
 collision_layer = 0
 
-[node name="ColorFlickerComponent" type="Node" parent="." index="11"]
-script = ExtResource("5_vvble")
+[node name="ColorFlickerComponent" type="Node" parent="." index="11" node_paths=PackedStringArray("sprite")]
+script = ExtResource("6_pguie")
+sprite = NodePath("../Dress")

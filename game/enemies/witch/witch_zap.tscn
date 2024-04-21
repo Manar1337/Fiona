@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game/enemies/witch/witch_zap.gd" id="1_q17le"]
 [ext_resource type="Texture2D" uid="uid://b8shht3o6mjo3" path="res://assets/graphics/FlyingLevel/Zap.png" id="2_nmjq8"]
-[ext_resource type="Script" path="res://components/move_component.gd" id="3_l5hn1"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="3_p1w1c"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="4_imv7l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gect4"]
@@ -16,9 +16,8 @@ texture_filter = 1
 texture = ExtResource("2_nmjq8")
 
 [node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("3_l5hn1")
+script = ExtResource("3_p1w1c")
 actor = NodePath("..")
-velocity = Vector2(500, 0)
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(5.96046e-08, 0)

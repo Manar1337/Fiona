@@ -45,3 +45,9 @@ func fall():
 	move_component.velocity.y+=15
 
 	fire_lock = true
+
+func die():
+	hurtbox_component.is_invincible = true
+	color_flicker_component.enabled = true
+	state = states.FALLING
+	GameData.set_score(GameData.score + 100)

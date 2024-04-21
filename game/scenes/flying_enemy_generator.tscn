@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game/scenes/flying_enemy_generator.gd" id="1_166sa"]
 [ext_resource type="Script" path="res://game/scenes/witch_spawner.gd" id="2_roitp"]
-[ext_resource type="PackedScene" uid="uid://pihai2shfvfw" path="res://game/enemies/witch/witch_2.tscn" id="4_e3gjl"]
+[ext_resource type="PackedScene" uid="uid://bs1arl1qxtn34" path="res://game/enemies/witch/witch_4.tscn" id="4_xxtph"]
 [ext_resource type="PackedScene" uid="uid://be5x47esm6583" path="res://game/scenes/timed_random_spawner.tscn" id="5_b00kw"]
 [ext_resource type="PackedScene" uid="uid://ddrdrwh1uvpgh" path="res://game/enemies/cloud/cloud.tscn" id="6_o2wp6"]
 
@@ -11,9 +11,8 @@ script = ExtResource("1_166sa")
 
 [node name="WitchSpawner" parent="." instance=ExtResource("5_b00kw")]
 script = ExtResource("2_roitp")
-what_to_spawn = ExtResource("4_e3gjl")
-timer_max = 7.0
-timer_min = 5.0
+what_to_spawn = ExtResource("4_xxtph")
+timer_max = 1.0
 spawn_bottom = 100.0
 spawn_left = 320.0
 spawn_right = 320.0

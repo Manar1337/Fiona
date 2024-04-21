@@ -10,7 +10,7 @@ var level_paths = [
 
 func _ready():
 	# Optionally, load the first level immediately, or handle this outside.
-	load_level(1)
+	load_level(0)
 
 func load_level(level_index: int):
 	if current_level:

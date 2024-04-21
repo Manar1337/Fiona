@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyew0xxkd3tjw"]
+
+[ext_resource type="PackedScene" uid="uid://bxqo66k6111ej" path="res://game/enemies/enemy/enemy_2.tscn" id="1_akebq"]
+[ext_resource type="Script" path="res://game/enemies/enemy/shooting_enemy_2.gd" id="2_ykkr5"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="3_6d4hm"]
+
+[node name="ShootingEnemy2" instance=ExtResource("1_akebq")]
+script = ExtResource("2_ykkr5")
+has_target = false
+
+[node name="SpawnerComponent" type="Node2D" parent="." index="2"]
+script = ExtResource("3_6d4hm")
+
+[node name="FireRateTimer" type="Timer" parent="." index="3"]
+
+[node name="ShootingMarker" type="Marker2D" parent="." index="4"]

@@ -4,7 +4,7 @@ extends Node
 func _ready():
 	GameData.set_score(0)
 	GameData.set_health(2000)
-	GameData.set_level(1)
+	GameData.set_level(0)
 	GameData.set_lives(4)
 
 func _input(_event):

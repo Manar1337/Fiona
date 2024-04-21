@@ -61,6 +61,7 @@ frame_progress = 0.0730367
 [node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("2_4f2hd")
 actor = NodePath("..")
+velocity = null
 
 [node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
 script = ExtResource("3_0haco")

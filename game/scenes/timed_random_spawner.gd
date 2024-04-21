@@ -21,7 +21,7 @@ var spawn_pos: Vector2
 
 func _ready():
 	timer.timeout.connect(handle_spawn)
-	
+
 func handle_spawn():
 	spawner_component.what_to_spawn = what_to_spawn
 	var spawnpos: Vector2 = Vector2(randf_range(spawn_left,spawn_right), randf_range(spawn_top,spawn_bottom))

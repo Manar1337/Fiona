@@ -1,6 +1,6 @@
-class_name ShootingEnemy
+class_name ShootingEnemy2
 
-extends Enemy
+extends Enemy2
 
 @export var has_target:bool = false
 
@@ -25,13 +25,13 @@ func shoot():
 		bullet.set_speed(Vector2(target.global_transform.origin - self.global_transform.origin).normalized() * 300)
 	else:
 		match fire_direction:
-			fire_direction.UP:
+			fire_directions.UP:
 				bullet.set_speed(Vector2(0,bullet_speed))
-			fire_direction.DOWN:
+			fire_directions.DOWN:
 				bullet.set_speed(Vector2(0,-bullet_speed))
-			fire_direction.LEFT:
+			fire_directions.LEFT:
 				bullet.set_speed(Vector2(-bullet_speed,0))
-			fire_direction.RIGHT:
+			fire_directions.RIGHT:
 				bullet.set_speed(Vector2(bullet_speed,0))
 
 	lock_fire()
