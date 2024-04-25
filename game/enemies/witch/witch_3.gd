@@ -19,7 +19,7 @@ var fire_lock = false
 
 var target_window = 8
 var speed = 64 + (randf() * 32)
-var sight = randf() * 300
+var sight = randf() * 100
 
 func _ready():
 	visible_on_screen_enabler_2d.screen_exited.connect(queue_free)

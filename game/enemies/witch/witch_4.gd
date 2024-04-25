@@ -5,7 +5,7 @@ extends ShootingEnemy2
 @onready var dress = $Dress
 @onready var color_flicker_component = $ColorFlickerComponent
 @onready var detection_area: Area2D = $DetectionArea
-@onready var detection_shape: CollisionShape2D = $DetectionArea/DetectionShape as CollisionShape2D
+@onready var detection_shape = $DetectionArea/DetectionShape
 
 enum states {FLYING, CHASING, FALLING}
 
@@ -17,13 +17,15 @@ var sight = 0
 func _ready():
 	super()
 	detection_area.area_entered.connect(_on_detection_area_area_entered)
-
+	
 	speed = 64 + (randf() * 32)
-	sight = randf() * 300
+	sight = randf() * 100
 	move_component_2.set_mode("steady")
 	move_component_2.set_speed(speed)
-	dress.self_modulate = Color( sight / 300, 0, 1 - ( sight / 300 ))
+	dress.self_modulate = Color( sight / 300, 0, 1 - ( sight / 100 ))
+	detection_shape.shape = detection_shape.shape.duplicate()
 	detection_shape.shape.radius = sight
+
 
 func was_hit(_obstacle:HitboxComponent):
 	die()
