@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game/scenes/flying_enemy_generator.gd" id="1_166sa"]
 [ext_resource type="Script" path="res://game/scenes/witch_spawner.gd" id="2_roitp"]
-[ext_resource type="PackedScene" uid="uid://bs1arl1qxtn34" path="res://game/enemies/witch/witch_4.tscn" id="4_xxtph"]
+[ext_resource type="PackedScene" uid="uid://bs1arl1qxtn34" path="res://game/enemies/witch/witch.tscn" id="4_xxtph"]
 [ext_resource type="PackedScene" uid="uid://be5x47esm6583" path="res://game/scenes/timed_random_spawner.tscn" id="5_b00kw"]
 [ext_resource type="PackedScene" uid="uid://ddrdrwh1uvpgh" path="res://game/enemies/cloud/cloud.tscn" id="6_o2wp6"]
 

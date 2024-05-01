@@ -1,6 +1,6 @@
 class_name Witch2
 
-extends ShootingEnemy
+extends ShootingEnemy1
 
 @onready var dress = $Dress
 @onready var color_flicker_component = $ColorFlickerComponent

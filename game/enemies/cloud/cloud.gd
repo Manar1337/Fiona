@@ -4,7 +4,7 @@ extends Node2D
 @onready var fire_rate_timer = $FireRateTimer as Timer
 @onready var spawner_component = $SpawnerComponent as SpawnerComponent
 @onready var zap_marker = $ZapMarker as Marker2D
-@onready var move_component_2 = $MoveComponent2 as MoveComponent2
+@onready var move_component = $MoveComponent as MoveComponent
 
 var color = randf() * 0.8 + 0.2
 var speed = 32 + (randf() * 50)
@@ -12,8 +12,8 @@ var fire_lock = false
 
 func _ready():
 	visible_on_screen_enabler_2d.screen_exited.connect(queue_free)
-	move_component_2.set_mode("steady")
-	move_component_2.set_speed(speed)
+	move_component.set_mode("steady")
+	move_component.set_speed(speed)
 	sprite_2d.self_modulate = Color( color, color, color, 1)
 
 	fire_rate_timer.timeout.connect(unlock_fire)

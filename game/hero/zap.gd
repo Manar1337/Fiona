@@ -10,6 +10,6 @@ func _ready():
 
 func set_speed(speed):
 	move_component.set_velocity(speed)
-	
+
 func zapDie():
 	queue_free()

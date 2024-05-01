@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game/enemies/ghost/ghost.gd" id="1_1tgvm"]
 [ext_resource type="Texture2D" uid="uid://bbg33koyaha0w" path="res://assets/graphics/WalkingLevel/Ghost-small.png" id="1_a7ali"]
-[ext_resource type="Script" path="res://components/move_component.gd" id="2_14byl"]
+[ext_resource type="Script" path="res://components/move_component_1.gd" id="2_14byl"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="4_4ocmc"]
 [ext_resource type="Script" path="res://components/hurtbox_component.gd" id="4_hhoik"]
 [ext_resource type="Script" path="res://components/stats_component.gd" id="5_d3msc"]

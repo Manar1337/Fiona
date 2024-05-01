@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://game/enemies/cloud/cloud.gd" id="1_qljl2"]
 [ext_resource type="Texture2D" uid="uid://t4rm0ignf31m" path="res://assets/graphics/FlyingLevel/Cloud.png" id="2_vxlph"]
-[ext_resource type="Script" path="res://components/test_components/move_component_2.gd" id="3_mdkxn"]
-[ext_resource type="Script" path="res://components/test_components/move/move_steady_component.gd" id="4_guc6w"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="3_mdkxn"]
+[ext_resource type="Script" path="res://components/move_components/move_steady_component.gd" id="4_guc6w"]
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="4_qu68p"]
 [ext_resource type="PackedScene" uid="uid://dkwxrtywclflf" path="res://game/enemies/cloud/cloud_lightning.tscn" id="5_gnb3p"]
 
@@ -14,10 +14,10 @@ script = ExtResource("1_qljl2")
 texture_filter = 1
 texture = ExtResource("2_vxlph")
 
-[node name="MoveComponent2" type="Node" parent="."]
+[node name="MoveComponent" type="Node" parent="."]
 script = ExtResource("3_mdkxn")
 
-[node name="MoveSteadyComponent" type="Node" parent="MoveComponent2"]
+[node name="MoveSteadyComponent" type="Node" parent="MoveComponent"]
 script = ExtResource("4_guc6w")
 
 [node name="SpawnerComponent" type="Node2D" parent="."]

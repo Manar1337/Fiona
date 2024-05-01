@@ -14,3 +14,6 @@ func set_data(data: Array):
 
 func set_speed(new_speed):
 	speed = new_speed
+
+func set_direction(new_direction):
+	direction = new_direction

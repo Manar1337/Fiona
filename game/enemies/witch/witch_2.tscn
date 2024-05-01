@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://pihai2shfvfw"]
 
-[ext_resource type="PackedScene" uid="uid://drgv73tlsrekt" path="res://game/enemies/enemy/shooting_enemy.tscn" id="1_8q8cu"]
+[ext_resource type="PackedScene" uid="uid://drgv73tlsrekt" path="res://game/enemies/enemy/shooting_enemy_1.tscn" id="1_8q8cu"]
 [ext_resource type="Texture2D" uid="uid://buoklgn5jc7hn" path="res://assets/graphics/FlyingLevel/Witch-cloth.png" id="2_7pvyq"]
 [ext_resource type="Texture2D" uid="uid://ou6q7we48gkw" path="res://assets/graphics/FlyingLevel/Witch.png" id="2_mglg0"]
-[ext_resource type="PackedScene" uid="uid://csyevsiffel1" path="res://game/enemies/witch/witch_zap.tscn" id="4_p4n4a"]
+[ext_resource type="PackedScene" uid="uid://csyevsiffel1" path="res://game/enemies/witch/witch_zap_1.tscn" id="4_p4n4a"]
 [ext_resource type="Script" path="res://game/enemies/witch/witch_2.gd" id="5_2xyhm"]
 [ext_resource type="Script" path="res://components/color_flicker_component.gd" id="6_pguie"]
 

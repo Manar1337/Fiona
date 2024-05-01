@@ -8,6 +8,11 @@ extends Node2D
 func _ready():
 	visible_on_screen_enabler_2d.screen_exited.connect(queue_free)
 	hitbox_component.hit_hurtbox.connect(queue_free.unbind(1))
+	move_component.set_mode("steady")
 
 func set_speed(speed):
-	move_component.set_velocity(speed)
+	move_component.set_speed(speed)
+
+func set_direction(direction):
+	move_component.set_mode_data("steady", [direction])
+
