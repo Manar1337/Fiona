@@ -1,6 +1,6 @@
-class_name ShootingEnemy
+class_name ShootingActor
 
-extends Enemy
+extends Actor
 
 @export var has_target:bool = false
 

@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5u48c0bm4as6"]
+[gd_scene load_steps=10 format=3 uid="uid://bxqo66k6111ej"]
 
-[ext_resource type="Script" path="res://game/enemies/enemy/enemy_1.gd" id="1_223av"]
-[ext_resource type="Script" path="res://components/hurt_component.gd" id="1_fk2mj"]
-[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="2_4nfkf"]
-[ext_resource type="Script" path="res://components/move_component_1.gd" id="2_xfxf4"]
-[ext_resource type="Script" path="res://components/hitbox_component.gd" id="3_76w2v"]
-[ext_resource type="Script" path="res://components/stats_component.gd" id="6_yvi88"]
+[ext_resource type="Script" path="res://game/enemies/actor/actor.gd" id="1_4e8xd"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="2_qoh0q"]
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="3_c5u1j"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="4_cpqb4"]
+[ext_resource type="Script" path="res://components/stats_component.gd" id="5_13sbc"]
+[ext_resource type="Script" path="res://components/hurt_component.gd" id="6_wpk36"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bmoha"]
 
@@ -13,35 +13,33 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kc58g"]
 
-[node name="Enemy1" type="Node2D"]
-script = ExtResource("1_223av")
+[node name="Actor" type="Node2D"]
+script = ExtResource("1_4e8xd")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bmoha")
 
-[node name="MoveComponent1" type="Node" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("2_xfxf4")
-actor = NodePath("..")
+[node name="MoveComponent" type="Node" parent="."]
+script = ExtResource("2_qoh0q")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-enable_node_path = NodePath("../MoveComponent1")
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
-script = ExtResource("2_4nfkf")
+script = ExtResource("3_c5u1j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("RectangleShape2D_xbx2c")
 
 [node name="HitboxComponent" type="Area2D" parent="."]
-script = ExtResource("3_76w2v")
+script = ExtResource("4_cpqb4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("RectangleShape2D_kc58g")
 
 [node name="StatsComponent" type="Node" parent="."]
-script = ExtResource("6_yvi88")
+script = ExtResource("5_13sbc")
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
-script = ExtResource("1_fk2mj")
+script = ExtResource("6_wpk36")
 stats_component = NodePath("../StatsComponent")
 hurtbox_component = NodePath("../HurtboxComponent")

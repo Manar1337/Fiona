@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://d1vubed5r6mvt" path="res://assets/graphics/FlyingLevel/FionaFlyingl.png" id="1_4sogb"]
 [ext_resource type="Script" path="res://game/hero/player_flying.gd" id="1_xqhu7"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="2_4f2hd"]
-[ext_resource type="Script" path="res://components/move_input_component.gd" id="3_0haco"]
 [ext_resource type="Script" path="res://components/position_clamp_component.gd" id="4_1l2n7"]
+[ext_resource type="Script" path="res://components/move_components/move_controlled_component.gd" id="4_prcoq"]
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="7_y5k6p"]
 [ext_resource type="PackedScene" uid="uid://ctc6p2ayrtmtu" path="res://game/hero/zap.tscn" id="8_3mbd2"]
 [ext_resource type="Script" path="res://components/hurtbox_component.gd" id="9_fiybi"]
@@ -58,14 +58,11 @@ autoplay = "default"
 frame = 1
 frame_progress = 0.0730367
 
-[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+[node name="MoveComponent" type="Node" parent="."]
 script = ExtResource("2_4f2hd")
-actor = NodePath("..")
-velocity = null
 
-[node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
-script = ExtResource("3_0haco")
-move_component = NodePath("../MoveComponent")
+[node name="MoveControlledComponent" type="Node" parent="MoveComponent"]
+script = ExtResource("4_prcoq")
 
 [node name="PositionClampComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("4_1l2n7")
