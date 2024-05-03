@@ -58,14 +58,11 @@ autoplay = "default"
 frame = 1
 frame_progress = 0.0730367
 
-[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+[node name="MoveComponent" type="Node" parent="."]
 script = ExtResource("2_4f2hd")
-actor = NodePath("..")
-velocity = null
 
-[node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
+[node name="MoveInputComponent" type="Node" parent="MoveComponent"]
 script = ExtResource("3_0haco")
-move_component = NodePath("../MoveComponent")
 
 [node name="PositionClampComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("4_1l2n7")

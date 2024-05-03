@@ -23,7 +23,7 @@ func _physics_process(_delta):
 			emit_signal("turn","right")
 	else:
 		actor.velocity.x = move_toward(actor.velocity.x, 0, SPEED)
-		
+
 	var directionY = Input.get_axis("ui_up", "ui_down")
 	if directionY:
 		if directionY != 0:
@@ -32,5 +32,5 @@ func _physics_process(_delta):
 			actor.velocity.y = 0
 	if Input.is_action_just_released("ui_up"):
 		actor.velocity.y = 0
-	actor.move_and_slide()	
+	actor.move_and_slide()
 

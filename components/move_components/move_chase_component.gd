@@ -20,7 +20,7 @@ func calculate_movement(delta):
 func set_data(data: Array):
 	target = data[0]
 	self_root = data[1]
-	
+
 func set_speed(new_speed):
-	speed = new_speed 
-	
+	speed = new_speed
+

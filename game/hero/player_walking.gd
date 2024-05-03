@@ -19,13 +19,13 @@ func _ready():
 
 func got_hurt():
 	print("Ouch")
-	
+
 func on_turn(direction):
 	dir = direction;
 	if(direction=="left"):
 		animated_sprite_2d.flip_h = false
 		zap_marker.transform.origin.x = 7
-		
+
 	if(direction=="right"):
 		animated_sprite_2d.flip_h = true
 		zap_marker.transform.origin.x = -7
