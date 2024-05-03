@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c5u48c0bm4as6"]
 
-[ext_resource type="Script" path="res://game/enemies/actor/enemy_1.gd" id="1_223av"]
+[ext_resource type="Script" path="res://game/actor/enemy_1.gd" id="1_223av"]
 [ext_resource type="Script" path="res://components/hurt_component.gd" id="1_fk2mj"]
 [ext_resource type="Script" path="res://components/hurtbox_component.gd" id="2_4nfkf"]
 [ext_resource type="Script" path="res://components/move_component_1.gd" id="2_xfxf4"]

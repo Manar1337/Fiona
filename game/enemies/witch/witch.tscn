@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://bs1arl1qxtn34"]
 
-[ext_resource type="PackedScene" uid="uid://dyew0xxkd3tjw" path="res://game/enemies/actor/shooting_actor.tscn" id="1_lmqdd"]
+[ext_resource type="PackedScene" uid="uid://dyew0xxkd3tjw" path="res://game/actor/shooting_actor.tscn" id="1_lmqdd"]
 [ext_resource type="Script" path="res://game/enemies/witch/witch.gd" id="1_w2ifd"]
 [ext_resource type="Texture2D" uid="uid://ou6q7we48gkw" path="res://assets/graphics/FlyingLevel/Witch.png" id="2_d0chx"]
 [ext_resource type="Texture2D" uid="uid://buoklgn5jc7hn" path="res://assets/graphics/FlyingLevel/Witch-cloth.png" id="3_tcskb"]
