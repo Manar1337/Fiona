@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://dv58ibdqgd66b"]
+
+[ext_resource type="Script" path="res://game/actor/gravity_actor.gd" id="1_3r06a"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="1_p33uu"]
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="2_prg5s"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="3_rtkbk"]
+[ext_resource type="Script" path="res://components/stats_component.gd" id="4_vlxg7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ld7m1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcyx4"]
+size = Vector2(18, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76nib"]
+size = Vector2(20, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ji0i0"]
+
+[node name="GravityActor" type="CharacterBody2D"]
+script = ExtResource("1_3r06a")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ld7m1")
+
+[node name="MoveComponent" type="Node" parent="."]
+script = ExtResource("1_p33uu")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+enable_node_path = NodePath("../MoveComponent")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+script = ExtResource("2_prg5s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("RectangleShape2D_rcyx4")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("3_rtkbk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_76nib")
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("4_vlxg7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ji0i0")

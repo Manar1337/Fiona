@@ -38,9 +38,11 @@ func _input(_event: InputEvent):
 func fire_zap():
 	var zap = spawner_component.spawn(zap_marker.global_position)
 	if dir =="left":
-		zap.set_speed(Vector2(500, 0))
+		zap.set_speed(500)
+		zap.set_direction([Vector2(1,0)])
 	if dir =="right":
-		zap.set_speed(Vector2(-500, 0))
+		zap.set_speed(500)
+		zap.set_direction([Vector2(-1,0)])
 	lock_fire()
 
 func lock_fire():

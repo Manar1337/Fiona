@@ -14,5 +14,5 @@ func set_speed(speed):
 	move_component.set_speed(speed)
 
 func set_direction(direction):
-	move_component.set_mode_data("steady", [direction])
+	move_component.set_mode_data([direction])
 

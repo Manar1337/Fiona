@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bm7148dbxrgi"]
+[gd_scene load_steps=4 format=3 uid="uid://bm7148dbxrgi"]
 
 [ext_resource type="Texture2D" uid="uid://5wsyuie5q30e" path="res://assets/graphics/WalkingLevel/BackgroundGraveyard.png" id="1_k4lrj"]
+[ext_resource type="Texture2D" uid="uid://chybkjo7d215r" path="res://assets/graphics/WalkingLevel/ForegroundGraveyard.png" id="2_fralu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5h1d"]
 size = Vector2(320, 8)
@@ -9,16 +10,25 @@ size = Vector2(320, 8)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="Background" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
 
-[node name="BackgroundGraveyard" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="BackgroundGraveyard" type="Sprite2D" parent="Background/ParallaxLayer"]
 position = Vector2(160, 100)
 texture = ExtResource("1_k4lrj")
 
+[node name="Foreground" type="ParallaxBackground" parent="."]
+layer = 100
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Foreground"]
+
+[node name="ForegroundGraveyard" type="Sprite2D" parent="Foreground/ParallaxLayer"]
+position = Vector2(160, 164)
+texture = ExtResource("2_fralu")
+offset = Vector2(0, 6)
+
 [node name="Walls" type="StaticBody2D" parent="."]
-visible = false
 collision_layer = 4
 collision_mask = 0
 

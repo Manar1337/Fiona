@@ -1,8 +1,8 @@
 class_name MoveSteadyComponent
 extends Node
 
-@export var speed: float = 50.0
-@export var direction: Vector2 = Vector2.LEFT
+@export var speed: float
+@export var direction: Vector2
 
 var mode = "steady"
 

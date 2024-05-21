@@ -1,101 +1,86 @@
-[gd_scene load_steps=15 format=3 uid="uid://cfylsexis6mon"]
+[gd_scene load_steps=13 format=3 uid="uid://clel6lktjkd28"]
 
-[ext_resource type="Texture2D" uid="uid://dncoj732ggvar" path="res://assets/graphics/WalkingLevel/Skeleton.png" id="1_0epit"]
-[ext_resource type="Script" path="res://game/enemies/skeleton/skeleton.gd" id="1_pj8hc"]
-[ext_resource type="Script" path="res://components/move_component_1.gd" id="2_ujbqt"]
-[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="4_m137n"]
-[ext_resource type="Script" path="res://components/hitbox_component.gd" id="5_3ou14"]
-[ext_resource type="Script" path="res://components/stats_component.gd" id="7_4heqk"]
+[ext_resource type="PackedScene" uid="uid://dv58ibdqgd66b" path="res://game/actor/gravity_actor.tscn" id="1_bxljs"]
+[ext_resource type="Script" path="res://game/enemies/skeleton/skeleton.gd" id="2_ac6qx"]
+[ext_resource type="Texture2D" uid="uid://dncoj732ggvar" path="res://assets/graphics/WalkingLevel/Skeleton.png" id="2_vwlbr"]
+[ext_resource type="Script" path="res://components/move_components/move_steady_component.gd" id="3_e0svi"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e33v0"]
-atlas = ExtResource("1_0epit")
+[sub_resource type="AtlasTexture" id="AtlasTexture_01m0f"]
+atlas = ExtResource("2_vwlbr")
 region = Rect2(0, 0, 20, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d7x6u"]
-atlas = ExtResource("1_0epit")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsyc5"]
+atlas = ExtResource("2_vwlbr")
 region = Rect2(20, 0, 20, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_53nhk"]
-atlas = ExtResource("1_0epit")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhyrf"]
+atlas = ExtResource("2_vwlbr")
 region = Rect2(40, 0, 20, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2q1pf"]
-atlas = ExtResource("1_0epit")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oc0c"]
+atlas = ExtResource("2_vwlbr")
 region = Rect2(60, 0, 20, 42)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dsjlo"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_873l2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e33v0")
+"texture": SubResource("AtlasTexture_01m0f")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d7x6u")
+"texture": SubResource("AtlasTexture_xsyc5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_53nhk")
+"texture": SubResource("AtlasTexture_bhyrf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2q1pf")
+"texture": SubResource("AtlasTexture_6oc0c")
 }],
 "loop": true,
 "name": &"default",
-"speed": 4.0
+"speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntdss"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dymfo"]
 size = Vector2(18, 40)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnp65"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chwt4"]
 size = Vector2(18, 42)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bhn4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ronlh"]
 size = Vector2(18, 42)
 
-[node name="Skeleton" type="CharacterBody2D"]
+[node name="Skeleton" instance=ExtResource("1_bxljs")]
 collision_layer = 2
 collision_mask = 8
 floor_block_on_wall = false
-script = ExtResource("1_pj8hc")
+script = ExtResource("2_ac6qx")
+gravity = 5.0
 
-[node name="Body" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_dsjlo")
+[node name="Body" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_873l2")
 autoplay = "default"
-frame = 1
-frame_progress = 0.822351
+frame_progress = 0.884962
 
-[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("2_ujbqt")
-actor = NodePath("..")
-velocity = Vector2(-40, 0)
+[node name="MoveSteadyComponent" type="Node" parent="MoveComponent" index="0"]
+script = ExtResource("3_e0svi")
+speed = 50.0
+direction = Vector2(-1, 0)
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(-4, -1.26316)
-scale = Vector2(1, 2.52632)
-rect = Rect2(-6, -8, 18, 17)
-
-[node name="HurtboxComponent" type="Area2D" parent="."]
-light_mask = 2
-visibility_layer = 0
+[node name="HurtboxComponent" parent="." index="3"]
 collision_layer = 2
-script = ExtResource("4_m137n")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
 position = Vector2(-1, -4)
-shape = SubResource("RectangleShape2D_ntdss")
+shape = SubResource("RectangleShape2D_dymfo")
 
-[node name="HitboxComponent" type="Area2D" parent="."]
-light_mask = 0
+[node name="HitboxComponent" parent="." index="4"]
 collision_layer = 2
-script = ExtResource("5_3ou14")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
 position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_mnp65")
+shape = SubResource("RectangleShape2D_chwt4")
 
-[node name="StatsComponent" type="Node" parent="."]
-script = ExtResource("7_4heqk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" parent="." index="6"]
 position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_1bhn4")
+shape = SubResource("RectangleShape2D_ronlh")

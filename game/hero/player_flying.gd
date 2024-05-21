@@ -29,7 +29,7 @@ func fire_zap():
 
 func lock_fire():
 	fire_lock = true
-	fire_rate_timer.start(1)
+	fire_rate_timer.start(0.1)
 
 func unlock_fire():
 	fire_lock = false;

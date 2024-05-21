@@ -21,7 +21,7 @@ func _on_hurtbox_entered(hurtbox: Area2D):
 	hit_hurtbox.emit(hurtbox)
 	# Have the hurtbox signal out that it was hit
 	hurtbox.hurt.emit(self)
-	
+
 var is_harmless = false :
 	# Here we create an inline setter so we can disable and enable collision shapes on
 	# the hurtbox when is_invincible is changed.

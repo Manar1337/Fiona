@@ -10,6 +10,7 @@
 size = Vector2(22, 6)
 
 [node name="WitchZap" type="Node2D"]
+position = Vector2(-1, 0)
 script = ExtResource("1_g4a8y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -21,6 +22,8 @@ script = ExtResource("3_rd1a8")
 
 [node name="MoveSteadyComponent" type="Node" parent="MoveComponent"]
 script = ExtResource("4_4ryun")
+speed = 50.0
+direction = Vector2(-1, 0)
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(5.96046e-08, 0)

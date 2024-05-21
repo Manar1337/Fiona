@@ -16,7 +16,6 @@ func _input(_event: InputEvent):
 
 func calculate_movement(delta):
 	var movement = Vector2(input_axisX, input_axisY * delta).normalized() * speed
-	print(movement)
 	input_axisX = 0
 	input_axisY = 0
 	return movement

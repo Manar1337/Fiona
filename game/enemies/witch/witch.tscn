@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bs1arl1qxtn34"]
+[gd_scene load_steps=18 format=3 uid="uid://bs1arl1qxtn34"]
 
 [ext_resource type="PackedScene" uid="uid://dyew0xxkd3tjw" path="res://game/actor/shooting_actor.tscn" id="1_lmqdd"]
 [ext_resource type="Script" path="res://game/enemies/witch/witch.gd" id="1_w2ifd"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://components/move_components/move_fall_component.gd" id="7_45adp"]
 [ext_resource type="PackedScene" uid="uid://dmtwk63vyvfnv" path="res://game/enemies/witch/witch_zap.tscn" id="8_0hur6"]
 [ext_resource type="Script" path="res://components/color_flicker_component.gd" id="8_i3gf4"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="10_hkt7b"]
+[ext_resource type="PackedScene" uid="uid://bd56tweuqfpgb" path="res://game/magic/magic.tscn" id="11_jrucq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gs0bh"]
 atlas = ExtResource("2_d0chx")
@@ -26,7 +28,7 @@ region = Rect2(48, 0, 24, 20)
 atlas = ExtResource("2_d0chx")
 region = Rect2(72, 0, 24, 20)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_cdlm8"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_4b46h"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -52,16 +54,19 @@ radius = 17.64
 [node name="Witch" instance=ExtResource("1_lmqdd")]
 script = ExtResource("1_w2ifd")
 has_target = true
+spawn_time = 1
+random_spawntime = false
 
 [node name="Body" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_cdlm8")
-frame_progress = 0.630649
+sprite_frames = SubResource("SpriteFrames_4b46h")
 
 [node name="Dress" type="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_tcskb")
 
 [node name="MoveSteadyComponent" type="Node" parent="MoveComponent" index="0"]
 script = ExtResource("5_t6atg")
+speed = 50.0
+direction = Vector2(-1, 0)
 
 [node name="MoveFallComponent" type="Node" parent="MoveComponent" index="1"]
 script = ExtResource("7_45adp")
@@ -85,12 +90,16 @@ sprite = NodePath("../Dress")
 
 [node name="HurtboxComponent" parent="." index="8"]
 collision_layer = 2
-collision_mask = 0
 
 [node name="DetectionArea" type="Area2D" parent="." index="9"]
+collision_layer = 0
 
 [node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea" index="0"]
 shape = SubResource("CircleShape2D_24y8r")
 
 [node name="HitboxComponent" parent="." index="10"]
 collision_layer = 0
+
+[node name="StarSpawner" type="Node2D" parent="." index="13"]
+script = ExtResource("10_hkt7b")
+what_to_spawn = ExtResource("11_jrucq")

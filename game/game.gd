@@ -10,7 +10,7 @@ func _ready():
 func _input(_event):
 	if Input.is_action_just_pressed("toggle_fullscreen"):
 		swap_fullscreen_mode()
-	
+
 	if Input.is_action_just_pressed("next_level"):
 		print("next_level")
 		level_manager.load_level(0)

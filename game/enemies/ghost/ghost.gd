@@ -1,58 +1,51 @@
-extends CharacterBody2D
+class_name Ghost
 
-@onready var move_component = $MoveComponent
-@onready var hitbox_component = $HitboxComponent
-@onready var hurtbox_component = $HurtboxComponent
-@onready var move_timer = $MoveTimer as Timer
-@onready var death_timer = $DeathTimer as Timer
+extends GravityActor
+
+@onready var move_timer: Timer = $MoveTimer
+@onready var death_timer: Timer = $DeathTimer
 
 enum directions {UP, DOWN, LEFT, RIGHT}
 enum states {FLYING, DYING}
 
-const SPEED = 50.0
 var direction:directions
 var state:states
 var target = null
 
 func _ready():
-	move_component.velocity.y = -SPEED
-	direction = directions.UP
-	state = states.FLYING
-	hurtbox_component.hurt.connect(was_hit)
+	super()
+	move_component.set_mode("steady")
+	move_timer.start(1)
 	move_timer.timeout.connect(change_direction)
 	death_timer.timeout.connect(die)
 
 func change_direction():
 	if state != states.FLYING: return
-	
+
 	direction = directions.values().pick_random()
 	match direction:
 		directions.UP:
-			move_component.velocity.x = 0
-			move_component.velocity.y = SPEED
+			move_component.set_mode_data([Vector2(0,-1)])
 		directions.DOWN:
-			move_component.velocity.x = 0
-			move_component.velocity.y = -SPEED
+			move_component.set_mode_data([Vector2(0,1)])
 		directions.LEFT:
-			move_component.velocity.x = -SPEED
-			move_component.velocity.y = 0
+			move_component.set_mode_data([Vector2(-1,0)])
 		directions.RIGHT:
-			move_component.velocity.x = SPEED
-			move_component.velocity.y = 0
+			move_component.set_mode_data([Vector2(1,0)])
+
 func set_target(new_target):
 	target = new_target
 
 func was_hit(obstacle:HitboxComponent):
 	if state != states.DYING:
 		var deathdir = position.direction_to(target.position)
-		move_component.velocity.x = deathdir.x * SPEED * 4
-		move_component.velocity.y = deathdir.y * SPEED * 4
+		move_component.set_speed(200)
+		move_component.set_mode_data([deathdir])
 
 		state = states.DYING
 		move_timer.stop()
 		death_timer.start()
 	elif obstacle.get_parent() == target:
 		die()
-	
-func die():
-	queue_free()
+
+

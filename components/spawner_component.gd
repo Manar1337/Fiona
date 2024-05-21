@@ -13,7 +13,6 @@ func spawn(global_spawn_position: Vector2 = global_position, parent: Node = get_
 	assert(what_to_spawn is PackedScene, "Error: The scene export was never set on this spawner component.")
 	# Instance the scene
 	var instance = what_to_spawn.instantiate()
-	# Add it as a child of the parent
 	parent.add_child(instance)
 	# Update the global position of the instance.
 	# (This must be done after adding it as a child)

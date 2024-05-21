@@ -1,97 +1,72 @@
-[gd_scene load_steps=14 format=3 uid="uid://0g5pc4u58gsd"]
+[gd_scene load_steps=9 format=3 uid="uid://cuab70t7w05jm"]
 
 [ext_resource type="Script" path="res://game/enemies/ghost/ghost.gd" id="1_1tgvm"]
 [ext_resource type="Texture2D" uid="uid://bbg33koyaha0w" path="res://assets/graphics/WalkingLevel/Ghost-small.png" id="1_a7ali"]
-[ext_resource type="Script" path="res://components/move_component_1.gd" id="2_14byl"]
-[ext_resource type="Script" path="res://components/hitbox_component.gd" id="4_4ocmc"]
-[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="4_hhoik"]
-[ext_resource type="Script" path="res://components/stats_component.gd" id="5_d3msc"]
+[ext_resource type="PackedScene" uid="uid://dv58ibdqgd66b" path="res://game/actor/gravity_actor.tscn" id="1_jok43"]
+[ext_resource type="Script" path="res://components/move_components/move_steady_component.gd" id="3_m5hg2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_62v3v"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mftq4"]
 atlas = ExtResource("1_a7ali")
 region = Rect2(0, 0, 23, 21)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_of0go"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbqlp"]
 atlas = ExtResource("1_a7ali")
 region = Rect2(23, 0, 23, 21)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2lhgd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tmuk"]
 atlas = ExtResource("1_a7ali")
 region = Rect2(46, 0, 23, 21)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_s7ud0"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhlp4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_62v3v")
+"texture": SubResource("AtlasTexture_mftq4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_of0go")
+"texture": SubResource("AtlasTexture_vbqlp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2lhgd")
+"texture": SubResource("AtlasTexture_3tmuk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_of0go")
+"texture": SubResource("AtlasTexture_vbqlp")
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g75ck"]
-size = Vector2(21, 22)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ws3a"]
-size = Vector2(21, 22)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ng47o"]
-size = Vector2(21, 21.5)
-
-[node name="Ghost" type="CharacterBody2D"]
+[node name="Ghost" instance=ExtResource("1_jok43")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_1tgvm")
 
-[node name="Body" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_s7ud0")
+[node name="Body" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_fhlp4")
 autoplay = "default"
-frame_progress = 0.919708
+frame_progress = 0.173532
 
-[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("2_14byl")
-actor = NodePath("..")
+[node name="MoveSteadyComponent" type="Node" parent="MoveComponent" index="0"]
+script = ExtResource("3_m5hg2")
+speed = 50.0
+direction = Vector2(0, -1)
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(-0.5, 5.96046e-08)
-scale = Vector2(1.05, 1.1)
-
-[node name="HitboxComponent" type="Area2D" parent="."]
+[node name="HurtboxComponent" parent="." index="3"]
 collision_layer = 2
-script = ExtResource("4_4ocmc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_g75ck")
-
-[node name="HurtboxComponent" type="Area2D" parent="."]
-collision_layer = 2
-script = ExtResource("4_hhoik")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_4ws3a")
-
-[node name="StatsComponent" type="Node" parent="."]
-script = ExtResource("5_d3msc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
 position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_ng47o")
 
-[node name="MoveTimer" type="Timer" parent="."]
-autostart = true
+[node name="HitboxComponent" parent="." index="4"]
+collision_layer = 2
 
-[node name="DeathTimer" type="Timer" parent="."]
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(0, -2)
+
+[node name="MoveTimer" type="Timer" parent="." index="7"]
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="." index="8"]
 wait_time = 0.4
 one_shot = true
