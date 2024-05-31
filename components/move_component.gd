@@ -9,6 +9,8 @@ var movement_vector = Vector2.ZERO
 func _ready():
 	for child in get_children():
 		modes.append(child.mode)
+	if modes != []:
+		set_mode(modes[0])
 
 func _process(delta):
 	movement_vector = Vector2.ZERO

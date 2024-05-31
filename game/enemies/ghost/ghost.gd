@@ -4,6 +4,7 @@ extends GravityActor
 
 @onready var move_timer: Timer = $MoveTimer
 @onready var death_timer: Timer = $DeathTimer
+@onready var star_spawner: SpawnerComponent = $StarSpawner
 
 enum directions {UP, DOWN, LEFT, RIGHT}
 enum states {FLYING, DYING}
@@ -14,7 +15,6 @@ var target = null
 
 func _ready():
 	super()
-	move_component.set_mode("steady")
 	move_timer.start(1)
 	move_timer.timeout.connect(change_direction)
 	death_timer.timeout.connect(die)
@@ -47,5 +47,9 @@ func was_hit(obstacle:HitboxComponent):
 		death_timer.start()
 	elif obstacle.get_parent() == target:
 		die()
+
+func die():
+	star_spawner.spawn(self.global_position)
+	queue_free()
 
 

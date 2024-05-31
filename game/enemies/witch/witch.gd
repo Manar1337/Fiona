@@ -23,7 +23,6 @@ func _ready():
 
 	speed = 64 + (randf() * 32)
 	sight = randf() * 100
-	move_component.set_mode("steady")
 	move_component.set_speed(speed)
 	dress.self_modulate = Color( sight / 300, 0, 1 - ( sight / 100 ))
 	detection_shape.shape = detection_shape.shape.duplicate()

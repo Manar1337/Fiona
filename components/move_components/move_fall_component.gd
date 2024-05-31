@@ -10,6 +10,9 @@ var mode = "fall"
 func _ready():
 	direction = Vector2.DOWN
 
+func set_speed(new_speed):
+	speed = new_speed
+
 func calculate_movement(delta):
 	speed += acceleration
 	return (direction * delta).normalized() * speed
