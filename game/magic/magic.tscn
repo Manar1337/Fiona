@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bd56tweuqfpgb"]
+[gd_scene load_steps=9 format=3 uid="uid://bd56tweuqfpgb"]
 
 [ext_resource type="Script" path="res://game/magic/magic.gd" id="1_36cgu"]
 [ext_resource type="Texture2D" uid="uid://b3llpbbbdcru7" path="res://assets/graphics/FlyingLevel/Magic.png" id="1_v5j5p"]
@@ -39,7 +39,10 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Magic" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyemb"]
+
+[node name="Magic" type="Area2D"]
+collision_layer = 16
 script = ExtResource("1_36cgu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -48,4 +51,8 @@ autoplay = "default"
 frame_progress = 0.994161
 
 [node name="DeathTimer" type="Timer" parent="."]
+wait_time = 3.0
 autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jyemb")

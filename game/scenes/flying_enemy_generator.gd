@@ -12,4 +12,3 @@ func _ready():
 func _on_witch_spawned(witch_instance):
 	if witch_instance.has_method("set_target"):
 		witch_instance.set_target(player_flying)
-

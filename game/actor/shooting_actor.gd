@@ -2,8 +2,6 @@ class_name ShootingActor
 
 extends Actor
 
-@export var has_target:bool = false
-
 @export var spawn_time:int = 1
 @export var random_spawntime:bool = false
 
@@ -14,14 +12,10 @@ extends Actor
 var bullet_speed = 100
 
 var fire_lock = false
-var target = null
 
 func _ready():
 	super()
 	fire_rate_timer.timeout.connect(unlock_fire)
-
-func set_target(new_target):
-	target = new_target
 
 func shoot():
 	var bullet = spawner_component.spawn(shooting_marker.global_position)

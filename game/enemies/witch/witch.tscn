@@ -53,9 +53,9 @@ radius = 17.64
 
 [node name="Witch" instance=ExtResource("1_lmqdd")]
 script = ExtResource("1_w2ifd")
-has_target = true
 spawn_time = 1
 random_spawntime = false
+has_target = true
 
 [node name="Body" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_4b46h")

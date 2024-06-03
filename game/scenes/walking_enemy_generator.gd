@@ -3,8 +3,6 @@ extends Node2D
 @onready var ghost_spawner = $GhostSpawner
 @onready var player_walking: CharacterBody2D = $"../PlayerWalking"
 
-
-
 const PLAYER_WALKING = preload("res://game/hero/player_walking.tscn")
 
 func _ready():

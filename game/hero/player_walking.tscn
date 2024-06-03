@@ -106,7 +106,7 @@ script = ExtResource("5_6m34h")
 polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, -4, 3, -4, 10, 2, 10, 2, 6, 3, 3)
 
 [node name="HitboxComponent" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 18
 script = ExtResource("6_qpct8")
 
 [node name="HitArea" type="CollisionPolygon2D" parent="HitboxComponent"]

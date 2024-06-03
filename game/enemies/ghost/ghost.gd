@@ -11,7 +11,6 @@ enum states {FLYING, DYING}
 
 var direction:directions
 var state:states
-var target = null
 
 func _ready():
 	super()
@@ -33,13 +32,10 @@ func change_direction():
 		directions.RIGHT:
 			move_component.set_mode_data([Vector2(1,0)])
 
-func set_target(new_target):
-	target = new_target
-
 func was_hit(obstacle:HitboxComponent):
 	if state != states.DYING:
 		var deathdir = position.direction_to(target.position)
-		move_component.set_speed(200)
+		move_component.set_speed(400)
 		move_component.set_mode_data([deathdir])
 
 		state = states.DYING

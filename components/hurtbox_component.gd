@@ -9,7 +9,7 @@ signal hurt(hitbox)
 func _ready():
 	area_entered.connect(_on_area_entered)
 	body_entered.connect(_on_body_entered)
-	
+
 func _on_area_entered(area: Area2D):
 	if not area is HitboxComponent: return
 	if area.is_harmless: return
@@ -21,7 +21,7 @@ func _on_body_entered(tilemap:  Node2D):
 	if not tilemap is TileMap: return
 	if self.is_invincible: return
 	tilemap_hit.emit(tilemap)
-	
+
 
 # Create the is_invincible boolean
 var is_invincible = false :

@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cuab70t7w05jm"]
+[gd_scene load_steps=11 format=3 uid="uid://cuab70t7w05jm"]
 
 [ext_resource type="Script" path="res://game/enemies/ghost/ghost.gd" id="1_1tgvm"]
 [ext_resource type="Texture2D" uid="uid://bbg33koyaha0w" path="res://assets/graphics/WalkingLevel/Ghost-small.png" id="1_a7ali"]
 [ext_resource type="PackedScene" uid="uid://dv58ibdqgd66b" path="res://game/actor/gravity_actor.tscn" id="1_jok43"]
 [ext_resource type="Script" path="res://components/move_components/move_steady_component.gd" id="3_m5hg2"]
-[ext_resource type="Script" path="res://components/move_components/move_lunge_component.gd" id="4_pqgx4"]
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="5_ixglr"]
 [ext_resource type="PackedScene" uid="uid://bd56tweuqfpgb" path="res://game/magic/magic.tscn" id="6_ue83h"]
 
@@ -44,15 +43,12 @@ animations = [{
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_1tgvm")
+has_target = true
 
 [node name="Body" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_fhlp4")
 autoplay = "default"
 frame_progress = 0.173532
-
-[node name="MoveComponent" parent="." index="1"]
-script = ExtResource("4_pqgx4")
-speed = 50.0
 
 [node name="MoveSteadyComponent" type="Node" parent="MoveComponent" index="0"]
 script = ExtResource("3_m5hg2")
@@ -75,7 +71,7 @@ position = Vector2(0, -2)
 one_shot = true
 
 [node name="DeathTimer" type="Timer" parent="." index="8"]
-wait_time = 0.4
+wait_time = 0.15
 one_shot = true
 
 [node name="StarSpawner" type="Node2D" parent="." index="9"]
