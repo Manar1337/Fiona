@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bd8ukwm4dowky"]
+
+[ext_resource type="PackedScene" uid="uid://dyew0xxkd3tjw" path="res://game/actor/shooting_actor.tscn" id="1_ly3mi"]
+[ext_resource type="Script" path="res://game/actor/enemies/cloud/cloud.gd" id="1_qljl2"]
+[ext_resource type="Texture2D" uid="uid://t4rm0ignf31m" path="res://assets/graphics/FlyingLevel/Cloud.png" id="2_vxlph"]
+[ext_resource type="Script" path="res://components/move_components/move_steady_component.gd" id="4_guc6w"]
+[ext_resource type="PackedScene" uid="uid://oagtqdahgx6i" path="res://game/actor/enemies/cloud/cloud_lightning.tscn" id="5_ewkj2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvvd2"]
+atlas = ExtResource("2_vxlph")
+region = Rect2(0, 0, 48, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1oyc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvvd2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Cloud" instance=ExtResource("1_ly3mi")]
+script = ExtResource("1_qljl2")
+spawn_time = 4
+random_spawntime = true
+bullet_speed = 100
+
+[node name="Body" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_s1oyc")
+
+[node name="MoveSteadyComponent" type="Node" parent="MoveComponent" index="0"]
+script = ExtResource("4_guc6w")
+speed = 50.0
+direction = Vector2(-1, 0)
+
+[node name="SpawnerComponent" parent="." index="2"]
+what_to_spawn = ExtResource("5_ewkj2")
+
+[node name="FireRateTimer" parent="." index="3"]
+wait_time = 10.0
+autostart = true
+
+[node name="VisibleOnScreenEnabler2D" parent="." index="5"]
+position = Vector2(-1.43051e-06, 0)
+scale = Vector2(2.4, 1)
+
+[node name="HurtboxComponent" parent="." index="6"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="HitboxComponent" parent="." index="7"]
+collision_layer = 0
+collision_mask = 0

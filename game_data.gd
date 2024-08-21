@@ -1,29 +1,38 @@
 extends Node
 
-var score = 0
-var health = 2000
-var lives = 4
-var level = 1
-
-# Define signals
 signal score_changed(new_score)
 signal health_changed(new_health)
 signal lives_changed(new_lives)
 signal level_changed(new_level)
+signal show_deathmessage(show_message)
 
+var score = 0:
+	get:
+		return score
+	set(value):
+		score = value
+		score_changed.emit(score)
 
-func set_score(value):
-	score = value
-	emit_signal("score_changed", score)
+var health = 2000:
+	get:
+		return health
+	set(value):
+		health = value
+		health_changed.emit(health)
 
-func set_health(value):
-	health = value
-	emit_signal("health_changed", health)
+var lives = 4:
+	get:
+		return lives
+	set(value):
+		lives = value
+		lives_changed.emit(lives)
 
-func set_lives(value):
-	lives = value
-	emit_signal("lives_changed", lives)
+var level = 1:
+	get:
+		return level
+	set(value):
+		level = value
+		level_changed.emit(level)
 
-func set_level(value):
-	level = value
-	emit_signal("level_changed", level)
+func show_death_message(show_message):
+	show_deathmessage.emit(show_message)

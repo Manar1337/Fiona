@@ -1,34 +1,35 @@
 class_name ShootingActor
-
 extends Actor
 
-@export var spawn_time:int = 1
-@export var random_spawntime:bool = false
+@export var spawn_time: int = 1
+@export var random_spawntime: bool = false
+@export var bullet_speed: int = 100
 
-@onready var spawner_component = $SpawnerComponent as SpawnerComponent
-@onready var fire_rate_timer = $FireRateTimer
-@onready var shooting_marker = $ShootingMarker as Marker2D
+@onready var spawner_component: SpawnerComponent = $SpawnerComponent
+@onready var fire_rate_timer: Timer = $FireRateTimer
+@onready var shooting_marker: Marker2D = $ShootingMarker
 
-var bullet_speed = 100
-
-var fire_lock = false
+var fire_lock: bool = false
 
 func _ready():
 	super()
 	fire_rate_timer.timeout.connect(unlock_fire)
+	if random_spawntime:
+		fire_rate_timer.start(randf_range(0, spawn_time))
+	else:
+		fire_rate_timer.start(spawn_time)
 
 func shoot():
 	var bullet = spawner_component.spawn(shooting_marker.global_position)
-	if has_target:
-		bullet.set_direction(Vector2(target.global_transform.origin - self.global_transform.origin).normalized())
-		bullet.set_speed(300)
-
+	if has_target and is_instance_valid(target):
+		var direction = (target.global_transform.origin - global_transform.origin).normalized()
+		bullet.set_direction(direction)
+		bullet.set_speed(bullet_speed)
 	lock_fire()
 
 func lock_fire():
 	fire_lock = true
-	var starttime = 0 if random_spawntime else spawn_time
-	fire_rate_timer.start(randf_range(starttime, spawn_time))
+	fire_rate_timer.start(randf_range(0, spawn_time) if random_spawntime else float(spawn_time))
 
 func unlock_fire():
-	fire_lock = false;
+	fire_lock = false

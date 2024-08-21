@@ -1,0 +1,174 @@
+[gd_scene load_steps=26 format=3 uid="uid://bdnuk6p5n635l"]
+
+[ext_resource type="Script" path="res://game/actor/hero/player_walking.gd" id="1_nr4ff"]
+[ext_resource type="Texture2D" uid="uid://3uj4i17hrhww" path="res://assets/graphics/WalkingLevel/FionaWalkingFrames.png" id="2_1emcg"]
+[ext_resource type="Texture2D" uid="uid://dykismvu1334a" path="res://assets/graphics/WalkingLevel/Witch-cloth-walking.png" id="3_fvbml"]
+[ext_resource type="Script" path="res://components/stats_component.gd" id="3_muy6l"]
+[ext_resource type="Script" path="res://components/walking_component.gd" id="4_tpvx3"]
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="5_pbg6c"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="6_fpiu8"]
+[ext_resource type="Script" path="res://components/hurt_component.gd" id="7_tf1mp"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="8_1ge3g"]
+[ext_resource type="PackedScene" uid="uid://ctc6p2ayrtmtu" path="res://game/actor/hero/zap.tscn" id="9_yvke1"]
+[ext_resource type="Script" path="res://game/actor/hero/big_explosion_spawner.gd" id="10_vj1be"]
+[ext_resource type="PackedScene" uid="uid://boryxbcca7kbq" path="res://game/items/magic/magic_explosion.tscn" id="11_1fp3w"]
+[ext_resource type="Script" path="res://components/color_flicker_component.gd" id="13_wtp23"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myv37"]
+atlas = ExtResource("2_1emcg")
+region = Rect2(0, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ger2c"]
+atlas = ExtResource("2_1emcg")
+region = Rect2(8, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nu1wi"]
+atlas = ExtResource("2_1emcg")
+region = Rect2(16, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kg2w3"]
+atlas = ExtResource("2_1emcg")
+region = Rect2(24, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpsef"]
+atlas = ExtResource("2_1emcg")
+region = Rect2(24, 20, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiq1p"]
+atlas = ExtResource("2_1emcg")
+region = Rect2(16, 20, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjhg7"]
+atlas = ExtResource("2_1emcg")
+region = Rect2(8, 20, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utt0r"]
+atlas = ExtResource("2_1emcg")
+region = Rect2(0, 20, 8, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7k0tf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myv37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ger2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nu1wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kg2w3")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpsef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xiq1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjhg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utt0r")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ie1en"]
+atlas = ExtResource("3_fvbml")
+region = Rect2(0, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ew8n"]
+atlas = ExtResource("3_fvbml")
+region = Rect2(8, 0, 8, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7owwn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ie1en")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ew8n")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}]
+
+[node name="PlayerWalking" type="CharacterBody2D"]
+collision_mask = 12
+floor_constant_speed = true
+script = ExtResource("1_nr4ff")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_7k0tf")
+animation = &"walk_right"
+autoplay = "walk_right"
+
+[node name="Dress" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7owwn")
+animation = &"walk_right"
+autoplay = "walk_right"
+
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("4_tpvx3")
+actor = NodePath("..")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("5_pbg6c")
+
+[node name="HurtArea" type="CollisionPolygon2D" parent="HurtboxComponent"]
+polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, -4, 3, -4, 10, 2, 10, 2, 6, 3, 3)
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_mask = 18
+script = ExtResource("6_fpiu8")
+
+[node name="HitArea" type="CollisionPolygon2D" parent="HitboxComponent"]
+polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, -4, 3, -4, 10, 2, 10, 2, 6, 3, 3)
+
+[node name="BodyArea" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, -4, 3, -4, 10, 2, 10, 2, 6, 3, 3)
+
+[node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
+script = ExtResource("7_tf1mp")
+stats_component = NodePath("../StatsComponent")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="ZapMarker" type="Marker2D" parent="."]
+position = Vector2(7, 2)
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("8_1ge3g")
+what_to_spawn = ExtResource("9_yvke1")
+
+[node name="FireRateTimer" type="Timer" parent="SpawnerComponent"]
+one_shot = true
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("3_muy6l")
+
+[node name="BigExplosionSpawner" type="Node2D" parent="."]
+script = ExtResource("10_vj1be")
+what_to_spawn = ExtResource("11_1fp3w")
+
+[node name="ColorFlickerComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("13_wtp23")
+sprite = NodePath("../Dress")

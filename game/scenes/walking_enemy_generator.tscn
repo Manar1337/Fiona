@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://be5x47esm6583" path="res://game/scenes/timed_random_spawner.tscn" id="1_et1q6"]
 [ext_resource type="Script" path="res://game/scenes/walking_enemy_generator.gd" id="1_eysra"]
 [ext_resource type="PackedScene" uid="uid://bb1o15ujvq82k" path="res://game/scenes/timed_random_multispawner.tscn" id="3_jt2bb"]
-[ext_resource type="PackedScene" uid="uid://clel6lktjkd28" path="res://game/enemies/skeleton/skeleton.tscn" id="3_tjgny"]
-[ext_resource type="PackedScene" uid="uid://cuab70t7w05jm" path="res://game/enemies/ghost/ghost.tscn" id="4_ushv4"]
+[ext_resource type="PackedScene" uid="uid://clel6lktjkd28" path="res://game/actor/enemies/skeleton/skeleton.tscn" id="3_tjgny"]
+[ext_resource type="PackedScene" uid="uid://cuab70t7w05jm" path="res://game/actor/enemies/ghost/ghost.tscn" id="4_ushv4"]
 [ext_resource type="Script" path="res://game/scenes/ghost_spawner.gd" id="5_e6msv"]
 
 [node name="WalkingEnemyGenerator" type="Node2D"]

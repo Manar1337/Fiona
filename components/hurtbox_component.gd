@@ -3,7 +3,7 @@ class_name HurtboxComponent
 extends Area2D
 
 signal tilemap_hit(tilemap)
-signal hitbox_hit(hitbox)
+#signal hitbox_hit(hitbox)
 signal hurt(hitbox)
 
 func _ready():
@@ -18,10 +18,9 @@ func _on_area_entered(area: Area2D):
 	hurt.emit(area)
 
 func _on_body_entered(tilemap:  Node2D):
-	if not tilemap is TileMap: return
+	if not tilemap is TileMapLayer: return
 	if self.is_invincible: return
 	tilemap_hit.emit(tilemap)
-
 
 # Create the is_invincible boolean
 var is_invincible = false :

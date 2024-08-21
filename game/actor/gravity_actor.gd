@@ -8,9 +8,9 @@ extends CharacterBody2D
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 
 @export var gravity:float
+@export var score:int = 0
 @export var has_target:bool = false
 
-var speed = 0
 var target = null
 
 func _ready():

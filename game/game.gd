@@ -2,17 +2,16 @@ extends Node
 @onready var level_manager = $LevelManager
 
 func _ready():
-	GameData.set_score(0)
-	GameData.set_health(2000)
-	GameData.set_level(0)
-	GameData.set_lives(4)
+	GameData.score = 0
+	GameData.health = 2000
+	GameData.level = 0
+	GameData.lives = 4
 
 func _input(_event):
 	if Input.is_action_just_pressed("toggle_fullscreen"):
 		swap_fullscreen_mode()
 
 	if Input.is_action_just_pressed("next_level"):
-		print("next_level")
 		level_manager.load_level(0)
 
 func swap_fullscreen_mode():

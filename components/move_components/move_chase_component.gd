@@ -23,4 +23,3 @@ func set_data(data: Array):
 
 func set_speed(new_speed):
 	speed = new_speed
-

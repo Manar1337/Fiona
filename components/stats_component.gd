@@ -1,20 +1,40 @@
-# Give the component a class name so it can be instanced as a custom node
 class_name StatsComponent
 extends Node
 
-# Create the health variable and connect a setter
-@export var health: int = 1:
+@export var start_magic: int = GameData.health
+var magic: int = start_magic:
 	set(value):
-		health = value
-		
-		# Signal out that the health has changed
-		health_changed.emit()
-		
-		# Signal out when health is at 0
-		if health <= 0: 
-			health = 0
-			no_health.emit()
+		magic = value
+		GameData.health = magic
+		if magic <= 0:
+			no_magic.emit()
 
-# Create our signals for health
-signal health_changed() # Emit when the health value has changed
-signal no_health() # Emit when there is no health left
+@export var lives: int = 4:
+	set(value):
+		lives = value
+		GameData.lives = lives
+
+@export var score: int = 0:
+	set(value):
+		score = value
+		GameData.score = score
+
+# Signals
+signal no_magic()
+# Core damage handling
+func take_damage(amount: int):
+	magic -= amount
+	GameData.health = magic
+
+func lose_life():
+	lives -= 1
+	GameData.lives = lives
+	if lives <= 0:
+		print("Game over")
+	else:
+		magic = start_magic
+		GameData.health = magic
+
+func add_score(points: int):
+	score += points
+	GameData.score = score

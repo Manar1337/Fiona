@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://cuab70t7w05jm"]
+
+[ext_resource type="Script" path="res://game/actor/enemies/ghost/ghost.gd" id="1_1tgvm"]
+[ext_resource type="Texture2D" uid="uid://bbg33koyaha0w" path="res://assets/graphics/WalkingLevel/Ghost-small.png" id="1_a7ali"]
+[ext_resource type="PackedScene" uid="uid://dv58ibdqgd66b" path="res://game/actor/gravity_actor.tscn" id="1_jok43"]
+[ext_resource type="Script" path="res://components/move_components/move_steady_component.gd" id="3_m5hg2"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="5_ixglr"]
+[ext_resource type="PackedScene" uid="uid://bd56tweuqfpgb" path="res://game/items/magic/magic.tscn" id="6_ejne5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mftq4"]
+atlas = ExtResource("1_a7ali")
+region = Rect2(0, 0, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbqlp"]
+atlas = ExtResource("1_a7ali")
+region = Rect2(23, 0, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tmuk"]
+atlas = ExtResource("1_a7ali")
+region = Rect2(46, 0, 23, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhlp4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mftq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbqlp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tmuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbqlp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Ghost" instance=ExtResource("1_jok43")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_1tgvm")
+score = 100
+has_target = true
+
+[node name="Body" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_fhlp4")
+autoplay = "default"
+frame_progress = 0.173532
+
+[node name="MoveSteadyComponent" type="Node" parent="MoveComponent" index="0"]
+script = ExtResource("3_m5hg2")
+speed = 50.0
+direction = Vector2(0, -1)
+
+[node name="HurtboxComponent" parent="." index="3"]
+collision_layer = 2
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(-1, 0)
+
+[node name="HitboxComponent" parent="." index="4"]
+collision_layer = 2
+damage = 450
+
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(0, -2)
+
+[node name="MoveTimer" type="Timer" parent="." index="7"]
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="." index="8"]
+wait_time = 0.2
+one_shot = true
+
+[node name="StarSpawner" type="Node2D" parent="." index="9"]
+script = ExtResource("5_ixglr")
+what_to_spawn = ExtResource("6_ejne5")

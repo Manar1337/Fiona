@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://boryxbcca7kbq"]
+
+[ext_resource type="Script" path="res://game/items/magic/magic_explosion.gd" id="1_wr2h5"]
+[ext_resource type="Texture2D" uid="uid://b3llpbbbdcru7" path="res://assets/graphics/FlyingLevel/Magic.png" id="2_dr7y1"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="3_tucuv"]
+[ext_resource type="Script" path="res://components/move_components/move_steady_component.gd" id="4_nasyv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43weq"]
+atlas = ExtResource("2_dr7y1")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yly8b"]
+atlas = ExtResource("2_dr7y1")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nqvd"]
+atlas = ExtResource("2_dr7y1")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0siuh"]
+atlas = ExtResource("2_dr7y1")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ksswk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43weq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yly8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nqvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0siuh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MagicExplosion" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ksswk")
+autoplay = "default"
+script = ExtResource("1_wr2h5")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-12, -12, 23, 20)
+
+[node name="MoveComponent" type="Node" parent="."]
+script = ExtResource("3_tucuv")
+
+[node name="MoveSteadyComponent" type="Node" parent="MoveComponent"]
+script = ExtResource("4_nasyv")

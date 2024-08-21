@@ -4,7 +4,6 @@ extends Node2D
 @onready var witch_spawner = $WitchSpawner
 @onready var level_1 = $".."
 
-signal witch_spawned(new_instance)
 var where_to_spawn = null
 func _ready():
 	witch_spawner.connect("witch_spawned", _on_witch_spawned)

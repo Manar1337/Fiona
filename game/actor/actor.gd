@@ -1,16 +1,15 @@
 class_name Actor
-
-extends Node
+extends Node2D
 
 @onready var move_component: MoveComponent = $MoveComponent
-@onready var hurtbox_component = $HurtboxComponent as HurtboxComponent
-@onready var hitbox_component = $HitboxComponent as HitboxComponent
+@onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
+@onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var visible_on_screen_enabler_2d: VisibleOnScreenEnabler2D = $VisibleOnScreenEnabler2D
 
-@export var has_target:bool = false
+@export var score: int = 0
+@export var has_target: bool = false
 
-var speed = 0
-var target = null
+var target: Node = null
 
 func _ready():
 	visible_on_screen_enabler_2d.screen_exited.connect(queue_free)
@@ -20,8 +19,12 @@ func _ready():
 func was_hit(_obstacle:HitboxComponent):
 	pass
 
-func set_target(new_target):
-	target = new_target
+func set_target(new_target: Node):
+	if is_instance_valid(new_target):
+		target = new_target
+	else:
+		target = null
 
 func die():
+	# Perform any necessary cleanup before freeing
 	queue_free()

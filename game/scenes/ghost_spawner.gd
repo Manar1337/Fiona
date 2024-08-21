@@ -9,7 +9,7 @@ func handle_spawn():
 	var spawnpos = position_array[randi_range(0,position_array.size()) - 1]
 
 	var ghost = spawner_component.spawn(spawnpos)
-	emit_signal("ghost_spawned", ghost)
+	ghost_spawned.emit(ghost)
 
 	timer.set_wait_time(randf_range(timer_min,timer_max))
 	timer.start()

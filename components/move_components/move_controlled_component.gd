@@ -5,8 +5,11 @@ extends Node
 
 var direction: Vector2 = Vector2.ZERO
 var mode = "controlled"
+var control_active = true
 
 func calculate_movement(delta):
+	if(!control_active):
+		return Vector2.ZERO
 	var input_direction = Vector2.ZERO
 
 	var input_axisX = Input.get_axis("ui_left","ui_right")
@@ -20,8 +23,8 @@ func calculate_movement(delta):
 
 	return (direction * delta).normalized() * speed
 
-func set_data(data: Array):
-	direction = data[0]
+func set_data(data: bool):
+	control_active = data
 
 func set_speed(new_speed):
 	speed = new_speed
