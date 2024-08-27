@@ -2,17 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://d1vubed5r6mvt" path="res://assets/graphics/FlyingLevel/FionaFlyingl.png" id="1_4sogb"]
 [ext_resource type="Script" path="res://game/actor/hero/player_flying.gd" id="1_xqhu7"]
-[ext_resource type="Script" path="res://components/move_component.gd" id="2_4f2hd"]
+[ext_resource type="Script" path="res://game/components/move_component.gd" id="2_4f2hd"]
 [ext_resource type="Texture2D" uid="uid://buoklgn5jc7hn" path="res://assets/graphics/FlyingLevel/Witch-cloth.png" id="3_yh53q"]
-[ext_resource type="Script" path="res://components/position_clamp_component.gd" id="4_1l2n7"]
-[ext_resource type="Script" path="res://components/move_components/move_controlled_component.gd" id="4_prcoq"]
-[ext_resource type="Script" path="res://components/move_components/move_fall_component.gd" id="6_rr64w"]
-[ext_resource type="Script" path="res://components/spawner_component.gd" id="7_y5k6p"]
+[ext_resource type="Script" path="res://game/components/position_clamp_component.gd" id="4_1l2n7"]
+[ext_resource type="Script" path="res://game/components/move_components/move_controlled_component.gd" id="4_prcoq"]
+[ext_resource type="Script" path="res://game/components/move_components/move_fall_component.gd" id="6_rr64w"]
+[ext_resource type="Script" path="res://game/components/spawner_component.gd" id="7_y5k6p"]
 [ext_resource type="PackedScene" uid="uid://ctc6p2ayrtmtu" path="res://game/actor/hero/zap.tscn" id="8_3mbd2"]
-[ext_resource type="Script" path="res://components/color_flicker_component.gd" id="9_37327"]
-[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="9_fiybi"]
-[ext_resource type="Script" path="res://components/hurt_component.gd" id="10_8ufm1"]
-[ext_resource type="Script" path="res://components/stats_component.gd" id="11_4t2l0"]
+[ext_resource type="Script" path="res://game/components/color_flicker_component.gd" id="9_37327"]
+[ext_resource type="Script" path="res://game/components/hurtbox_component.gd" id="9_fiybi"]
+[ext_resource type="Script" path="res://game/components/hurt_component.gd" id="10_8ufm1"]
+[ext_resource type="Script" path="res://game/components/stats_component.gd" id="11_4t2l0"]
 [ext_resource type="Script" path="res://game/actor/hero/big_explosion_spawner.gd" id="13_yp8sh"]
 [ext_resource type="PackedScene" uid="uid://boryxbcca7kbq" path="res://game/items/magic/magic_explosion.tscn" id="14_f2fkf"]
 
@@ -53,7 +53,6 @@ animations = [{
 }]
 
 [node name="PlayerFlying" type="Node2D"]
-z_index = 2
 script = ExtResource("1_xqhu7")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
@@ -75,6 +74,7 @@ script = ExtResource("4_prcoq")
 
 [node name="MoveFallComponent" type="Node" parent="MoveComponent"]
 script = ExtResource("6_rr64w")
+acceleration = 3.0
 
 [node name="PositionClampComponent" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("4_1l2n7")
@@ -118,8 +118,3 @@ what_to_spawn = ExtResource("14_f2fkf")
 [node name="ExplosionTimer" type="Timer" parent="."]
 wait_time = 3.038
 one_shot = true
-
-[node name="FlightTimer" type="Timer" parent="."]
-wait_time = 60.0
-one_shot = true
-autostart = true

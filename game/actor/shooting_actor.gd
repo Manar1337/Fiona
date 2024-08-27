@@ -20,7 +20,7 @@ func _ready():
 		fire_rate_timer.start(spawn_time)
 
 func shoot():
-	var bullet = spawner_component.spawn(shooting_marker.global_position)
+	var bullet = spawner_component.spawn(shooting_marker.global_position, GameData.current_level)
 	if has_target and is_instance_valid(target):
 		var direction = (target.global_transform.origin - global_transform.origin).normalized()
 		bullet.set_direction(direction)

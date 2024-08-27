@@ -20,8 +20,6 @@ var carries_magic = false;
 var is_alive = true
 
 func _ready():
-	#stats_component.health_changed.connect(get_hurt)
-	hurtbox_component.hurt.connect(got_hurt.unbind(1))
 	movement_component.connect("turn", on_turn)
 	fire_rate_timer.timeout.connect(unlock_fire)
 	stats_component.no_magic.connect(explode)
@@ -29,9 +27,6 @@ func _ready():
 
 func set_carries_magic(does_carry):
 	carries_magic = does_carry
-
-func got_hurt():
-	print("Ouch")
 
 func on_turn(direction):
 	dir = direction;
@@ -46,12 +41,13 @@ func on_turn(direction):
 		zap_marker.transform.origin.x = -7
 
 func _input(_event: InputEvent):
+	if !is_alive: return
 	if Input.is_action_pressed("ui_select"):
 		if !fire_lock:
 			fire_zap()
 
 func fire_zap():
-	var zap = spawner_component.spawn(zap_marker.global_position)
+	var zap = spawner_component.spawn(zap_marker.global_position, GameData.current_level)
 	if dir =="left":
 		zap.set_speed(500)
 		zap.set_direction([Vector2(1,0)])
@@ -68,22 +64,23 @@ func unlock_fire():
 	fire_lock = false;
 
 func explode():
-	print("explode")
 	is_alive = false
+	GameData.health = 0
+	print("explode")
 	hurtbox_component.is_invincible = true
 	color_flicker_component.enabled = true
 	movement_component.is_alive = false
 	await get_tree().create_timer(2.0).timeout
 	die()
 
-func die():
+func go_invisible():
 	body.visible = false
 	dress.visible = false
-	stats_component.lose_life()
-	big_explosion_spawner.spawn(global_position)
+func die():
+	go_invisible()
+	big_explosion_spawner.spawn(global_position, GameData.current_level)
 	await get_tree().create_timer(1.0).timeout
-	GameData.show_death_message(true)
-	print("You Died!!!")
+	GameData.showDeathMessage(true)
 
 func hide_areas():
 	body.visible = false

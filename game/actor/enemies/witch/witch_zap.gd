@@ -20,5 +20,5 @@ func explode():
 	call_deferred("_spawn_explosion")
 
 func _spawn_explosion():
-	explosion_spawner.spawn(self.global_position)
+	explosion_spawner.spawn(self.global_position, GameData.current_level)
 	queue_free()

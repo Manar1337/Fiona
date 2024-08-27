@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://game/items/magic/magic_explosion.gd" id="1_wr2h5"]
 [ext_resource type="Texture2D" uid="uid://b3llpbbbdcru7" path="res://assets/graphics/FlyingLevel/Magic.png" id="2_dr7y1"]
-[ext_resource type="Script" path="res://components/move_component.gd" id="3_tucuv"]
-[ext_resource type="Script" path="res://components/move_components/move_steady_component.gd" id="4_nasyv"]
+[ext_resource type="Script" path="res://game/components/move_component.gd" id="3_tucuv"]
+[ext_resource type="Script" path="res://game/components/move_components/move_steady_component.gd" id="4_nasyv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_43weq"]
 atlas = ExtResource("2_dr7y1")

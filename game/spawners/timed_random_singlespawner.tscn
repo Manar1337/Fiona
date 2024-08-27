@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dseoau3m3u7ju"]
+
+[ext_resource type="PackedScene" uid="uid://be5x47esm6583" path="res://game/spawners/timed_random_spawner.tscn" id="1_wm47u"]
+[ext_resource type="Script" path="res://game/spawners/timed_random_singlespawner.gd" id="2_6n5qt"]
+
+[node name="TimedRandomSpawner" instance=ExtResource("1_wm47u")]
+script = ExtResource("2_6n5qt")
+spawn_top = 0.0
+spawn_bottom = 0.0
+spawn_left = 0.0
+spawn_right = 0.0

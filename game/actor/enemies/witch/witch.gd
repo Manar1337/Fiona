@@ -38,7 +38,6 @@ func set_state(new_state):
 			move_component.set_mode("fly")
 
 func was_hit(_obstacle: HitboxComponent):
-	print("Was hit")
 	die()
 
 func die(_unused: Variant = null):
@@ -50,11 +49,10 @@ func die(_unused: Variant = null):
 	GameData.score += score
 
 func explode(_unused: Variant = null):
-	print("Witch go boom")
 	call_deferred("spawn_explosion")
 
 func spawn_explosion():
-	explosion_spawner.spawn(global_transform.origin)
+	explosion_spawner.spawn(global_transform.origin, GameData.current_level)
 	queue_free()
 
 func _on_detection_area_area_entered(_area: Area2D):

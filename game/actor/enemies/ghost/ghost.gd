@@ -35,8 +35,6 @@ func change_direction():
 func was_hit(obstacle:HitboxComponent):
 	if state == states.DEAD:
 		return
-	print("Was hit")
-	print(obstacle.get_parent())
 	if obstacle.get_parent() == target:
 		state = states.DEAD
 		death_timer.stop()
@@ -52,5 +50,5 @@ func was_hit(obstacle:HitboxComponent):
 
 
 func die():
-	star_spawner.spawn(self.global_position)
+	star_spawner.spawn(self.global_position, GameData.current_level)
 	queue_free()

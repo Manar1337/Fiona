@@ -24,6 +24,6 @@ func was_hit(_obstacle:HitboxComponent):
 	velocity.y = -300
 
 func die():
-	star_spawner.spawn(self.global_position)
+	star_spawner.spawn(self.global_position, GameData.current_level)
 	GameData.score += score
 	queue_free()

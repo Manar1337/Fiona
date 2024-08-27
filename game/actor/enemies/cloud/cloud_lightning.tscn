@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://game/actor/enemies/cloud/cloud_lightning.gd" id="1_4a0pk"]
 [ext_resource type="Texture2D" uid="uid://dws77lt4jbgo3" path="res://assets/graphics/FlyingLevel/Lightning.png" id="1_53foo"]
-[ext_resource type="Script" path="res://components/move_component.gd" id="2_6380h"]
-[ext_resource type="Script" path="res://components/move_components/move_steady_component.gd" id="3_odddk"]
-[ext_resource type="Script" path="res://components/hitbox_component.gd" id="4_aberv"]
-[ext_resource type="Script" path="res://components/spawner_component.gd" id="6_yruel"]
+[ext_resource type="Script" path="res://game/components/move_component.gd" id="2_6380h"]
+[ext_resource type="Script" path="res://game/components/move_components/move_steady_component.gd" id="3_odddk"]
+[ext_resource type="Script" path="res://game/components/hitbox_component.gd" id="4_aberv"]
+[ext_resource type="Script" path="res://game/components/spawner_component.gd" id="6_yruel"]
 [ext_resource type="PackedScene" uid="uid://boryxbcca7kbq" path="res://game/items/magic/magic_explosion.tscn" id="7_e6d07"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1am8"]

@@ -1,20 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxqvelackaop3"]
+[gd_scene load_steps=3 format=3 uid="uid://dxqvelackaop3"]
 
-[ext_resource type="PackedScene" uid="uid://bm7148dbxrgi" path="res://game/backgrounds/background_walking.tscn" id="1_dmdmp"]
 [ext_resource type="PackedScene" uid="uid://bdnuk6p5n635l" path="res://game/actor/hero/player_walking.tscn" id="2_hpdu1"]
 [ext_resource type="PackedScene" uid="uid://cycs7at4s357m" path="res://game/items/cauldron/cauldron.tscn" id="4_mi2te"]
-[ext_resource type="PackedScene" uid="uid://ctkqsiv15thk8" path="res://game/scenes/walking_enemy_generator.tscn" id="4_tmp2m"]
 
 [node name="WalkingLevel" type="Node"]
-
-[node name="BackgroundWalking" parent="." instance=ExtResource("1_dmdmp")]
 
 [node name="PlayerWalking" parent="." instance=ExtResource("2_hpdu1")]
 position = Vector2(184, 52)
 scale = Vector2(2, 2)
-
-[node name="WalkingEnemyGenerator" parent="." instance=ExtResource("4_tmp2m")]
-position = Vector2(-1, 1)
 
 [node name="Cauldron" parent="." instance=ExtResource("4_mi2te")]
 position = Vector2(292, 176)

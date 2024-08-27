@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnw54h72n11dd"]
+
+[ext_resource type="Script" path="res://game/spawners/flying_enemy_generator.gd" id="1_166sa"]
+[ext_resource type="PackedScene" uid="uid://bs1arl1qxtn34" path="res://game/actor/enemies/witch/witch.tscn" id="4_xxtph"]
+[ext_resource type="PackedScene" uid="uid://bd8ukwm4dowky" path="res://game/actor/enemies/cloud/cloud.tscn" id="5_52v4s"]
+[ext_resource type="PackedScene" uid="uid://dseoau3m3u7ju" path="res://game/spawners/timed_random_singlespawner.tscn" id="6_yaw4k"]
+
+[node name="FlyingEnemyGenerator" type="Node2D"]
+script = ExtResource("1_166sa")
+
+[node name="WitchSpawner" parent="." instance=ExtResource("6_yaw4k")]
+spawn_bottom = 100.0
+spawn_left = 324.0
+spawn_right = 324.0
+what_to_spawn = ExtResource("4_xxtph")
+timer_max = 20.0
+timer_min = 60.0
+target_player = true
+
+[node name="CloudSpawner" parent="." instance=ExtResource("6_yaw4k")]
+spawn_bottom = 50.0
+spawn_left = 324.0
+spawn_right = 324.0
+what_to_spawn = ExtResource("5_52v4s")
+timer_max = 50.0
+timer_min = 100.0

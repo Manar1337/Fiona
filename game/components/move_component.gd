@@ -19,12 +19,12 @@ func _process(delta):
 	owner.position += movement_vector * delta
 
 func set_mode(new_mode):
-		assert(modes.has(new_mode), "Error: Movement mode '" + new_mode + "' was not set.")
-		mode_name = new_mode
-		for child in get_children():
-			if child.mode != mode_name: continue
-			mode = child
-			break
+	assert(modes.has(new_mode), "Error: Movement mode '" + new_mode + "' was not set.")
+	mode_name = new_mode
+	for child in get_children():
+		if child.mode != mode_name: continue
+		mode = child
+		break
 
 func set_speed(new_speed):
 	mode.set_speed(new_speed)

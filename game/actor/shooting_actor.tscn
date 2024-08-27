@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bxqo66k6111ej" path="res://game/actor/actor.tscn" id="1_pfwl7"]
 [ext_resource type="Script" path="res://game/actor/shooting_actor.gd" id="2_ykkr5"]
-[ext_resource type="Script" path="res://components/spawner_component.gd" id="3_6d4hm"]
+[ext_resource type="Script" path="res://game/components/spawner_component.gd" id="3_6d4hm"]
 
 [node name="ShootingActor" instance=ExtResource("1_pfwl7")]
 script = ExtResource("2_ykkr5")

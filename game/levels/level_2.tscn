@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://ulnqcadvxabe"]
+
+[ext_resource type="PackedScene" uid="uid://dxqvelackaop3" path="res://game/levels/walking_level.tscn" id="1_orr82"]
+[ext_resource type="PackedScene" uid="uid://bm7148dbxrgi" path="res://game/backgrounds/background_walking.tscn" id="2_h1vyp"]
+[ext_resource type="Script" path="res://game/spawners/walking_enemy_generator.gd" id="3_vqdyy"]
+[ext_resource type="PackedScene" uid="uid://dseoau3m3u7ju" path="res://game/spawners/timed_random_singlespawner.tscn" id="4_4ru2p"]
+[ext_resource type="PackedScene" uid="uid://clel6lktjkd28" path="res://game/actor/enemies/skeleton/skeleton.tscn" id="5_kfgse"]
+[ext_resource type="PackedScene" uid="uid://bb1o15ujvq82k" path="res://game/spawners/timed_random_multispawner.tscn" id="6_idfkl"]
+[ext_resource type="PackedScene" uid="uid://cuab70t7w05jm" path="res://game/actor/enemies/ghost/ghost.tscn" id="7_5eid6"]
+
+[node name="Level_2" instance=ExtResource("1_orr82")]
+
+[node name="BackgroundLevel2" parent="." index="2" instance=ExtResource("2_h1vyp")]
+
+[node name="WalkingEnemyGenerator2" type="Node" parent="." index="3"]
+script = ExtResource("3_vqdyy")
+
+[node name="SkeletonSpawner" parent="WalkingEnemyGenerator2" index="0" instance=ExtResource("4_4ru2p")]
+spawn_top = 184.0
+spawn_bottom = 184.0
+spawn_left = 324.0
+spawn_right = 324.0
+what_to_spawn = ExtResource("5_kfgse")
+timer_max = 4.0
+timer_min = 4.0
+
+[node name="GhostSpawner" parent="WalkingEnemyGenerator2" index="1" instance=ExtResource("6_idfkl")]
+position_array = PackedVector2Array(12, 188, 148, 188, 228, 188, 288, 188)
+what_to_spawn = ExtResource("7_5eid6")
+timer_max = 1.0
+timer_min = 1.0
+target_player = true

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctkqsiv15thk8"]
+
+[ext_resource type="Script" path="res://game/spawners/walking_enemy_generator.gd" id="1_eysra"]
+[ext_resource type="PackedScene" uid="uid://bb1o15ujvq82k" path="res://game/spawners/timed_random_multispawner.tscn" id="3_jt2bb"]
+[ext_resource type="PackedScene" uid="uid://clel6lktjkd28" path="res://game/actor/enemies/skeleton/skeleton.tscn" id="3_tjgny"]
+[ext_resource type="PackedScene" uid="uid://cuab70t7w05jm" path="res://game/actor/enemies/ghost/ghost.tscn" id="4_ushv4"]
+[ext_resource type="PackedScene" uid="uid://dseoau3m3u7ju" path="res://game/spawners/timed_random_singlespawner.tscn" id="7_lfutg"]
+
+[node name="WalkingEnemyGenerator" type="Node2D"]
+script = ExtResource("1_eysra")
+
+[node name="SkeletonSpawner" parent="." instance=ExtResource("7_lfutg")]
+spawn_top = 179.0
+spawn_bottom = 179.0
+spawn_left = 324.0
+spawn_right = 324.0
+what_to_spawn = ExtResource("3_tjgny")
+timer_max = 4.0
+timer_min = 4.0
+
+[node name="GhostSpawner" parent="." instance=ExtResource("3_jt2bb")]
+position_array = PackedVector2Array(12, 188, 148, 188, 228, 188, 288, 188)
+what_to_spawn = ExtResource("4_ushv4")
+timer_max = 1.0
+timer_min = 1.0
+target_player = true

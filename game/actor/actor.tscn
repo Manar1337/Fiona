@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bxqo66k6111ej"]
 
 [ext_resource type="Script" path="res://game/actor/actor.gd" id="1_4e8xd"]
-[ext_resource type="Script" path="res://components/move_component.gd" id="2_qoh0q"]
-[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="3_c5u1j"]
-[ext_resource type="Script" path="res://components/hitbox_component.gd" id="4_cpqb4"]
-[ext_resource type="Script" path="res://components/stats_component.gd" id="5_13sbc"]
-[ext_resource type="Script" path="res://components/hurt_component.gd" id="6_wpk36"]
+[ext_resource type="Script" path="res://game/components/move_component.gd" id="2_qoh0q"]
+[ext_resource type="Script" path="res://game/components/hurtbox_component.gd" id="3_c5u1j"]
+[ext_resource type="Script" path="res://game/components/hitbox_component.gd" id="4_cpqb4"]
+[ext_resource type="Script" path="res://game/components/stats_component.gd" id="5_13sbc"]
+[ext_resource type="Script" path="res://game/components/hurt_component.gd" id="6_wpk36"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bmoha"]
 
