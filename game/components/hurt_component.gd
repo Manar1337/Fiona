@@ -3,7 +3,7 @@ class_name HurtComponent
 extends Node
 
 # Grab the stats so we can alter the health
-@export var stats_component: StatsComponent
+@export var stats_component: Node
 
 # Grab a hurtbox so we know when we have taken a hit
 @export var hurtbox_component: HurtboxComponent

@@ -23,3 +23,6 @@ spawn_right = 324.0
 what_to_spawn = ExtResource("4_eckwj")
 timer_max = 5.0
 timer_min = 10.0
+
+[node name="FlightTimer" parent="." index="3"]
+wait_time = 60.0

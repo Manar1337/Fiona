@@ -6,7 +6,6 @@
 
 [node name="Game" type="Node"]
 script = ExtResource("1_5vrre")
-start_level = 2
 
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("3_6k82a")

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var body: AnimatedSprite2D = $Body
 @onready var dress: AnimatedSprite2D = $Dress
-@onready var stats_component = $StatsComponent
+@onready var player_stats_component: PlayerStatsComponent = $PlayerStatsComponent
 @onready var movement_component = $MovementComponent
 @onready var zap_marker = $ZapMarker as Marker2D
 @onready var fire_rate_timer = $SpawnerComponent/FireRateTimer as Timer
@@ -11,7 +11,6 @@ extends CharacterBody2D
 @onready var hitbox_component: = $HitboxComponent
 @onready var big_explosion_spawner: = $BigExplosionSpawner
 @onready var color_flicker_component: = $ColorFlickerComponent
-
 
 var fire_lock = false
 var dir = "left"
@@ -22,7 +21,7 @@ var is_alive = true
 func _ready():
 	movement_component.connect("turn", on_turn)
 	fire_rate_timer.timeout.connect(unlock_fire)
-	stats_component.no_magic.connect(explode)
+	player_stats_component.no_magic.connect(explode)
 	dress.self_modulate = Color8(96,96,96,255)
 
 func set_carries_magic(does_carry):

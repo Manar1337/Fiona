@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwd48xkslnfhh"]
+
+[ext_resource type="PackedScene" uid="uid://bbt68ylqoehsx" path="res://game/actor/hero/player_blasting.tscn" id="1_tmofr"]
+
+[node name="DeathLevel" type="Node2D"]
+
+[node name="PlayerBlasting" parent="." instance=ExtResource("1_tmofr")]
+position = Vector2(168, 140)

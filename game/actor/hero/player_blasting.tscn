@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbt68ylqoehsx"]
+
+[ext_resource type="Texture2D" uid="uid://dqxgu61f3t8b0" path="res://assets/graphics/DeathLevel/Fiona-Blasting.png" id="1_ige4u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nbdt"]
+atlas = ExtResource("1_ige4u")
+region = Rect2(0, 0, 9, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcrup"]
+atlas = ExtResource("1_ige4u")
+region = Rect2(9, 0, 9, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7fy3"]
+atlas = ExtResource("1_ige4u")
+region = Rect2(18, 0, 9, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dop2n"]
+atlas = ExtResource("1_ige4u")
+region = Rect2(27, 0, 9, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0g2vs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nbdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcrup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7fy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dop2n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdci2"]
+size = Vector2(10, 26)
+
+[node name="PlayerBlasting" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0g2vs")
+autoplay = "default"
+frame_progress = 0.218862
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_hdci2")

@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://game/actor/hero/player_walking.gd" id="1_nr4ff"]
 [ext_resource type="Texture2D" uid="uid://3uj4i17hrhww" path="res://assets/graphics/WalkingLevel/FionaWalkingFrames.png" id="2_1emcg"]
 [ext_resource type="Texture2D" uid="uid://dykismvu1334a" path="res://assets/graphics/WalkingLevel/Witch-cloth-walking.png" id="3_fvbml"]
-[ext_resource type="Script" path="res://game/components/stats_component.gd" id="3_muy6l"]
 [ext_resource type="Script" path="res://game/components/walking_component.gd" id="4_tpvx3"]
 [ext_resource type="Script" path="res://game/components/hurtbox_component.gd" id="5_pbg6c"]
 [ext_resource type="Script" path="res://game/components/hitbox_component.gd" id="6_fpiu8"]
 [ext_resource type="Script" path="res://game/components/hurt_component.gd" id="7_tf1mp"]
 [ext_resource type="Script" path="res://game/components/spawner_component.gd" id="8_1ge3g"]
 [ext_resource type="PackedScene" uid="uid://ctc6p2ayrtmtu" path="res://game/actor/hero/zap.tscn" id="9_yvke1"]
-[ext_resource type="Script" path="res://game/actor/hero/big_explosion_spawner.gd" id="10_vj1be"]
+[ext_resource type="Script" path="res://game/components/player_stats_component.gd" id="10_60m8j"]
+[ext_resource type="Script" path="res://game/items/magic/big_explosion_spawner.gd" id="10_vj1be"]
 [ext_resource type="PackedScene" uid="uid://boryxbcca7kbq" path="res://game/items/magic/magic_explosion.tscn" id="11_1fp3w"]
 [ext_resource type="Script" path="res://game/components/color_flicker_component.gd" id="13_wtp23"]
 
@@ -149,7 +149,7 @@ polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, 
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
 script = ExtResource("7_tf1mp")
-stats_component = NodePath("../StatsComponent")
+stats_component = NodePath("../PlayerStatsComponent")
 hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="ZapMarker" type="Marker2D" parent="."]
@@ -162,8 +162,8 @@ what_to_spawn = ExtResource("9_yvke1")
 [node name="FireRateTimer" type="Timer" parent="SpawnerComponent"]
 one_shot = true
 
-[node name="StatsComponent" type="Node" parent="."]
-script = ExtResource("3_muy6l")
+[node name="PlayerStatsComponent" type="Node" parent="."]
+script = ExtResource("10_60m8j")
 
 [node name="BigExplosionSpawner" type="Node2D" parent="."]
 script = ExtResource("10_vj1be")

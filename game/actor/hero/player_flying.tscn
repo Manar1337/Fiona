@@ -12,8 +12,8 @@
 [ext_resource type="Script" path="res://game/components/color_flicker_component.gd" id="9_37327"]
 [ext_resource type="Script" path="res://game/components/hurtbox_component.gd" id="9_fiybi"]
 [ext_resource type="Script" path="res://game/components/hurt_component.gd" id="10_8ufm1"]
-[ext_resource type="Script" path="res://game/components/stats_component.gd" id="11_4t2l0"]
-[ext_resource type="Script" path="res://game/actor/hero/big_explosion_spawner.gd" id="13_yp8sh"]
+[ext_resource type="Script" path="res://game/components/player_stats_component.gd" id="13_3u2mt"]
+[ext_resource type="Script" path="res://game/items/magic/big_explosion_spawner.gd" id="13_yp8sh"]
 [ext_resource type="PackedScene" uid="uid://boryxbcca7kbq" path="res://game/items/magic/magic_explosion.tscn" id="14_f2fkf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lar7r"]
@@ -105,11 +105,11 @@ polygon = PackedVector2Array(2.5, -10, 5.83333, -3.68421, 10.8333, 1.57895, 10.8
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
 script = ExtResource("10_8ufm1")
-stats_component = NodePath("../StatsComponent")
+stats_component = NodePath("../PlayerStatsComponent")
 hurtbox_component = NodePath("../HurtboxComponent")
 
-[node name="StatsComponent" type="Node" parent="."]
-script = ExtResource("11_4t2l0")
+[node name="PlayerStatsComponent" type="Node" parent="."]
+script = ExtResource("13_3u2mt")
 
 [node name="BigExplosionSpawner" type="Node2D" parent="."]
 script = ExtResource("13_yp8sh")

@@ -8,7 +8,7 @@ signal has_landed()
 @onready var fire_rate_timer = $FireRateTimer
 @onready var zap_marker: Marker2D = $ZapMarker
 @onready var hurtbox_component = $HurtboxComponent as HurtboxComponent
-@onready var stats_component = $StatsComponent as StatsComponent
+@onready var player_stats_component: PlayerStatsComponent = $PlayerStatsComponent
 @onready var move_component: MoveComponent = $MoveComponent
 @onready var color_flicker_component: ColorFlickerComponent = $ColorFlickerComponent
 @onready var dress: Sprite2D = $Dress
@@ -24,7 +24,7 @@ func _ready():
 	#hurtbox_component.is_invincible = true
 	move_component.set_mode("controlled")
 	fire_rate_timer.timeout.connect(unlock_fire)
-	stats_component.no_magic.connect(explode)
+	player_stats_component.no_magic.connect(explode)
 	hurtbox_component.tilemap_hit.connect(hit_tilemap)
 	dress.self_modulate = Color8(96,96,96,255)
 	flight_timer.timeout.connect(land)
