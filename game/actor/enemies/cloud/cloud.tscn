@@ -25,7 +25,6 @@ animations = [{
 script = ExtResource("1_qljl2")
 spawn_time = 4
 random_spawntime = true
-bullet_speed = 100
 
 [node name="Body" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_s1oyc")

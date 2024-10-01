@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwd48xkslnfhh"]
+[gd_scene load_steps=6 format=3 uid="uid://dwd48xkslnfhh"]
 
 [ext_resource type="Script" path="res://game/levels/death_level.gd" id="1_elt53"]
 [ext_resource type="PackedScene" uid="uid://bbt68ylqoehsx" path="res://game/actor/hero/player_blasting.tscn" id="1_tmofr"]
 [ext_resource type="Script" path="res://game/levels/wall_controller.gd" id="3_1nvs6"]
 [ext_resource type="Script" path="res://game/components/wall_component_controller.gd" id="4_p43tt"]
-[ext_resource type="Script" path="res://game/components/wall_components/wall_straight_component.gd" id="6_3ftmg"]
 [ext_resource type="Script" path="res://game/components/wall_components/wall_path_component.gd" id="6_u0tkp"]
 
 [node name="DeathLevel" type="Node2D"]
@@ -19,9 +18,9 @@ script = ExtResource("3_1nvs6")
 
 [node name="WallComponentController" type="Node" parent="WallController"]
 script = ExtResource("4_p43tt")
+color = null
 
 [node name="WallPathComponent" type="Node" parent="WallController/WallComponentController"]
 script = ExtResource("6_u0tkp")
-
-[node name="WallStraightComponent" type="Node" parent="WallController/WallComponentController"]
-script = ExtResource("6_3ftmg")
+speed = null
+direction = null

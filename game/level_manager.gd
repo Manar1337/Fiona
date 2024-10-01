@@ -4,6 +4,7 @@ extends Node
 
 var current_level: Node = null
 var levels: Array[Dictionary] = [
+	{"type": "death", "path": "res://game/levels/death_level.tscn"},
 	{"type": "flying", "path": "res://game/levels/level_1.tscn"},
 	{"type": "poem", "path": "res://game/levels/poem_level.tscn"},
 	{"type": "walking", "path": "res://game/levels/level_2.tscn"},

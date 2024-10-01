@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://wyv4gmpqarqv"]
+
+[ext_resource type="Script" path="res://game/items/walls/wall.gd" id="1_27hwt"]
+
+[node name="Wall" type="Area2D"]
+script = ExtResource("1_27hwt")
+
+[node name="WallCollide" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 32, 0, 32, 100, 32, 200, 0, 200, 0, 100)
+
+[node name="WallShape" type="Polygon2D" parent="."]
+color = Color(0.533333, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 32, 0, 32, 100, 32, 200, 0, 200, 0, 100)

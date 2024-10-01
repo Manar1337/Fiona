@@ -2,7 +2,6 @@ class_name MoveComponent
 extends Node
 
 var modes = []
-var mode_name = ""
 var mode = null
 var movement_vector = Vector2.ZERO
 
@@ -20,9 +19,8 @@ func _process(delta):
 
 func set_mode(new_mode):
 	assert(modes.has(new_mode), "Error: Movement mode '" + new_mode + "' was not set.")
-	mode_name = new_mode
 	for child in get_children():
-		if child.mode != mode_name: continue
+		if child.mode != new_mode: continue
 		mode = child
 		break
 

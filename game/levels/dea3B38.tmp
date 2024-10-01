@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwd48xkslnfhh"]
+
+[ext_resource type="Script" path="res://game/levels/death_level.gd" id="1_elt53"]
+[ext_resource type="PackedScene" uid="uid://bbt68ylqoehsx" path="res://game/actor/hero/player_blasting.tscn" id="1_tmofr"]
+[ext_resource type="PackedScene" uid="uid://wyv4gmpqarqv" path="res://game/items/walls/wall.tscn" id="3_0rne8"]
+[ext_resource type="Script" path="res://game/levels/wall_controller.gd" id="3_1nvs6"]
+
+[node name="DeathLevel" type="Node2D"]
+script = ExtResource("1_elt53")
+speed = 100
+
+[node name="PlayerBlasting" parent="." instance=ExtResource("1_tmofr")]
+position = Vector2(160, 180)
+
+[node name="WallController" type="Node" parent="."]
+script = ExtResource("3_1nvs6")
+wall_speed = null
+wall_spacing = null
+wall_count = null
+
+[node name="LeftWall1" parent="WallController" instance=ExtResource("3_0rne8")]
+
+[node name="LeftWall2" parent="WallController" instance=ExtResource("3_0rne8")]
+position = Vector2(0, 100)
+
+[node name="LeftWall3" parent="WallController" instance=ExtResource("3_0rne8")]
+position = Vector2(0, 200)
+
+[node name="RightWall1" parent="WallController" instance=ExtResource("3_0rne8")]
+position = Vector2(288, 0)
+
+[node name="RightWall2" parent="WallController" instance=ExtResource("3_0rne8")]
+position = Vector2(288, 100)
+
+[node name="RightWall3" parent="WallController" instance=ExtResource("3_0rne8")]
+position = Vector2(288, 200)

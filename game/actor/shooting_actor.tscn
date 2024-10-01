@@ -6,7 +6,9 @@
 
 [node name="ShootingActor" instance=ExtResource("1_pfwl7")]
 script = ExtResource("2_ykkr5")
-has_target = false
+spawn_time = 1
+random_spawntime = false
+bullet_speed = 100
 
 [node name="SpawnerComponent" type="Node2D" parent="." index="2"]
 script = ExtResource("3_6d4hm")
