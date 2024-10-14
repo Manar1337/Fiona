@@ -16,6 +16,7 @@ script = ExtResource("3_1nvs6")
 
 [node name="WallComponentController" type="Node" parent="WallController"]
 script = ExtResource("4_p43tt")
+difficulty = null
 
 [node name="WallPathComponent" type="Node" parent="WallController/WallComponentController"]
 script = ExtResource("6_u0tkp")
