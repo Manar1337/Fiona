@@ -13,7 +13,6 @@ func _ready():
 
 func get_left_wall(old_left_wall: Wall, new_left_wall: Wall):
 	var x_range = Vector2(32 * difficulty, 132 * difficulty)
-	left_wall = new_left_wall
 	var new_left_shape = new_left_wall.get_shape()
 	var old_left_shape = old_left_wall.get_shape()
 
@@ -22,12 +21,13 @@ func get_left_wall(old_left_wall: Wall, new_left_wall: Wall):
 
 	new_left_shape[old_left_wall.left_indices[0]].x = rng.randf_range(x_range.x, x_range.y)
 	new_left_wall.set_shape(new_left_shape)
+	left_wall = new_left_wall
 	return new_left_wall
 
 
 func get_right_wall(_old_right_wall: Wall, new_right_wall: Wall):
 	var new_right_shape = new_right_wall.get_shape()
-
+	print(path_width)
 	for i in range(right_indices.size()):
 		new_right_shape[right_indices[i]].x = -320 + path_width + left_wall.get_shape()[_old_right_wall.left_indices[i]].x
 	new_right_wall.set_shape(new_right_shape)

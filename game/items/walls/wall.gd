@@ -4,7 +4,7 @@ extends Area2D
 
 const WALL_HEIGHT = 200
 const SECTION_HEIGHT = 100
-const WALL_WIDTH = 110
+const WALL_WIDTH = 135
 
 @export var color: Color = Color(1.0, 1.0, 1.0)
 var wall_collide: CollisionPolygon2D
