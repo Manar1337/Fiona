@@ -11,18 +11,19 @@ func _ready():
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
 
-func get_left_wall(old_left_wall: Wall, new_left_wall: Wall):
+func get_left_wall(old_wall: Wall, new_wall: Wall):
 	var x_range = Vector2(32 * difficulty, 132 * difficulty)
-	var new_left_shape = new_left_wall.get_shape()
-	var old_left_shape = old_left_wall.get_shape()
+	var new_shape = new_wall.get_shape()
+	var old_shape = old_wall.get_shape()
 
-	for i in range(old_left_wall.get_sections(), 0, -1):
-		new_left_shape[old_left_wall.left_indices[i]].x = old_left_shape[old_left_wall.left_indices[i - 1]].x
+	for i in range(old_wall.get_sections(), 0, -1):
+		new_shape[old_wall.left_indices[i]].x = old_shape[old_wall.left_indices[i - 1]].x
 
-	new_left_shape[old_left_wall.left_indices[0]].x = rng.randf_range(x_range.x, x_range.y)
-	new_left_wall.set_shape(new_left_shape)
-	left_wall = new_left_wall
-	return new_left_wall
+	new_shape[old_wall.left_indices[0]].x = rng.randf_range(x_range.x, x_range.y)
+	new_wall.set_shape(new_shape)
+	left_wall = new_wall
+	left_wall.set_color(Color(1.0, 0.0, 0.0))
+	return new_wall
 
 
 func get_right_wall(_old_right_wall: Wall, new_right_wall: Wall):
@@ -31,7 +32,7 @@ func get_right_wall(_old_right_wall: Wall, new_right_wall: Wall):
 	for i in range(right_indices.size()):
 		new_right_shape[right_indices[i]].x = -320 + path_width + left_wall.get_shape()[_old_right_wall.left_indices[i]].x
 	new_right_wall.set_shape(new_right_shape)
-
+	new_right_wall.set_color(Color(1.0, 0.0, 0.0))
 	return new_right_wall
 
 func set_data(data):

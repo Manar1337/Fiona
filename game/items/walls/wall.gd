@@ -102,3 +102,7 @@ func get_left_indices():
 
 func get_right_indices():
 	return right_indices
+
+func set_color(new_color: Color):
+	color = new_color
+	wall_shape.color = color

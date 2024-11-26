@@ -7,7 +7,7 @@ const LEFT_EDGE = 0
 const RIGHT_EDGE = 320
 const SCREEN_HEIGHT = 200
 const WALL_HEIGHT = 200
-const WALL_WIDTH = 50
+const WALL_WIDTH = 110
 
 @export var wall_speed: float = 100.0
 @export var nr_of_pieces: int = 3

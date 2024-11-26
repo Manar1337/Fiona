@@ -18,6 +18,8 @@ func get_left_wall(old_wall: Wall, new_wall: Wall):
 	new_shape[old_wall.left_indices[0]].x = new_shape[old_wall.left_indices[1]].x
 	new_wall.set_shape(new_shape)
 	left_wall = new_wall
+	left_wall.set_color(Color(0.0, 1.0, 0.0))
+
 	return new_wall
 
 func get_right_wall(old_wall: Wall, new_wall: Wall):
@@ -26,6 +28,7 @@ func get_right_wall(old_wall: Wall, new_wall: Wall):
 	for i in range(right_indices.size()):
 		new_shape[right_indices[i]].x = -320 + path_width + left_wall.get_shape()[old_wall.left_indices[i]].x
 	new_wall.set_shape(new_shape)
+	new_wall.set_color(Color(0.0, 1.0, 0.0))
 	return new_wall
 
 func set_data(data):
