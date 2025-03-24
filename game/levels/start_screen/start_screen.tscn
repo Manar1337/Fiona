@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyvuyi5ayb77g"]
+
+[ext_resource type="Script" uid="uid://dqsvmwppo1ysj" path="res://game/levels/start_screen/start_screen.gd" id="1_6503l"]
+[ext_resource type="Texture2D" uid="uid://cqc001chxakwe" path="res://assets/graphics/start_screen/Fiona_Rides_Out.png" id="1_qisyx"]
+[ext_resource type="FontFile" uid="uid://c5c50h8m5nfnb" path="res://assets/fonts/Commodore Pixelized v1.2.ttf" id="3_br2oi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gl26i"]
+line_spacing = 0.0
+font = ExtResource("3_br2oi")
+font_size = 8
+
+[node name="StartScreen" type="Node"]
+script = ExtResource("1_6503l")
+start_level = 2
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(160, 100)
+texture = ExtResource("1_qisyx")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 320.0
+offset_bottom = 9.0
+text = "Fiona rides out"
+label_settings = SubResource("LabelSettings_gl26i")

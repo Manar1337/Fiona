@@ -2,43 +2,37 @@ class_name WallPathComponent
 extends WallComponent
 
 var difficulty = 1
-var path_width = 100
-
-var rng: RandomNumberGenerator
+var path_range = 25
 
 func _ready():
 	type = "path"
-	rng = RandomNumberGenerator.new()
-	rng.randomize()
 
-func get_left_wall(old_wall: Wall, new_wall: Wall):
-	var x_range = Vector2(32 * difficulty, 132 * difficulty)
-	var new_shape = new_wall.get_shape()
-	var old_shape = old_wall.get_shape()
+func change_left_wall(wall:Wall) -> Wall:
+	var upper_rndpoint = get_wall_range(wall.get_polygon().top_section.top_edge.right_coord.x)
+	var lower_rndpoint = get_wall_range(wall.get_polygon().top_section.bottom_edge.right_coord.x)
+	new_left_wall = wall
+	wall.get_polygon().top_section.top_edge.right_coord.x = upper_rndpoint
+	wall.get_polygon().top_section.bottom_edge.right_coord.x = lower_rndpoint
+	wall.get_polygon().mid_section.top_edge.right_coord.x = lower_rndpoint
+	return wall
 
-	for i in range(old_wall.get_sections(), 0, -1):
-		new_shape[old_wall.left_indices[i]].x = old_shape[old_wall.left_indices[i - 1]].x
+func change_right_wall(wall:Wall) -> Wall:
+	new_right_wall = wall
+	wall.get_polygon().top_section.top_edge.right_coord.x = -320 + path_width + new_left_wall.get_polygon().top_section.top_edge.right_coord.x 
+	wall.get_polygon().top_section.bottom_edge.right_coord.x = -320 + path_width + new_left_wall.get_polygon().top_section.bottom_edge.right_coord.x
+	wall.get_polygon().mid_section.top_edge.right_coord.x = -320 + path_width + new_left_wall.get_polygon().mid_section.top_edge.right_coord.x
+	return wall
 
-	new_shape[old_wall.left_indices[0]].x = rng.randf_range(x_range.x, x_range.y)
-	new_wall.set_shape(new_shape)
-	left_wall = new_wall
-	left_wall.set_color(Color(1.0, 0.0, 0.0))
-	return new_wall
-
-
-func get_right_wall(_old_right_wall: Wall, new_right_wall: Wall):
-	var new_right_shape = new_right_wall.get_shape()
-	print(path_width)
-	for i in range(right_indices.size()):
-		new_right_shape[right_indices[i]].x = -320 + path_width + left_wall.get_shape()[_old_right_wall.left_indices[i]].x
-	new_right_wall.set_shape(new_right_shape)
-	new_right_wall.set_color(Color(1.0, 0.0, 0.0))
-	return new_right_wall
+func get_wall_range(x_coord: float) -> float:
+	return clamp(rng.randf_range(x_coord - path_range, x_coord + path_range), 0, 320-path_width)
 
 func set_data(data):
-	path_width = data
+	path_width = data.path_width
+
+func get_path_width():
+	return rng.randi_range(min_width, max_width)
 
 func get_parameters():
 	return {
-		'path_width': path_width
+		'path_width': get_path_width()
 	}

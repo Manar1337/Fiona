@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://csinmdoj74g6t"]
 
-[ext_resource type="Texture2D" uid="uid://cfsge4i2px6yt" path="res://assets/graphics/FlyingLevel/BackgroundTiles.png" id="1_jx4q0"]
-[ext_resource type="Script" path="res://game/backgrounds/background_flying.gd" id="1_nn6k3"]
+[ext_resource type="Texture2D" uid="uid://cfsge4i2px6yt" path="res://assets/graphics/flying_level/BackgroundTiles.png" id="1_jx4q0"]
+[ext_resource type="Script" uid="uid://cyuhagkpy0jjg" path="res://game/backgrounds/background_flying.gd" id="1_nn6k3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvlnk"]
 texture = ExtResource("1_jx4q0")

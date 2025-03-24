@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ctkqsiv15thk8"]
 
-[ext_resource type="Script" path="res://game/spawners/walking_enemy_generator.gd" id="1_eysra"]
+[ext_resource type="Script" uid="uid://tpigtyxvrf86" path="res://game/spawners/walking_enemy_generator.gd" id="1_eysra"]
 [ext_resource type="PackedScene" uid="uid://bb1o15ujvq82k" path="res://game/spawners/timed_random_multispawner.tscn" id="3_jt2bb"]
 [ext_resource type="PackedScene" uid="uid://clel6lktjkd28" path="res://game/actor/enemies/skeleton/skeleton.tscn" id="3_tjgny"]
 [ext_resource type="PackedScene" uid="uid://cuab70t7w05jm" path="res://game/actor/enemies/ghost/ghost.tscn" id="4_ushv4"]

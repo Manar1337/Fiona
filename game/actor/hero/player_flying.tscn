@@ -1,19 +1,19 @@
 [gd_scene load_steps=21 format=3 uid="uid://d3iqt6cleme8e"]
 
-[ext_resource type="Texture2D" uid="uid://d1vubed5r6mvt" path="res://assets/graphics/FlyingLevel/FionaFlyingl.png" id="1_4sogb"]
-[ext_resource type="Script" path="res://game/actor/hero/player_flying.gd" id="1_xqhu7"]
-[ext_resource type="Script" path="res://game/components/move_component.gd" id="2_4f2hd"]
-[ext_resource type="Texture2D" uid="uid://buoklgn5jc7hn" path="res://assets/graphics/FlyingLevel/Witch-cloth.png" id="3_yh53q"]
-[ext_resource type="Script" path="res://game/components/position_clamp_component.gd" id="4_1l2n7"]
-[ext_resource type="Script" path="res://game/components/move_components/move_controlled_component.gd" id="4_prcoq"]
-[ext_resource type="Script" path="res://game/components/move_components/move_fall_component.gd" id="6_rr64w"]
-[ext_resource type="Script" path="res://game/components/spawner_component.gd" id="7_y5k6p"]
+[ext_resource type="Texture2D" uid="uid://d1vubed5r6mvt" path="res://assets/graphics/flying_level/FionaFlyingl.png" id="1_4sogb"]
+[ext_resource type="Script" uid="uid://mb5crmaxije8" path="res://game/actor/hero/player_flying.gd" id="1_xqhu7"]
+[ext_resource type="Script" uid="uid://bspe6mkgk7qsl" path="res://game/components/move_component.gd" id="2_4f2hd"]
+[ext_resource type="Texture2D" uid="uid://buoklgn5jc7hn" path="res://assets/graphics/flying_level/Witch-cloth.png" id="3_yh53q"]
+[ext_resource type="Script" uid="uid://ci03s4xufa1sg" path="res://game/components/position_clamp_component.gd" id="4_1l2n7"]
+[ext_resource type="Script" uid="uid://7gl53vel7m1l" path="res://game/components/move_components/move_controlled_component.gd" id="4_prcoq"]
+[ext_resource type="Script" uid="uid://b4pjq4g5q3ceg" path="res://game/components/move_components/move_fall_component.gd" id="6_rr64w"]
+[ext_resource type="Script" uid="uid://ciooam1aml12j" path="res://game/components/spawner_component.gd" id="7_y5k6p"]
 [ext_resource type="PackedScene" uid="uid://ctc6p2ayrtmtu" path="res://game/actor/hero/zap.tscn" id="8_3mbd2"]
-[ext_resource type="Script" path="res://game/components/color_flicker_component.gd" id="9_37327"]
-[ext_resource type="Script" path="res://game/components/hurtbox_component.gd" id="9_fiybi"]
-[ext_resource type="Script" path="res://game/components/hurt_component.gd" id="10_8ufm1"]
-[ext_resource type="Script" path="res://game/components/player_stats_component.gd" id="13_3u2mt"]
-[ext_resource type="Script" path="res://game/items/magic/big_explosion_spawner.gd" id="13_yp8sh"]
+[ext_resource type="Script" uid="uid://duyl4ybl4v13k" path="res://game/components/color_flicker_component.gd" id="9_37327"]
+[ext_resource type="Script" uid="uid://hjccq835qqs5" path="res://game/components/hurtbox_component.gd" id="9_fiybi"]
+[ext_resource type="Script" uid="uid://i6dqjwbd1efj" path="res://game/components/hurt_component.gd" id="10_8ufm1"]
+[ext_resource type="Script" uid="uid://coa17qraqeomx" path="res://game/components/player_stats_component.gd" id="13_3u2mt"]
+[ext_resource type="Script" uid="uid://b2i5vjbkb7t5s" path="res://game/items/magic/big_explosion_spawner.gd" id="13_yp8sh"]
 [ext_resource type="PackedScene" uid="uid://boryxbcca7kbq" path="res://game/items/magic/magic_explosion.tscn" id="14_f2fkf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lar7r"]
@@ -54,6 +54,7 @@ animations = [{
 
 [node name="PlayerFlying" type="Node2D"]
 script = ExtResource("1_xqhu7")
+invincible = true
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

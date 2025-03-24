@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxmwgmoamr1b1"]
+
+[ext_resource type="Script" uid="uid://7gysyp81co20" path="res://game/levels/death_level/tunnel.gd" id="1_1cchf"]
+[ext_resource type="Script" uid="uid://crljfa7f4e76n" path="res://game/levels/death_level/left_walls.gd" id="2_hqvyy"]
+[ext_resource type="Script" uid="uid://dql4lp80kji0p" path="res://game/components/wall_component_controller.gd" id="2_ui0o1"]
+[ext_resource type="Script" uid="uid://n3q22nfvmi1f" path="res://game/components/wall_components/wall_straight_component.gd" id="3_3jpj6"]
+[ext_resource type="PackedScene" uid="uid://dnikgkn6wsdel" path="res://game/items/walls/wall.tscn" id="3_qoqh4"]
+[ext_resource type="Script" uid="uid://ja08gaosjnf3" path="res://game/levels/death_level/right_walls.gd" id="4_i075q"]
+[ext_resource type="Script" uid="uid://b5qsxub642dlu" path="res://game/components/wall_components/wall_path_component.gd" id="4_tp7yo"]
+
+[node name="Tunnel" type="Node2D"]
+script = ExtResource("1_1cchf")
+wall_speed = 50.0
+
+[node name="WallComponentController" type="Node" parent="."]
+script = ExtResource("2_ui0o1")
+
+[node name="WallStraightComponent" type="Node" parent="WallComponentController"]
+script = ExtResource("3_3jpj6")
+
+[node name="WallPathComponent" type="Node" parent="WallComponentController"]
+script = ExtResource("4_tp7yo")
+
+[node name="LeftWalls" type="Node2D" parent="."]
+script = ExtResource("2_hqvyy")
+
+[node name="LeftWall1" parent="LeftWalls" instance=ExtResource("3_qoqh4")]
+position = Vector2(0, -132)
+color = Color(1, 0, 0, 0.501961)
+
+[node name="LeftWall2" parent="LeftWalls" instance=ExtResource("3_qoqh4")]
+color = Color(0, 1, 0, 0.501961)
+
+[node name="LeftWall3" parent="LeftWalls" instance=ExtResource("3_qoqh4")]
+position = Vector2(0, 132)
+color = Color(0, 0, 1, 0.501961)
+
+[node name="RightWalls" type="Node2D" parent="."]
+position = Vector2(320, 0)
+script = ExtResource("4_i075q")
+
+[node name="RightWall1" parent="RightWalls" instance=ExtResource("3_qoqh4")]
+position = Vector2(0, -132)
+color = Color(1, 0, 0, 1)
+
+[node name="RightWall2" parent="RightWalls" instance=ExtResource("3_qoqh4")]
+color = Color(0, 1, 0, 1)
+
+[node name="RightWall3" parent="RightWalls" instance=ExtResource("3_qoqh4")]
+position = Vector2(0, 132)
+color = Color(0, 0, 1, 1)

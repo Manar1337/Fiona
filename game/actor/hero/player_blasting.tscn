@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bbt68ylqoehsx"]
 
-[ext_resource type="Texture2D" uid="uid://dqxgu61f3t8b0" path="res://assets/graphics/DeathLevel/Fiona-Blasting.png" id="1_ige4u"]
+[ext_resource type="Texture2D" uid="uid://dqxgu61f3t8b0" path="res://assets/graphics/death_level/Fiona-Blasting.png" id="1_ige4u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8nbdt"]
 atlas = ExtResource("1_ige4u")

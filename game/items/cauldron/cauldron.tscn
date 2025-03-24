@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cycs7at4s357m"]
 
-[ext_resource type="Texture2D" uid="uid://jdgtyj4qugc4" path="res://assets/graphics/WalkingLevel/Cauldron.png" id="1_ko4r1"]
-[ext_resource type="Script" path="res://game/items/cauldron/cauldron.gd" id="1_vf4cq"]
+[ext_resource type="Texture2D" uid="uid://jdgtyj4qugc4" path="res://assets/graphics/walking_level/Cauldron.png" id="1_ko4r1"]
+[ext_resource type="Script" uid="uid://5jkqofqinjsy" path="res://game/items/cauldron/cauldron.gd" id="1_vf4cq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70sv7"]
 size = Vector2(4, 198)

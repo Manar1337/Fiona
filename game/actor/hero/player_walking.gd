@@ -41,7 +41,8 @@ func on_turn(direction):
 
 func _input(_event: InputEvent):
 	if !is_alive: return
-	if Input.is_action_pressed("ui_select"):
+	
+	if Input.is_action_pressed("fire"):
 		if !fire_lock:
 			fire_zap()
 

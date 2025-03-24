@@ -4,6 +4,8 @@ extends Node2D
 
 signal has_landed()
 
+@export var invincible: bool = false
+
 @onready var spawner_component = $SpawnerComponent as SpawnerComponent
 @onready var fire_rate_timer = $FireRateTimer
 @onready var zap_marker: Marker2D = $ZapMarker
@@ -21,7 +23,7 @@ var is_alive = true
 var is_landing = false
 
 func _ready():
-	#hurtbox_component.is_invincible = true
+	hurtbox_component.is_invincible = invincible
 	move_component.set_mode("controlled")
 	fire_rate_timer.timeout.connect(unlock_fire)
 	player_stats_component.no_magic.connect(explode)
@@ -35,7 +37,7 @@ func _process(_delta):
 
 func _input(_event: InputEvent):
 	if !is_alive: return
-	if Input.is_action_pressed("ui_select"):
+	if Input.is_action_pressed("fire"):
 		if !fire_lock:
 			fire_zap()
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bi8ogy8yef1o0"]
 
-[ext_resource type="Script" path="res://game/gui.gd" id="1_413mj"]
+[ext_resource type="Script" uid="uid://e2xcfbn4kgm3" path="res://game/gui.gd" id="1_413mj"]
 [ext_resource type="FontFile" uid="uid://c5c50h8m5nfnb" path="res://assets/fonts/Commodore Pixelized v1.2.ttf" id="2_c0a48"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qcojq"]

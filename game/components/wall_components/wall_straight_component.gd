@@ -1,40 +1,45 @@
 class_name WallStraightComponent
 extends WallComponent
 
+var path_x_coord = rng.randi_range(0,170)
 var difficulty = 1
-var path_width = 100
-
 
 func _ready():
 	type = "straight"
 
-func get_left_wall(old_wall: Wall, new_wall: Wall):
-	var new_shape = new_wall.get_shape()
-	var old_shape = old_wall.get_shape()
+func change_left_wall(wall:Wall) -> Wall:
+	new_left_wall = wall
+	wall.get_polygon().top_section.top_edge.right_coord.x       = path_x_coord
+	wall.get_polygon().top_section.bottom_edge.right_coord.x    = path_x_coord
 
-	for i in range(old_wall.get_sections(), 0, -1):
-		new_shape[old_wall.left_indices[i]].x = old_shape[old_wall.left_indices[i - 1]].x
+	wall.get_polygon().mid_section.top_edge.right_coord.x       = path_x_coord
+	wall.get_polygon().mid_section.bottom_edge.right_coord.x    = path_x_coord
 
-	new_shape[old_wall.left_indices[0]].x = new_shape[old_wall.left_indices[1]].x
-	new_wall.set_shape(new_shape)
-	left_wall = new_wall
-	left_wall.set_color(Color(0.0, 1.0, 0.0))
+	wall.get_polygon().bottom_section.top_edge.right_coord.x    = path_x_coord
+	wall.get_polygon().bottom_section.bottom_edge.right_coord.x = path_x_coord
+	return wall
 
-	return new_wall
+func change_right_wall(wall:Wall) -> Wall:
+	new_right_wall = wall
+	wall.get_polygon().top_section.top_edge.right_coord.x       = -320 + path_width + new_left_wall.get_polygon().top_section.top_edge.right_coord.x 
+	wall.get_polygon().top_section.bottom_edge.right_coord.x    = -320 + path_width + new_left_wall.get_polygon().top_section.bottom_edge.right_coord.x
 
-func get_right_wall(old_wall: Wall, new_wall: Wall):
-	var new_shape = new_wall.get_shape()
+	wall.get_polygon().mid_section.top_edge.right_coord.x       = -320 + path_width + new_left_wall.get_polygon().mid_section.top_edge.right_coord.x
+	wall.get_polygon().mid_section.bottom_edge.right_coord.x    = -320 + path_width + new_left_wall.get_polygon().mid_section.bottom_edge.right_coord.x
 
-	for i in range(right_indices.size()):
-		new_shape[right_indices[i]].x = -320 + path_width + left_wall.get_shape()[old_wall.left_indices[i]].x
-	new_wall.set_shape(new_shape)
-	new_wall.set_color(Color(0.0, 1.0, 0.0))
-	return new_wall
+	wall.get_polygon().bottom_section.top_edge.right_coord.x    = -320 + path_width + new_left_wall.get_polygon().bottom_section.top_edge.right_coord.x
+	wall.get_polygon().bottom_section.bottom_edge.right_coord.x = -320 + path_width + new_left_wall.get_polygon().bottom_section.bottom_edge.right_coord.x
+	return wall
 
 func set_data(data):
-	path_width = data
+	path_width = data.path_width
+	path_x_coord = data.path_x_coord
+
+func get_path_width():
+	return rng.randi_range(min_width, max_width)
 
 func get_parameters():
 	return {
-		'path_width': path_width
+		'path_x_coord': path_x_coord,
+		'path_width': get_path_width()
 	}

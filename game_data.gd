@@ -4,7 +4,7 @@ signal score_changed(new_score)
 signal health_changed(new_health)
 signal lives_changed(new_lives)
 signal level_changed(new_level)
-signal poem_level_changed(new_poem_level)
+signal level_requested(level_type)
 
 signal show_death_message(show_message)
 signal show_gui(will_show_gui)
@@ -38,13 +38,14 @@ var level:
 	set(value):
 		level = value
 		level_changed.emit(level)
+		level_requested.emit("level")
 
 var poem_level = 0:
 	get:
 		return poem_level
 	set(value):
 		poem_level = value
-		poem_level_changed.emit(value)
+		level_requested.emit("poem")
 
 func showDeathMessage(show_message:bool):
 	show_death_message.emit(show_message)
