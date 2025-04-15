@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bi8ogy8yef1o0"]
 
-[ext_resource type="Script" uid="uid://e2xcfbn4kgm3" path="res://game/gui.gd" id="1_413mj"]
+[ext_resource type="Script" uid="uid://e2xcfbn4kgm3" path="res://game/gui/gui.gd" id="1_413mj"]
 [ext_resource type="FontFile" uid="uid://c5c50h8m5nfnb" path="res://assets/fonts/Commodore Pixelized v1.2.ttf" id="2_c0a48"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qcojq"]
@@ -32,7 +32,7 @@ font_color = Color(0.890196, 0.905882, 0.431373, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_xgcw3"]
 font = ExtResource("2_c0a48")
 font_size = 10
-font_color = Color(0.533333, 0, 0, 1)
+font_color = Color(0.698039, 0.956863, 1, 1)
 
 [node name="GUI" type="Node"]
 script = ExtResource("1_413mj")
@@ -126,4 +126,28 @@ layout_mode = 0
 offset_right = 220.0
 offset_bottom = 12.0
 text = "THY SOUL IS SENT TO HELL!!!"
+label_settings = SubResource("LabelSettings_xgcw3")
+
+[node name="GameOverMessage" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 50.0
+offset_top = 70.0
+offset_right = 90.0
+offset_bottom = 110.0
+
+[node name="BackgroundColor" type="ColorRect" parent="GameOverMessage"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 210.0
+offset_bottom = 9.0
+color = Color(0, 0, 0, 1)
+
+[node name="GameOverText" type="Label" parent="GameOverMessage"]
+layout_mode = 0
+offset_right = 174.0
+offset_bottom = 12.0
+text = "THY POWER IS OVERCOME"
 label_settings = SubResource("LabelSettings_xgcw3")

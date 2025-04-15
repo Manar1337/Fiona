@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1su4pin2uncv"]
+
+[ext_resource type="Script" uid="uid://b11vmgbx3v4c7" path="res://game/gui/high_score_table.gd" id="1_xgi5m"]
+
+[node name="HighScoreTable" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_xgi5m")

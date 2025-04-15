@@ -12,6 +12,7 @@ font_size = 8
 
 [node name="StartScreen" type="Node"]
 script = ExtResource("1_6503l")
+start_level = 2
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

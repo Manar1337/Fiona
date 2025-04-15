@@ -12,6 +12,7 @@ var levels_dir: Dictionary = {
 	"level_2": {"type": "walking", "path": "res://game/levels/walking_level/level_2.tscn", "poem_level": 2},
 	"death": {"type": "death", "path": "res://game/levels/death_level/death_level.tscn"},
 	"poem": {"type": "poem", "path": "res://game/levels/poem_level/poem_level.tscn"},
+	"high_score": {"type": "high_score", "path": "res://game/levels/high_score_level/high_score_level.tscn"},
 }
 
 const DEFAULT_LEVEL_INDEX: int = 1
@@ -37,6 +38,9 @@ func request_level(level_type: String):
 				"poem":
 					GameData.showGui(false)
 					load_level("poem")
+				"high_score":
+					GameData.showGui(false)
+					load_level("high_score")
 
 func load_level(level_name: String):
 	if current_level:

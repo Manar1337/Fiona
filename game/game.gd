@@ -13,7 +13,7 @@ func _ready():
 	GameData.score = 0
 	GameData.health = start_health
 	GameData.lives = start_lives
-	GameData.level_requested.emit("start")
+	GameData.level_requested.emit("high_score")
 
 func _input(_event):
 	if Input.is_action_just_pressed("toggle_fullscreen"):

@@ -5,6 +5,7 @@ extends Node
 @onready var lev_value: Label = $LevValue
 @onready var lives_value: Label = $LivesValue
 @onready var death_message: Control = $DeathMessage
+@onready var game_over_message: Control = $GameOverMessage
 
 func _ready():
 	GameData.connect("score_changed", _on_score_changed)
@@ -12,11 +13,16 @@ func _ready():
 	GameData.connect("lives_changed", _on_lives_changed)
 	GameData.connect("level_changed", _on_level_changed)
 	GameData.connect("show_death_message", _on_show_death_message)
+	GameData.connect("show_game_over_message", _on_show_game_over_message)
 	GameData.connect("show_gui", _on_show_gui)
 
 	_on_score_changed(GameData.score)
 	_on_health_changed(GameData.health)
 	_on_lives_changed(GameData.lives)
+
+func _input(_event):
+	if Input.is_action_just_pressed("show_highscore"):
+		GameData.showHighScore(true)
 
 func _on_score_changed(new_score):
 	score_value.text = str(new_score).pad_zeros(6)
@@ -32,6 +38,9 @@ func _on_lives_changed(new_lives):
 
 func _on_show_death_message(show_message):
 	death_message.visible = show_message
+
+func _on_show_game_over_message(show_message):
+	game_over_message.visible = show_message
 
 func _on_show_gui(will_show):
 	for child in get_children():

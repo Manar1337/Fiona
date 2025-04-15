@@ -14,7 +14,7 @@ position = Vector2(50, 51)
 [node name="FlyingEnemyGenerator" type="Node" parent="."]
 script = ExtResource("5_2qq1r")
 
-[node name="Background" parent="." instance=ExtResource("4_loi3w")]
+[node name="LandscapeBackground" parent="." instance=ExtResource("4_loi3w")]
 
 [node name="FlightTimer" type="Timer" parent="."]
 wait_time = 6.0
