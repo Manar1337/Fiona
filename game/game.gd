@@ -13,9 +13,14 @@ func _ready():
 	GameData.score = 0
 	GameData.health = start_health
 	GameData.lives = start_lives
-	GameData.level_requested.emit("high_score")
+	# GameData.level_requested.emit("start")
+	GameData.level = 2
 
 func _input(_event):
+	if Input.is_action_just_pressed("pause_game"):
+		print("Pause is: ",str(GameData.is_paused))
+		GameData.pauseGame(!GameData.is_paused)
+	
 	if Input.is_action_just_pressed("toggle_fullscreen"):
 		swap_fullscreen_mode()
 

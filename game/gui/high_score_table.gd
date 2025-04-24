@@ -3,7 +3,7 @@ extends Control
 
 @onready var input_name: LineEdit = $InputName
 
-var current_score: int = 250000  # Set from outside when player finishes game.
+var current_score: int = 0 
 
 func _ready():
 	input_name.grab_focus()
@@ -14,21 +14,16 @@ func _on_input_name_submitted(submitted_name: String):
 	if final_name.is_empty():
 		final_name = "Anonymous"
 
-	add_high_score(final_name, current_score)
-	print("High Scores: ", GameData.high_score_table)
+	add_high_score(final_name, GameData.score)
 
 	GameData.level_requested.emit("start")
 
-
 func add_high_score(hs_name: String, score: int):
-	print("Adding high score: ", hs_name, " with score: ", score)
 
 	var entry = {
 		"name": hs_name,
-		"score": "%06d" % score  # C64 style
+		"score": "%06d" % score
 	}
-
-	# Make a clean copy of current scores
 	var scores = []
 	for s in GameData.high_score_table:
 		scores.append({
@@ -37,27 +32,13 @@ func add_high_score(hs_name: String, score: int):
 		})
 
 	scores.append(entry)
-	print("Scores before sort: ", scores)
-
-	# Sort using Godot 4.4 style: "should a come after b?"
 	scores.sort_custom(Callable(self, "compare_scores"))
-
-	print("Scores after sort: ", scores)
-
 	scores.reverse()  # <- Important! Highest score first now
-
-	print("Scores after reverse: ", scores)
-
-	# Trim to 8 entries
 	if scores.size() > 8:
 		scores = scores.slice(0, 8)
 
-	print("Scores after trim: ", scores)
-
 	GameData.high_score_table = scores
 
-
-# For descending order (highest score first)
 func compare_scores(a, b):
 	var sa = int(a["score"])
 	var sb = int(b["score"])

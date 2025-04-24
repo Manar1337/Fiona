@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdygiys60scfn"]
+
+[ext_resource type="Script" uid="uid://bspe6mkgk7qsl" path="res://game/components/move_component.gd" id="1_3ocs4"]
+[ext_resource type="Script" uid="uid://woafxi4hftvs" path="res://game/game_objects/game_object.gd" id="1_nvq38"]
+[ext_resource type="Script" uid="uid://cvlrwryvqfpj0" path="res://game/components/hitbox_component.gd" id="2_nvq38"]
+[ext_resource type="Script" uid="uid://finu86pnqyie" path="res://game/components/move_components/move_steady_component.gd" id="3_4oe43"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4oe43"]
+size = Vector2(22, 6)
+
+[node name="GameObject" type="Node2D"]
+script = ExtResource("1_nvq38")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-11, -3, 22, 6)
+
+[node name="MoveComponent" type="Node" parent="."]
+script = ExtResource("1_3ocs4")
+metadata/_custom_type_script = "uid://bspe6mkgk7qsl"
+
+[node name="MoveSteadyComponent" type="Node" parent="MoveComponent"]
+script = ExtResource("3_4oe43")
+metadata/_custom_type_script = "uid://finu86pnqyie"
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("2_nvq38")
+metadata/_custom_type_script = "uid://cvlrwryvqfpj0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_4oe43")

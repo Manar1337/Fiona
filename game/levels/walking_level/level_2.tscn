@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bm7148dbxrgi" path="res://game/backgrounds/background_walking.tscn" id="2_utm2b"]
 [ext_resource type="Script" uid="uid://tpigtyxvrf86" path="res://game/spawners/walking_enemy_generator.gd" id="3_6p877"]
 [ext_resource type="PackedScene" uid="uid://dseoau3m3u7ju" path="res://game/spawners/timed_random_singlespawner.tscn" id="4_d0ehj"]
-[ext_resource type="PackedScene" uid="uid://clel6lktjkd28" path="res://game/actor/enemies/skeleton/skeleton.tscn" id="5_aqrwj"]
+[ext_resource type="PackedScene" uid="uid://clel6lktjkd28" path="res://game/game_objects/actor/enemies/skeleton/skeleton.tscn" id="5_aqrwj"]
 [ext_resource type="PackedScene" uid="uid://bb1o15ujvq82k" path="res://game/spawners/timed_random_multispawner.tscn" id="6_bs77d"]
-[ext_resource type="PackedScene" uid="uid://cuab70t7w05jm" path="res://game/actor/enemies/ghost/ghost.tscn" id="7_m8rih"]
+[ext_resource type="PackedScene" uid="uid://cuab70t7w05jm" path="res://game/game_objects/actor/enemies/ghost/ghost.tscn" id="7_m8rih"]
 
 [node name="Level_2" instance=ExtResource("1_g1ylr")]
 

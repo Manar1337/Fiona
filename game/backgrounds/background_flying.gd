@@ -11,9 +11,6 @@ extends ParallaxBackground
 
 var is_moving = true
 
-func _ready():
-	set_random_position()
-
 func _process(delta):
 	if is_moving:
 		background_layer.motion_offset.x -= speed * delta

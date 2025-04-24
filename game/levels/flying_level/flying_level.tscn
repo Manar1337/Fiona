@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://nnuw52nnceid"]
 
 [ext_resource type="Script" uid="uid://dcuxqcvtqhgkp" path="res://game/levels/flying_level/flying_level.gd" id="1_lbcyf"]
-[ext_resource type="PackedScene" uid="uid://d3iqt6cleme8e" path="res://game/actor/hero/player_flying.tscn" id="2_7d1xw"]
+[ext_resource type="PackedScene" uid="uid://d3iqt6cleme8e" path="res://game/game_objects/actor/hero/player_flying.tscn" id="2_7d1xw"]
 [ext_resource type="PackedScene" uid="uid://csinmdoj74g6t" path="res://game/backgrounds/background_flying.tscn" id="4_loi3w"]
 [ext_resource type="Script" uid="uid://c10y1p1jfvjtl" path="res://game/spawners/flying_enemy_generator.gd" id="5_2qq1r"]
 
@@ -17,6 +17,5 @@ script = ExtResource("5_2qq1r")
 [node name="LandscapeBackground" parent="." instance=ExtResource("4_loi3w")]
 
 [node name="FlightTimer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 10.0
 one_shot = true
-autostart = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxqvelackaop3"]
 
-[ext_resource type="PackedScene" uid="uid://bdnuk6p5n635l" path="res://game/actor/hero/player_walking.tscn" id="2_hpdu1"]
-[ext_resource type="PackedScene" uid="uid://cycs7at4s357m" path="res://game/items/cauldron/cauldron.tscn" id="4_mi2te"]
+[ext_resource type="PackedScene" uid="uid://bdnuk6p5n635l" path="res://game/game_objects/actor/hero/player_walking.tscn" id="2_hpdu1"]
+[ext_resource type="PackedScene" uid="uid://cycs7at4s357m" path="res://game/game_objects/items/cauldron/cauldron.tscn" id="4_mi2te"]
 
 [node name="WalkingLevel" type="Node"]
 

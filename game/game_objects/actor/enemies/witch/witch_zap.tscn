@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://bs3f8nwk3xcuf"]
+
+[ext_resource type="Texture2D" uid="uid://b8shht3o6mjo3" path="res://assets/graphics/flying_level/Zap.png" id="2_ri4v0"]
+[ext_resource type="Script" uid="uid://bspe6mkgk7qsl" path="res://game/components/move_component.gd" id="3_rd1a8"]
+[ext_resource type="Script" uid="uid://finu86pnqyie" path="res://game/components/move_components/move_steady_component.gd" id="4_4ryun"]
+[ext_resource type="Script" uid="uid://cvlrwryvqfpj0" path="res://game/components/hitbox_component.gd" id="5_f7i1y"]
+[ext_resource type="Script" uid="uid://ciooam1aml12j" path="res://game/components/spawner_component.gd" id="6_acrex"]
+[ext_resource type="PackedScene" uid="uid://boryxbcca7kbq" path="res://game/game_objects/items/magic/magic_explosion.tscn" id="7_su3l2"]
+
+[sub_resource type="GDScript" id="GDScript_4po64"]
+script/source = "class_name WitchZap
+
+extends Node2D
+@onready var visible_on_screen_enabler_2d = $VisibleOnScreenEnabler2D as VisibleOnScreenEnabler2D
+@onready var hitbox_component = $HitboxComponent as HitboxComponent
+@onready var move_component = $MoveComponent
+@onready var explosion_spawner: SpawnerComponent = $ExplosionSpawner
+
+func _ready():
+	visible_on_screen_enabler_2d.screen_exited.connect(queue_free)
+	hitbox_component.hit_hurtbox.connect(explode.unbind(1))
+
+func set_speed(speed):
+	move_component.set_speed(speed)
+
+func set_direction(direction):
+	move_component.set_mode_data([direction])
+
+func explode():
+	call_deferred(\"_spawn_explosion\")
+
+func _spawn_explosion():
+	explosion_spawner.spawn(self.global_position, GameData.current_level)
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gect4"]
+size = Vector2(22, 6)
+
+[node name="WitchZap" type="Node2D"]
+script = SubResource("GDScript_4po64")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_ri4v0")
+
+[node name="MoveComponent" type="Node" parent="."]
+script = ExtResource("3_rd1a8")
+
+[node name="MoveSteadyComponent" type="Node" parent="MoveComponent"]
+script = ExtResource("4_4ryun")
+speed = 50.0
+direction = Vector2(-1, 0)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(5.96046e-08, 0)
+rect = Rect2(-11, -3, 22, 6)
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("5_f7i1y")
+damage = 150
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_gect4")
+
+[node name="ExplosionSpawner" type="Node2D" parent="."]
+script = ExtResource("6_acrex")
+what_to_spawn = ExtResource("7_su3l2")

@@ -14,7 +14,6 @@ func set_position(new_position: float):
 
 func set_random_position():
 	var random_pos = randf_range(0, (get_background_width() * 8) - 320)
-	print("Random position: ", random_pos)
 	set_position(random_pos)
 
 func get_background_width():

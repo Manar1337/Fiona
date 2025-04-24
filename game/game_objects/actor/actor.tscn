@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxqo66k6111ej"]
+
+[ext_resource type="Script" uid="uid://0cp15ptycilq" path="res://game/game_objects/actor/actor.gd" id="1_4e8xd"]
+[ext_resource type="PackedScene" uid="uid://cdygiys60scfn" path="res://game/game_objects/game_object.tscn" id="1_j5l1a"]
+[ext_resource type="Script" uid="uid://hjccq835qqs5" path="res://game/components/hurtbox_component.gd" id="3_c5u1j"]
+[ext_resource type="Script" uid="uid://muef05wpd2ty" path="res://game/components/stats_component.gd" id="5_13sbc"]
+[ext_resource type="Script" uid="uid://i6dqjwbd1efj" path="res://game/components/hurt_component.gd" id="6_wpk36"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pwtcy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d467e"]
+
+[node name="Actor" instance=ExtResource("1_j5l1a")]
+script = ExtResource("1_4e8xd")
+score = 0
+has_target = false
+
+[node name="Body" type="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_pwtcy")
+
+[node name="VisibleOnScreenEnabler2D" parent="." index="1"]
+rect = Rect2(-10, -10, 20, 20)
+
+[node name="HurtboxComponent" type="Area2D" parent="." index="2"]
+collision_layer = 2
+script = ExtResource("3_c5u1j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_d467e")
+
+[node name="HitboxComponent" parent="." index="4"]
+collision_layer = 2
+
+[node name="StatsComponent" type="Node" parent="." index="5"]
+script = ExtResource("5_13sbc")
+
+[node name="HurtComponent" type="Node" parent="." index="6" node_paths=PackedStringArray("stats_component", "hurtbox_component")]
+script = ExtResource("6_wpk36")
+stats_component = NodePath("../StatsComponent")
+hurtbox_component = NodePath("../HurtboxComponent")

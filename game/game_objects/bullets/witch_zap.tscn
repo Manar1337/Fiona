@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6mv3j0y7krau"]
+
+[ext_resource type="PackedScene" uid="uid://bvirga0t5lm3h" path="res://game/game_objects/bullets/bullet.tscn" id="1_kvooa"]
+[ext_resource type="Script" uid="uid://fep60mdkpv44" path="res://game/game_objects/bullets/witch_zap.gd" id="2_6sstd"]
+[ext_resource type="Texture2D" uid="uid://b8shht3o6mjo3" path="res://assets/graphics/flying_level/Zap.png" id="3_lspfn"]
+[ext_resource type="Script" uid="uid://ciooam1aml12j" path="res://game/components/spawner_component.gd" id="5_a2h43"]
+[ext_resource type="PackedScene" uid="uid://boryxbcca7kbq" path="res://game/game_objects/items/magic/magic_explosion.tscn" id="6_4252j"]
+
+[node name="WitchZap" instance=ExtResource("1_kvooa")]
+script = ExtResource("2_6sstd")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_lspfn")
+
+[node name="MoveSteadyComponent" parent="MoveComponent" index="0"]
+speed = 50.0
+direction = Vector2(-1, 0)
+
+[node name="HitboxComponent" parent="." index="3"]
+damage = 150
+
+[node name="ExplosionSpawner" type="Node2D" parent="." index="4"]
+script = ExtResource("5_a2h43")
+what_to_spawn = ExtResource("6_4252j")
+metadata/_custom_type_script = "uid://ciooam1aml12j"

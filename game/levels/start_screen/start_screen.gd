@@ -31,8 +31,6 @@ var formated_scores = []
 func _ready():
 	high_scores = GameData.high_score_table
 	formated_scores = format_high_scores(high_scores)
-	print("start screen")
-	print(formated_scores)
 	top_text = top_text_first_part + formated_scores + top_text_second_part
 	
 	switching_label.set_lines(top_text)

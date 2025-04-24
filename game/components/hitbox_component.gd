@@ -8,6 +8,8 @@ extends Area2D
 # Create a signal for when the hitbox hits a hurtbox
 signal hit_hurtbox(hurtbox)
 
+var is_enabled = true
+
 func _ready():
 	# Connect on area entered to our hurtbox entered function
 	area_entered.connect(_on_hurtbox_entered)
@@ -34,3 +36,13 @@ var is_harmless = false :
 			# Use call deferred to make sure this doesn't happen in the middle of the
 			# physics process
 			child.set_deferred("disabled", is_harmless)
+
+func set_enabled(enabled: bool):
+	# Set the enabled state of the hitbox
+	is_enabled = enabled
+	# Enable or disable the area
+	set_deferred("disabled", not is_enabled)
+	# Enable or disable all the collision shapes
+	for child in get_children():
+		if not child is CollisionShape2D and not child is CollisionPolygon2D: continue
+		child.set_deferred("disabled", not is_enabled)

@@ -4,6 +4,7 @@ extends Node
 var modes = []
 var mode = null
 var movement_vector = Vector2.ZERO
+var is_moving = true
 
 func _ready():
 	for child in get_children():
@@ -12,6 +13,7 @@ func _ready():
 		set_mode(modes[0])
 
 func _process(delta):
+	if not is_moving: return
 	movement_vector = Vector2.ZERO
 	movement_vector += mode.calculate_movement(delta)
 
@@ -32,3 +34,9 @@ func set_mode_data(data):
 
 func get_modes():
 	return modes
+
+func stop():
+	is_moving = false
+
+func start():
+	is_moving = true

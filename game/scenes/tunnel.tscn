@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://crljfa7f4e76n" path="res://game/levels/death_level/left_walls.gd" id="2_hqvyy"]
 [ext_resource type="Script" uid="uid://dql4lp80kji0p" path="res://game/components/wall_component_controller.gd" id="2_ui0o1"]
 [ext_resource type="Script" uid="uid://n3q22nfvmi1f" path="res://game/components/wall_components/wall_straight_component.gd" id="3_3jpj6"]
-[ext_resource type="PackedScene" uid="uid://dnikgkn6wsdel" path="res://game/items/walls/wall.tscn" id="3_qoqh4"]
+[ext_resource type="PackedScene" uid="uid://dnikgkn6wsdel" path="res://game/game_objects/items/walls/wall.tscn" id="3_qoqh4"]
 [ext_resource type="Script" uid="uid://ja08gaosjnf3" path="res://game/levels/death_level/right_walls.gd" id="4_i075q"]
 [ext_resource type="Script" uid="uid://b5qsxub642dlu" path="res://game/components/wall_components/wall_path_component.gd" id="4_tp7yo"]
 

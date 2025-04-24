@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgh8177vw4qqd"]
+
+[ext_resource type="PackedScene" uid="uid://bvirga0t5lm3h" path="res://game/game_objects/bullets/bullet.tscn" id="1_7yqwu"]
+[ext_resource type="Script" uid="uid://be1kltq602lby" path="res://game/game_objects/bullets/cloud_zap.gd" id="2_25hxk"]
+[ext_resource type="Texture2D" uid="uid://dws77lt4jbgo3" path="res://assets/graphics/flying_level/Lightning.png" id="2_sls7l"]
+[ext_resource type="Script" uid="uid://ciooam1aml12j" path="res://game/components/spawner_component.gd" id="4_fce7w"]
+[ext_resource type="PackedScene" uid="uid://boryxbcca7kbq" path="res://game/game_objects/items/magic/magic_explosion.tscn" id="5_25hxk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sls7l"]
+
+[node name="CloudZap" instance=ExtResource("1_7yqwu")]
+script = ExtResource("2_25hxk")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_sls7l")
+
+[node name="VisibleOnScreenEnabler2D" parent="." index="1"]
+rect = Rect2(-10, -10, 20, 20)
+
+[node name="MoveSteadyComponent" parent="MoveComponent" index="0"]
+speed = 100.0
+direction = Vector2(1, 2)
+
+[node name="HitboxComponent" parent="." index="3"]
+damage = 750
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_sls7l")
+
+[node name="ExplosionSpawner" type="Node2D" parent="." index="4"]
+script = ExtResource("4_fce7w")
+what_to_spawn = ExtResource("5_25hxk")
+metadata/_custom_type_script = "uid://ciooam1aml12j"

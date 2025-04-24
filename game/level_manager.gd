@@ -23,24 +23,25 @@ func _ready():
 	GameData.level = DEFAULT_LEVEL_INDEX
 
 func request_level(level_type: String):
-			match level_type:
-				"start":
-					GameData.showGui(false)
-					load_level("start")
-				"level":
-					GameData.showGui(true)
-					GameData.showDeathMessage(false)
-					load_level("level_" + str(GameData.level))
-				"death":
-					GameData.showGui(true)
-					GameData.showDeathMessage(true)
-					load_level("death")
-				"poem":
-					GameData.showGui(false)
-					load_level("poem")
-				"high_score":
-					GameData.showGui(false)
-					load_level("high_score")
+	print("Requesting level: ", level_type)
+	match level_type:
+		"start":
+			GameData.showGui(false)
+			load_level("start")
+		"level":
+			GameData.showGui(true)
+			GameData.showDeathMessage(false)
+			load_level("level_" + str(GameData.level))
+		"death":
+			GameData.showGui(true)
+			GameData.showDeathMessage(true)
+			load_level("death")
+		"poem":
+			GameData.showGui(false)
+			load_level("poem")
+		"high_score":
+			GameData.showGui(false)
+			load_level("high_score")
 
 func load_level(level_name: String):
 	if current_level:

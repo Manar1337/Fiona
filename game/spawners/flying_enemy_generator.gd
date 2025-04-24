@@ -10,3 +10,8 @@ func _ready():
 func _on_targeting_enemy_spawned(enemy_instance):
 	if enemy_instance.has_method("set_target"):
 		enemy_instance.set_target(player_flying)
+
+func stop_spawning():
+	for spawner in get_children():
+		if spawner.has_method("stop"):
+			spawner.stop()

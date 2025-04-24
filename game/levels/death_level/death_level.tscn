@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwd48xkslnfhh"]
 
 [ext_resource type="Script" uid="uid://bi3tbnoou5l6y" path="res://game/levels/death_level/death_level.gd" id="1_1h4kv"]
-[ext_resource type="PackedScene" uid="uid://bbt68ylqoehsx" path="res://game/actor/hero/player_blasting.tscn" id="1_tmofr"]
+[ext_resource type="PackedScene" uid="uid://bbt68ylqoehsx" path="res://game/game_objects/actor/hero/player_blasting.tscn" id="1_tmofr"]
 [ext_resource type="PackedScene" uid="uid://bxmwgmoamr1b1" path="res://game/scenes/tunnel.tscn" id="6_yc4a1"]
 
 [node name="DeathLevel" type="Node2D"]

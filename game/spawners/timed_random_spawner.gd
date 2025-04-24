@@ -5,6 +5,7 @@ extends Node
 signal targeting_enemy_spawned(enemy)
 
 @export var what_to_spawn: PackedScene
+@export var spawn_group: String = "sprite"
 
 @export_group("Timer")
 @export var timer_max: float
@@ -18,12 +19,15 @@ signal targeting_enemy_spawned(enemy)
 
 func _ready():
 	timer.timeout.connect(handle_spawn)
+	GameData.connect("sprite_frozen", _on_sprite_frozen)
 
 func handle_spawn():
 	spawner_component.what_to_spawn = what_to_spawn
 	var level = GameData.current_level
 	var spawnpos = getSpawnpos()
 	var enemy = spawner_component.spawn(spawnpos, level)
+	if spawn_group != "":
+		enemy.add_to_group(spawn_group)
 	if target_player:
 		targeting_enemy_spawned.emit(enemy)
 	timer.set_wait_time(randf_range(timer_min,timer_max))
@@ -31,3 +35,6 @@ func handle_spawn():
 
 func getSpawnpos():
 	return Vector2(0,0)
+
+func _on_sprite_frozen(is_frozen):
+	timer.paused = is_frozen

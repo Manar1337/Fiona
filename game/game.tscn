@@ -5,11 +5,15 @@
 [ext_resource type="Script" uid="uid://c2s2gwef6mbjd" path="res://game/level_manager.gd" id="3_6k82a"]
 
 [node name="Game" type="Node"]
+process_mode = 3
 script = ExtResource("1_5vrre")
 
 [node name="LevelManager" type="Node" parent="."]
+process_mode = 1
 script = ExtResource("3_6k82a")
 
 [node name="LevelHolder" type="Node" parent="."]
+process_mode = 1
 
 [node name="GUI" parent="." instance=ExtResource("2_gjcfw")]
+process_mode = 1
