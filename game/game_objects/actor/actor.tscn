@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxqo66k6111ej"]
+[gd_scene load_steps=9 format=3 uid="uid://bxqo66k6111ej"]
 
 [ext_resource type="Script" uid="uid://0cp15ptycilq" path="res://game/game_objects/actor/actor.gd" id="1_4e8xd"]
 [ext_resource type="PackedScene" uid="uid://cdygiys60scfn" path="res://game/game_objects/game_object.tscn" id="1_j5l1a"]
 [ext_resource type="Script" uid="uid://hjccq835qqs5" path="res://game/components/hurtbox_component.gd" id="3_c5u1j"]
 [ext_resource type="Script" uid="uid://muef05wpd2ty" path="res://game/components/stats_component.gd" id="5_13sbc"]
+[ext_resource type="Script" uid="uid://c6jijjgge4dp1" path="res://game/components/fly_up_component.gd" id="6_pwtcy"]
 [ext_resource type="Script" uid="uid://i6dqjwbd1efj" path="res://game/components/hurt_component.gd" id="6_wpk36"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pwtcy"]
@@ -38,3 +39,8 @@ script = ExtResource("5_13sbc")
 script = ExtResource("6_wpk36")
 stats_component = NodePath("../StatsComponent")
 hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="FlyUpComponent" type="Node" parent="." index="7"]
+script = ExtResource("6_pwtcy")
+move_component_path = NodePath("../MoveComponent")
+metadata/_custom_type_script = "uid://c6jijjgge4dp1"

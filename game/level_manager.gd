@@ -1,7 +1,26 @@
 extends Node
 
+@export var start_level: LevelName = LevelName.START
+
 @onready var level_holder: Node = $"../LevelHolder"
 @onready var game: Node = $".."
+
+enum LevelType {
+	START,
+	FLYING,
+	WALKING,
+	DEATH,
+	POEM,
+	HIGH_SCORE
+}
+enum LevelName {
+	START,
+	LEVEL_1,
+	LEVEL_2,
+	DEATH,
+	POEM,
+	HIGH_SCORE
+}
 
 var current_level: Node = null
 var previous_level_name: String = ""
@@ -13,6 +32,16 @@ var levels_dir: Dictionary = {
 	"death": {"type": "death", "path": "res://game/levels/death_level/death_level.tscn"},
 	"poem": {"type": "poem", "path": "res://game/levels/poem_level/poem_level.tscn"},
 	"high_score": {"type": "high_score", "path": "res://game/levels/high_score_level/high_score_level.tscn"},
+}
+
+#update levels_dir to use the new enums
+var levels_di2: Dictionary = {
+	LevelName.START: {"type": LevelType.START, "path": "res://game/levels/start_screen/start_screen.tscn"},
+	LevelName.LEVEL_1: {"type": LevelType.FLYING, "path": "res://game/levels/flying_level/level_1.tscn", "poem_level": 1},
+	LevelName.LEVEL_2: {"type": LevelType.WALKING, "path": "res://game/levels/walking_level/level_2.tscn", "poem_level": 2},
+	LevelName.DEATH: {"type": LevelType.DEATH, "path": "res://game/levels/death_level/death_level.tscn"},
+	LevelName.POEM: {"type": LevelType.POEM, "path": "res://game/levels/poem_level/poem_level.tscn"},
+	LevelName.HIGH_SCORE: {"type": LevelType.HIGH_SCORE, "path": "res://game/levels/high_score_level/high_score_level.tscn"},
 }
 
 const DEFAULT_LEVEL_INDEX: int = 1

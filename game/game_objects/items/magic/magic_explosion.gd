@@ -7,6 +7,9 @@ extends AnimatedSprite2D
 @onready var move_component: MoveComponent = $MoveComponent
 
 func _ready() -> void:
+	add_to_group("magic")
+	GameData.connect("freeze_everything", _on_freeze_everything) 
+
 	death_timer.timeout.connect(die)
 	visible_on_screen_enabler_2d.screen_exited.connect(queue_free)
 
@@ -16,10 +19,22 @@ func set_speed(speed):
 func set_direction(direction):
 	move_component.set_mode_data([direction])
 
-func fly_up():
-	move_component.set_mode("steady")
-	move_component.set_speed(128)
-	move_component.set_mode_data([Vector2(0,-1)])
-
 func die():
 	queue_free()
+
+func _on_freeze_everything(is_frozen: bool) -> void:
+	if is_frozen:
+		freeze()
+	else:
+		unfreeze()
+
+func freeze() -> void:
+	move_component.stop()
+	death_timer.stop()
+	self.pause()
+
+
+func unfreeze() -> void:
+	move_component.start()
+	death_timer.start()
+	self.play()

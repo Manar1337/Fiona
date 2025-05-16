@@ -39,7 +39,7 @@ func _setup_components() -> void:
 	move_component.set_mode("controlled")
 
 func _connect_signals() -> void:
-	GameData.connect("sprite_frozen", _on_sprite_frozen)
+	GameData.connect("freeze_everything", _on_freeze_everything)
 	fire_rate_timer.timeout.connect(_unlock_fire)
 	player_stats_component.no_magic.connect(die)
 	hurtbox_component.tilemap_hit.connect(_on_tilemap_hit)
@@ -85,7 +85,7 @@ func _hide_player() -> void:
 	body.visible = false
 	dress.visible = false
 
-func _on_sprite_frozen(is_frozen: bool) -> void:
+func _on_freeze_everything(is_frozen: bool) -> void:
 	if is_frozen:
 		_freeze()
 	else:

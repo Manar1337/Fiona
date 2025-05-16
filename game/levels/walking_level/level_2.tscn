@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ulnqcadvxabe"]
+[gd_scene load_steps=10 format=3 uid="uid://ulnqcadvxabe"]
 
 [ext_resource type="PackedScene" uid="uid://dxqvelackaop3" path="res://game/levels/walking_level/walking_level.tscn" id="1_g1ylr"]
+[ext_resource type="Texture2D" uid="uid://c54pumcl608a1" path="res://assets/graphics/walking_level/Broom.png" id="2_6p877"]
+[ext_resource type="Script" uid="uid://duyl4ybl4v13k" path="res://game/components/color_flicker_component.gd" id="2_d0ehj"]
 [ext_resource type="PackedScene" uid="uid://bm7148dbxrgi" path="res://game/backgrounds/background_walking.tscn" id="2_utm2b"]
 [ext_resource type="Script" uid="uid://tpigtyxvrf86" path="res://game/spawners/walking_enemy_generator.gd" id="3_6p877"]
 [ext_resource type="PackedScene" uid="uid://dseoau3m3u7ju" path="res://game/spawners/timed_random_singlespawner.tscn" id="4_d0ehj"]
@@ -9,6 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://cuab70t7w05jm" path="res://game/game_objects/actor/enemies/ghost/ghost.tscn" id="7_m8rih"]
 
 [node name="Level_2" instance=ExtResource("1_g1ylr")]
+
+[node name="ColorFlickerComponent" type="Node" parent="Treasure" index="0" node_paths=PackedStringArray("sprite")]
+script = ExtResource("2_d0ehj")
+sprite = NodePath("../Sprite2D")
+enabled = true
+metadata/_custom_type_script = "uid://duyl4ybl4v13k"
+
+[node name="Sprite2D" parent="Treasure" index="1"]
+texture = ExtResource("2_6p877")
 
 [node name="BackgroundLevel" parent="." index="2" instance=ExtResource("2_utm2b")]
 

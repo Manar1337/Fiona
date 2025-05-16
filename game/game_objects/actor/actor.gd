@@ -2,6 +2,7 @@ class_name Actor
 extends GameObject
 
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
+@onready var fly_up_component: FlyUpComponent = $FlyUpComponent
 
 @export var score: int = 0
 @export var has_target: bool = false

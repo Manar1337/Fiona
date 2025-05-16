@@ -16,9 +16,8 @@ spawn_bottom = 100.0
 spawn_left = 324.0
 spawn_right = 324.0
 what_to_spawn = ExtResource("3_kut0v")
-spawn_group = "enemies"
-timer_max = 0.1
-timer_min = 0.2
+timer_max = 5.0
+timer_min = 8.0
 target_player = true
 
 [node name="CloudSpawner" parent="FlyingEnemyGenerator" index="1" instance=ExtResource("5_lidy8")]
@@ -26,7 +25,6 @@ spawn_bottom = 50.0
 spawn_left = 324.0
 spawn_right = 324.0
 what_to_spawn = ExtResource("4_eckwj")
-spawn_group = "enemies"
 timer_max = 5.0
 timer_min = 10.0
 

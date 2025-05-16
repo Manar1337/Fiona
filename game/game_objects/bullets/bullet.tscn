@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvirga0t5lm3h"]
+[gd_scene load_steps=4 format=3 uid="uid://bvirga0t5lm3h"]
 
 [ext_resource type="Script" uid="uid://cl2d660pu683u" path="res://game/game_objects/bullets/bullet.gd" id="1_6lv4x"]
 [ext_resource type="PackedScene" uid="uid://cdygiys60scfn" path="res://game/game_objects/game_object.tscn" id="1_ge77m"]
+[ext_resource type="Script" uid="uid://c6jijjgge4dp1" path="res://game/components/fly_up_component.gd" id="3_uro2x"]
 
 [node name="Bullet" instance=ExtResource("1_ge77m")]
 script = ExtResource("1_6lv4x")
@@ -10,3 +11,8 @@ script = ExtResource("1_6lv4x")
 
 [node name="HitboxComponent" parent="." index="3"]
 collision_layer = 0
+
+[node name="FlyUpComponent" type="Node" parent="." index="4"]
+script = ExtResource("3_uro2x")
+move_component_path = NodePath("../MoveComponent")
+metadata/_custom_type_script = "uid://c6jijjgge4dp1"

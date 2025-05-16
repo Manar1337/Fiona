@@ -1,3 +1,5 @@
+class_name PlayerWalking
+
 extends CharacterBody2D
 
 @onready var body: AnimatedSprite2D = $Body
@@ -23,7 +25,7 @@ func _ready():
 	stats.no_magic.connect(_explode)
 	dress.self_modulate = Color8(96, 96, 96)
 
-func _input(event: InputEvent):
+func _input(_event: InputEvent):
 	if is_alive and Input.is_action_pressed("fire") and not fire_locked:
 		_fire_zap()
 

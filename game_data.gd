@@ -8,7 +8,7 @@ signal health_changed(new_health: int)
 signal lives_changed(new_lives: int)
 signal level_changed(new_level: int)
 signal level_requested(level_type: String)
-signal sprite_frozen(onoff: bool)
+signal freeze_everything(onoff: bool)
 signal should_fly_up()
 signal fly_up_finished
 signal show_death_message(show_message: bool)
@@ -20,7 +20,7 @@ signal show_gui(will_show_gui: bool)
 
 var current_level
 var is_paused: bool = false
-var sprites_frozen: bool = false
+var everything_frozen: bool = false
 var has_fly_up_completed: bool = false
 
 # --- High Score Table ---
@@ -85,9 +85,9 @@ func showGui(show: bool) -> void:
 
 # --- Sprite Control ---
 
-func freezeSprites(on: bool) -> void:
-	sprites_frozen = on
-	sprite_frozen.emit(on)
+func freezeEverything(on: bool) -> void:
+	everything_frozen = on
+	freeze_everything.emit(on)
 
 func everyoneShouldFlyUp() -> void:
 	has_fly_up_completed = false

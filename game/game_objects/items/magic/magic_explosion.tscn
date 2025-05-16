@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://boryxbcca7kbq"]
+[gd_scene load_steps=11 format=3 uid="uid://boryxbcca7kbq"]
 
 [ext_resource type="Script" uid="uid://sqdp7dreq3ru" path="res://game/game_objects/items/magic/magic_explosion.gd" id="1_wr2h5"]
 [ext_resource type="Texture2D" uid="uid://b3llpbbbdcru7" path="res://assets/graphics/flying_level/Magic.png" id="2_dr7y1"]
 [ext_resource type="Script" uid="uid://bspe6mkgk7qsl" path="res://game/components/move_component.gd" id="3_tucuv"]
 [ext_resource type="Script" uid="uid://finu86pnqyie" path="res://game/components/move_components/move_steady_component.gd" id="4_nasyv"]
+[ext_resource type="Script" uid="uid://c6jijjgge4dp1" path="res://game/components/fly_up_component.gd" id="5_ve5xs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_43weq"]
 atlas = ExtResource("2_dr7y1")
@@ -59,10 +60,7 @@ script = ExtResource("3_tucuv")
 [node name="MoveSteadyComponent" type="Node" parent="MoveComponent"]
 script = ExtResource("4_nasyv")
 
-[node name="MoveComponent2" type="Node" parent="."]
-script = ExtResource("3_tucuv")
-metadata/_custom_type_script = "uid://bspe6mkgk7qsl"
-
-[node name="MoveSteadyComponent" type="Node" parent="MoveComponent2"]
-script = ExtResource("4_nasyv")
-metadata/_custom_type_script = "uid://finu86pnqyie"
+[node name="FlyUpComponent" type="Node" parent="."]
+script = ExtResource("5_ve5xs")
+move_component_path = NodePath("../MoveComponent")
+metadata/_custom_type_script = "uid://c6jijjgge4dp1"

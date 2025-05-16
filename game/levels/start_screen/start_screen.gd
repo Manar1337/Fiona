@@ -37,7 +37,7 @@ func _ready():
 
 func _input(_event):
 	if Input.is_action_just_pressed("fire"):
-		GameData.level = start_level
+		GameData.level_name = LevelConstants.LevelName.LEVEL_1
 
 func format_high_scores(scores: Array) -> Array:
 	var formatted = []

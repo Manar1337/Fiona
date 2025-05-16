@@ -16,6 +16,7 @@ var sight = 0
 
 func _ready():
 	super()
+	add_to_group("enemies")
 	hitbox_component.hit_hurtbox.connect(Callable(self, "explode"))
 	detection_area.area_entered.connect(_on_detection_area_area_entered)
 
