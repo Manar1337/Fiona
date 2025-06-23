@@ -8,7 +8,7 @@ func handle_spawn():
 	spawner_component.what_to_spawn = what_to_spawn
 	var spawnpos = position_array[randi_range(0,position_array.size()) - 1]
 
-	var ghost = spawner_component.spawn(spawnpos, GameData.current_level)
+	var ghost = spawner_component.spawn(spawnpos, GameData.current_level_node)
 	ghost_spawned.emit(ghost)
 
 	timer.set_wait_time(randf_range(timer_min,timer_max))

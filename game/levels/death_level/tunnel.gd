@@ -7,14 +7,18 @@ extends Node2D
 @onready var left_walls: =$LeftWalls as LeftWalls
 @onready var right_walls: =$RightWalls as RightWalls
 
+var is_moving: bool = true
+
 func _ready() -> void:
+	SignalHandler.connect("game_over", _on_game_over)
 	for i in range(10):
 		wall_component_controller.make_next_wall_for_sequence()
 
 	wall_component_controller.show_sequence()
 	
 func _process(_delta: float):
-	move_down(wall_speed * _delta)
+	if is_moving:
+		move_down(wall_speed * _delta)
 
 func move_down(speed: float):
 	self.position += Vector2(0, speed)
@@ -27,5 +31,11 @@ func flip_walls() -> void:
 	wall_component_controller.lower_first_wall_count()
 	left_walls.flip_walls(current_wall_component)
 	right_walls.flip_walls(current_wall_component)
+
+func stop_moving() -> void:
+	is_moving = false
+
+func _on_game_over() -> void:
+	stop_moving()
 
 

@@ -7,13 +7,18 @@ signal no_magic()
 var magic: int = start_magic:
 	set(value):
 		magic = value
-		GameData.health = magic
+		GameData.spellpower = magic
 		if magic < 0:
 			magic = 0
-			GameData.health = 0
+			GameData.spellpower = 0
 			no_magic.emit()
 
 func take_damage(amount: int):
-	print("take damage: ", amount)
+	if GameData.is_paused:
+		return
+	if GameData.spellpower <= 0:
+		return
+	if amount <= 0:
+		return
 	magic -= amount
-	GameData.health = magic
+	GameData.spellpower = magic

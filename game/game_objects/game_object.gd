@@ -8,7 +8,7 @@ extends Node2D
 func _ready():
 	visible_on_screen_enabler_2d.screen_exited.connect(queue_free)
 	hitbox_component.hit_hurtbox.connect(on_hit.unbind(1))
-	GameData.connect("freeze_everything", _on_freeze_everything)
+	SignalHandler.connect("freeze_everything", _on_freeze_everything)
 
 func on_hit():
 	queue_free()
@@ -25,6 +25,7 @@ func unfreeze():
 	hitbox_component.set_enabled(true)
 
 func _on_freeze_everything(is_frozen: bool) -> void:
+	print("GameObject freeze signal received: ", is_frozen)
 	if is_frozen:
 		freeze()
 	else:

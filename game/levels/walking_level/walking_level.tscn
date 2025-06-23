@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxqvelackaop3"]
+[gd_scene load_steps=7 format=3 uid="uid://dxqvelackaop3"]
 
 [ext_resource type="Script" uid="uid://cqpqlyptbwwsu" path="res://game/levels/walking_level/walking_level.gd" id="1_4nye5"]
 [ext_resource type="PackedScene" uid="uid://bdnuk6p5n635l" path="res://game/game_objects/actor/hero/player_walking.tscn" id="2_hpdu1"]
+[ext_resource type="Script" uid="uid://duyl4ybl4v13k" path="res://game/components/color_flicker_component.gd" id="3_gqcfj"]
+[ext_resource type="Script" uid="uid://b2lycv66f6swa" path="res://game/levels/walking_level/treasure.gd" id="3_lfhpk"]
 [ext_resource type="PackedScene" uid="uid://cycs7at4s357m" path="res://game/game_objects/items/cauldron/cauldron.tscn" id="4_mi2te"]
+[ext_resource type="Script" uid="uid://cpb08u7bc5ll2" path="res://game/spawners/enemy_generator.gd" id="6_lypqr"]
 
 [node name="WalkingLevel" type="Node"]
 script = ExtResource("1_4nye5")
@@ -13,8 +16,19 @@ scale = Vector2(2, 2)
 
 [node name="Treasure" type="Node2D" parent="."]
 position = Vector2(292, 168)
+script = ExtResource("3_lfhpk")
 
 [node name="Sprite2D" type="Sprite2D" parent="Treasure"]
 
+[node name="ColorFlickerComponent" type="Node" parent="Treasure" node_paths=PackedStringArray("sprite")]
+script = ExtResource("3_gqcfj")
+sprite = NodePath("../Sprite2D")
+enabled = true
+metadata/_custom_type_script = "uid://duyl4ybl4v13k"
+
 [node name="Cauldron" parent="." instance=ExtResource("4_mi2te")]
 position = Vector2(292, 176)
+
+[node name="WalkingEnemyGenerator" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("6_lypqr")
+player = NodePath("../PlayerWalking")

@@ -1,6 +1,6 @@
 extends Node
 
-@onready var player_flying = $"../PlayerFlying"
+@export var player: Node
 
 func _ready():
 	for spawner in get_children():
@@ -9,7 +9,7 @@ func _ready():
 
 func _on_targeting_enemy_spawned(enemy_instance):
 	if enemy_instance.has_method("set_target"):
-		enemy_instance.set_target(player_flying)
+		enemy_instance.set_target(player)
 
 func stop_spawning():
 	for spawner in get_children():

@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://chnovcte62n32" path="res://game/game_objects/actor/enemies/skeleton/skeleton.gd" id="2_ac6qx"]
 [ext_resource type="Texture2D" uid="uid://dncoj732ggvar" path="res://assets/graphics/walking_level/Skeleton.png" id="2_vwlbr"]
 [ext_resource type="Script" uid="uid://finu86pnqyie" path="res://game/components/move_components/move_steady_component.gd" id="3_e0svi"]
+[ext_resource type="Script" uid="uid://pst0ptjvqyrq" path="res://game/components/move_physical_components/move_physical_steady_component.gd" id="5_57wor"]
 [ext_resource type="Script" uid="uid://ciooam1aml12j" path="res://game/components/spawner_component.gd" id="5_gy5i0"]
 [ext_resource type="PackedScene" uid="uid://bd56tweuqfpgb" path="res://game/game_objects/items/magic/magic.tscn" id="6_iar00"]
-[ext_resource type="Script" uid="uid://c6jijjgge4dp1" path="res://game/components/fly_up_component.gd" id="7_57wor"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_01m0f"]
 atlas = ExtResource("2_vwlbr")
@@ -58,7 +58,6 @@ collision_layer = 2
 collision_mask = 8
 floor_block_on_wall = false
 script = ExtResource("2_ac6qx")
-gravity = 5.0
 score = 100
 
 [node name="Body" parent="." index="0"]
@@ -66,19 +65,28 @@ sprite_frames = SubResource("SpriteFrames_873l2")
 autoplay = "default"
 frame_progress = 0.884962
 
+[node name="MoveComponent" parent="." index="1"]
+active = false
+
 [node name="MoveSteadyComponent" type="Node" parent="MoveComponent" index="0"]
 script = ExtResource("3_e0svi")
-speed = 50.0
 direction = Vector2(-1, 0)
+speed = 50.0
 
-[node name="HurtboxComponent" parent="." index="3"]
+[node name="MovePhysicalSteadyComponent" type="Node" parent="MovePhysicalComponent" index="0"]
+script = ExtResource("5_57wor")
+direction = Vector2(-1, 0)
+speed = 25.0
+metadata/_custom_type_script = "uid://pst0ptjvqyrq"
+
+[node name="HurtboxComponent" parent="." index="4"]
 collision_layer = 2
 
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
 position = Vector2(-1, -4)
 shape = SubResource("RectangleShape2D_dymfo")
 
-[node name="HitboxComponent" parent="." index="4"]
+[node name="HitboxComponent" parent="." index="5"]
 collision_layer = 2
 damage = 2000
 
@@ -86,15 +94,13 @@ damage = 2000
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_chwt4")
 
-[node name="CollisionShape2D" parent="." index="6"]
-position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_ronlh")
-
 [node name="StarSpawner" type="Node2D" parent="." index="7"]
 script = ExtResource("5_gy5i0")
 what_to_spawn = ExtResource("6_iar00")
 
-[node name="FlyUpComponent" type="Node" parent="." index="8"]
-script = ExtResource("7_57wor")
+[node name="CollisionShape2D" parent="." index="8"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_ronlh")
+
+[node name="FlyUpComponent" parent="." index="9"]
 move_component_path = NodePath("../MoveComponent")
-metadata/_custom_type_script = "uid://c6jijjgge4dp1"

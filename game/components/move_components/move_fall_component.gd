@@ -1,17 +1,14 @@
 class_name MoveFallComponent
-extends Node
+extends MoveComponentMode
 
 @export var acceleration: float
 
 var direction: Vector2
-var speed = 0;
 var mode = "fall"
 
 func _ready():
 	direction = Vector2.DOWN
 
-func set_speed(new_speed):
-	speed = new_speed
 
 func calculate_movement(delta):
 	speed += acceleration

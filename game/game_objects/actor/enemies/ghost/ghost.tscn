@@ -53,21 +53,18 @@ frame_progress = 0.173532
 
 [node name="MoveSteadyComponent" type="Node" parent="MoveComponent" index="0"]
 script = ExtResource("3_m5hg2")
-speed = 50.0
 direction = Vector2(0, -1)
+speed = 50.0
 
-[node name="HurtboxComponent" parent="." index="3"]
+[node name="HurtboxComponent" parent="." index="4"]
 collision_layer = 2
 
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
 position = Vector2(-1, 0)
 
-[node name="HitboxComponent" parent="." index="4"]
+[node name="HitboxComponent" parent="." index="5"]
 collision_layer = 2
 damage = 450
-
-[node name="CollisionShape2D" parent="." index="6"]
-position = Vector2(0, -2)
 
 [node name="MoveTimer" type="Timer" parent="." index="7"]
 one_shot = true
@@ -79,3 +76,9 @@ one_shot = true
 [node name="StarSpawner" type="Node2D" parent="." index="9"]
 script = ExtResource("5_ixglr")
 what_to_spawn = ExtResource("6_ejne5")
+
+[node name="CollisionShape2D" parent="." index="10"]
+position = Vector2(0, -2)
+
+[node name="FlyUpComponent" parent="." index="11"]
+move_component_path = NodePath("../MoveComponent")

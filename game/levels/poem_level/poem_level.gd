@@ -13,11 +13,14 @@ func _ready() -> void:
 	label_3 .hide()
 	label_4 .hide()
 	
-	show_line(GameData.level)
+	show_line(GameData.poem_level)
 
 func _input(_event: InputEvent):
 	if Input.is_action_pressed("fire"):
-		GameData.level+=1
+		if GameData.poem_level%2 == 0:
+			SignalHandler.level_requested.emit(LevelConstants.LevelType.FLYING, GameData.level + 1)
+		else:
+			SignalHandler.level_requested.emit(LevelConstants.LevelType.WALKING, GameData.level + 1)
 
 func show_line(lineNr):
 	if lineNr >0:

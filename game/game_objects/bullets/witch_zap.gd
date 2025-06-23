@@ -13,7 +13,7 @@ func _spawn_explosion():
 	if _is_frozen:
 		return 
 
-	var magic = explosion_spawner.spawn(global_position, GameData.current_level)
+	var magic = explosion_spawner.spawn(global_position, GameData.current_level_node)
 
 	if GameData.everything_frozen:
 		if magic.has_method("freeze"):

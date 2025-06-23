@@ -1,7 +1,5 @@
 class_name MoveControlledComponent
-extends Node
-
-@export var speed: float = 50.0
+extends MoveComponentMode
 
 var direction: Vector2 = Vector2.ZERO
 var mode = "controlled"
@@ -25,9 +23,6 @@ func calculate_movement(delta):
 
 func set_data(data: bool):
 	control_active = data
-
-func set_speed(new_speed):
-	speed = new_speed
 
 func set_direction(new_direction):
 	direction = new_direction

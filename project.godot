@@ -18,10 +18,12 @@ config/features=PackedStringArray("4.4", "Mobile")
 
 GameData="*res://game_data.gd"
 SignalLens="*res://addons/signal_lens/autoload/signal_lens_autoload.gd"
-LevelConstants="*res://game/levels/level_constants.gd"
+LevelConstants="*res://level_constants.gd"
+SignalHandler="*res://signal_handler.gd"
 
 [debug]
 
+gdscript/warnings/unused_signal=0
 gdscript/warnings/integer_division=0
 
 [display]
@@ -103,6 +105,10 @@ fly_up={
 2d_physics/layer_4="floor"
 2d_physics/layer_5="magic"
 2d_physics/layer_6="cauldron"
+
+[physics]
+
+2d/default_gravity=75.0
 
 [rendering]
 

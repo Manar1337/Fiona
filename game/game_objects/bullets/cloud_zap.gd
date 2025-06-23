@@ -7,5 +7,5 @@ func on_hit():
 	call_deferred("_spawn_explosion")
 
 func _spawn_explosion():
-	explosion_spawner.spawn(global_position, GameData.current_level)
+	explosion_spawner.spawn(global_position, GameData.current_level_node)
 	queue_free()

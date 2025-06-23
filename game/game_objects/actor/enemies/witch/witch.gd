@@ -53,7 +53,7 @@ func explode(_unused: Variant = null):
 	call_deferred("spawn_explosion")
 
 func spawn_explosion():
-	explosion_spawner.spawn(global_transform.origin, GameData.current_level)
+	explosion_spawner.spawn(global_transform.origin, GameData.current_level_node)
 	queue_free()
 
 func _on_detection_area_area_entered(_area: Area2D):

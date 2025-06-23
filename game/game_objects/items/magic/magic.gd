@@ -12,6 +12,7 @@ var cauldronarea = null
 var carrier = null;
 
 func _ready() -> void:
+	add_to_group("magic")
 	state = states.FREE
 	area_entered.connect(_on_area_entered)
 	death_timer.timeout.connect(die)

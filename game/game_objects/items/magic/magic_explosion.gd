@@ -8,7 +8,7 @@ extends AnimatedSprite2D
 
 func _ready() -> void:
 	add_to_group("magic")
-	GameData.connect("freeze_everything", _on_freeze_everything) 
+	SignalHandler.connect("freeze_everything", _on_freeze_everything) 
 
 	death_timer.timeout.connect(die)
 	visible_on_screen_enabler_2d.screen_exited.connect(queue_free)

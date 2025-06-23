@@ -71,6 +71,7 @@ script = ExtResource("2_4f2hd")
 
 [node name="MoveControlledComponent" type="Node" parent="MoveComponent"]
 script = ExtResource("4_prcoq")
+speed = 50.0
 
 [node name="MoveFallComponent" type="Node" parent="MoveComponent"]
 script = ExtResource("6_rr64w")

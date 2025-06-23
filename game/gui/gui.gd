@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 @onready var score_value: Label = $ScoreValue
 @onready var spell_value: Label = $SpellValue
@@ -8,27 +8,28 @@ extends Node
 @onready var game_over_message: Control = $GameOverMessage
 
 func _ready():
-	GameData.connect("score_changed", _on_score_changed)
-	GameData.connect("health_changed", _on_health_changed)
-	GameData.connect("lives_changed", _on_lives_changed)
-	GameData.connect("level_changed", _on_level_changed)
-	GameData.connect("show_death_message", _on_show_death_message)
-	GameData.connect("show_game_over_message", _on_show_game_over_message)
-	GameData.connect("show_gui", _on_show_gui)
+	SignalHandler.connect("score_changed", _on_score_changed)
+	SignalHandler.connect("spellpower_changed", _on_spellpower_changed)
+	SignalHandler.connect("lives_changed", _on_lives_changed)
+	SignalHandler.connect("level_changed", _on_level_changed)
+	SignalHandler.connect("show_death_message", _on_show_death_message)
+	SignalHandler.connect("show_game_over_message", _on_show_game_over_message)
+	SignalHandler.connect("show_gui", _on_show_gui)
 
 	_on_score_changed(GameData.score)
-	_on_health_changed(GameData.health)
+	_on_spellpower_changed(GameData.spellpower)
 	_on_lives_changed(GameData.lives)
 
-func _input(_event):
-	if Input.is_action_just_pressed("show_highscore"):
-		GameData.showHighScore(true)
+func _input(event):
+	if event.is_action_pressed("show_highscore") and GameData.high_score_visible == false:
+		SignalHandler.level_requested.emit(LevelConstants.LevelType.HIGH_SCORE, 0)
+		accept_event()  # Prevent the event from propagating further
 
 func _on_score_changed(new_score):
 	score_value.text = str(new_score).pad_zeros(6)
 
-func _on_health_changed(new_health):
-	spell_value.text = str(new_health).pad_zeros(6)
+func _on_spellpower_changed(new_spellpower):
+	spell_value.text = str(new_spellpower).pad_zeros(6)
 
 func _on_level_changed(new_level):
 	lev_value.text = str(new_level).pad_zeros(2)
@@ -46,4 +47,3 @@ func _on_show_gui(will_show):
 	for child in get_children():
 		if child is Label:
 			child.visible = will_show
-	death_message.visible = will_show

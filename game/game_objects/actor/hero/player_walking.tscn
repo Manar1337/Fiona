@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://bdnuk6p5n635l"]
+[gd_scene load_steps=27 format=3 uid="uid://bdnuk6p5n635l"]
 
 [ext_resource type="Script" uid="uid://b0c1d14efhqs4" path="res://game/game_objects/actor/hero/player_walking.gd" id="1_nr4ff"]
 [ext_resource type="Texture2D" uid="uid://3uj4i17hrhww" path="res://assets/graphics/walking_level/FionaWalkingFrames.png" id="2_1emcg"]
 [ext_resource type="Texture2D" uid="uid://dykismvu1334a" path="res://assets/graphics/walking_level/Witch-cloth-walking.png" id="3_fvbml"]
-[ext_resource type="Script" uid="uid://c2kdofbj4lv2b" path="res://game/components/walking_component.gd" id="4_tpvx3"]
+[ext_resource type="Script" uid="uid://c2kdofbj4lv2b" path="res://game/components/move_physical_component.gd" id="4_tpvx3"]
 [ext_resource type="Script" uid="uid://hjccq835qqs5" path="res://game/components/hurtbox_component.gd" id="5_pbg6c"]
+[ext_resource type="Script" uid="uid://ccbpp2a0cj78x" path="res://game/components/move_physical_components/move_physical_controlled_component.gd" id="5_t7jg6"]
 [ext_resource type="Script" uid="uid://cvlrwryvqfpj0" path="res://game/components/hitbox_component.gd" id="6_fpiu8"]
 [ext_resource type="Script" uid="uid://i6dqjwbd1efj" path="res://game/components/hurt_component.gd" id="7_tf1mp"]
 [ext_resource type="Script" uid="uid://ciooam1aml12j" path="res://game/components/spawner_component.gd" id="8_1ge3g"]
@@ -126,9 +127,12 @@ sprite_frames = SubResource("SpriteFrames_7owwn")
 animation = &"walk_right"
 autoplay = "walk_right"
 
-[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+[node name="MovePhysicalComponent" type="Node" parent="."]
 script = ExtResource("4_tpvx3")
-actor = NodePath("..")
+
+[node name="MovePhysicalControlledComponent" type="Node" parent="MovePhysicalComponent"]
+script = ExtResource("5_t7jg6")
+speed = 75.0
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 collision_mask = 2
@@ -164,6 +168,7 @@ one_shot = true
 
 [node name="PlayerStatsComponent" type="Node" parent="."]
 script = ExtResource("10_60m8j")
+start_magic = 200
 
 [node name="BigExplosionSpawner" type="Node2D" parent="."]
 script = ExtResource("10_vj1be")

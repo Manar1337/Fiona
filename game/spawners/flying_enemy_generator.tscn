@@ -1,12 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnw54h72n11dd"]
+[gd_scene load_steps=5 format=3 uid="uid://drv2btqnwxr7q"]
 
-[ext_resource type="Script" uid="uid://c10y1p1jfvjtl" path="res://game/spawners/flying_enemy_generator.gd" id="1_166sa"]
 [ext_resource type="PackedScene" uid="uid://bs1arl1qxtn34" path="res://game/game_objects/actor/enemies/witch/witch.tscn" id="4_xxtph"]
 [ext_resource type="PackedScene" uid="uid://bd8ukwm4dowky" path="res://game/game_objects/actor/enemies/cloud/cloud.tscn" id="5_52v4s"]
 [ext_resource type="PackedScene" uid="uid://dseoau3m3u7ju" path="res://game/spawners/timed_random_singlespawner.tscn" id="6_yaw4k"]
 
+[sub_resource type="GDScript" id="GDScript_6te35"]
+script/source = "extends Node
+
+@onready var player_flying = $\"../PlayerFlying\"
+
+func _ready():
+	for spawner in get_children():
+		if spawner is TimedRandomSpawner:
+			spawner.connect(\"targeting_enemy_spawned\", _on_targeting_enemy_spawned)
+
+func _on_targeting_enemy_spawned(enemy_instance):
+	if enemy_instance.has_method(\"set_target\"):
+		enemy_instance.set_target(player_flying)
+
+func stop_spawning():
+	for spawner in get_children():
+		if spawner.has_method(\"stop\"):
+			spawner.stop()
+"
+
 [node name="FlyingEnemyGenerator" type="Node2D"]
-script = ExtResource("1_166sa")
+script = SubResource("GDScript_6te35")
 
 [node name="WitchSpawner" parent="." instance=ExtResource("6_yaw4k")]
 spawn_bottom = 100.0

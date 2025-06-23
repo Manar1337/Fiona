@@ -6,6 +6,7 @@ extends Control
 var current_score: int = 0 
 
 func _ready():
+	input_name.text = ".".repeat(input_name.MAX_LENGTH)
 	input_name.grab_focus()
 	input_name.connect("text_submitted", _on_input_name_submitted)
 
@@ -16,7 +17,9 @@ func _on_input_name_submitted(submitted_name: String):
 
 	add_high_score(final_name, GameData.score)
 
-	GameData.level_requested.emit("start")
+	GameData.high_score_visible = false
+	SignalHandler.restart_game.emit()
+	# SignalHandler.level_requested.emit(LevelConstants.LevelType.START, 0)
 
 func add_high_score(hs_name: String, score: int):
 

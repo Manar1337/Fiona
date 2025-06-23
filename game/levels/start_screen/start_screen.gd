@@ -3,6 +3,7 @@ class_name StartScreen
 extends Node
 
 @onready var switching_label = $SwitchingLabel
+
 @export var start_level: int = 1
 
 var top_text_first_part = ["FIONA RIDES OUT' BY IAM GRAY",
@@ -37,7 +38,8 @@ func _ready():
 
 func _input(_event):
 	if Input.is_action_just_pressed("fire"):
-		GameData.level_name = LevelConstants.LevelName.LEVEL_1
+		GameData.level = 1
+		SignalHandler.level_requested.emit(LevelConstants.LevelType.FLYING, GameData.level)
 
 func format_high_scores(scores: Array) -> Array:
 	var formatted = []

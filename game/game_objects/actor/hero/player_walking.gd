@@ -2,6 +2,9 @@ class_name PlayerWalking
 
 extends CharacterBody2D
 
+@export var invincible: bool = false
+@export var hovering: bool = false
+
 @onready var body: AnimatedSprite2D = $Body
 @onready var dress: AnimatedSprite2D = $Dress
 @onready var zap_marker: Marker2D = $ZapMarker
@@ -9,25 +12,40 @@ extends CharacterBody2D
 @onready var spawner: SpawnerComponent = $SpawnerComponent
 @onready var hurtbox: HurtboxComponent = $HurtboxComponent
 @onready var hitbox: HitboxComponent = $HitboxComponent
-@onready var explosion_spawner: BigExplosionSpawner = $BigExplosionSpawner
-@onready var flicker: ColorFlickerComponent = $ColorFlickerComponent
-@onready var stats: PlayerStatsComponent = $PlayerStatsComponent
-@onready var movement: PlayerWalkingMovement = $MovementComponent
+@onready var big_explosion_spawner: BigExplosionSpawner = $BigExplosionSpawner
+@onready var color_flicker_component: ColorFlickerComponent = $ColorFlickerComponent
+@onready var player_stats_component: PlayerStatsComponent = $PlayerStatsComponent
+@onready var move_physical_component: MovePhysicalComponent = $MovePhysicalComponent
+@onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 
 var is_alive := true
-var fire_locked := false
+var fire_lock := false
 var carries_magic := false
 var direction := "left"
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var light_gravity = gravity/2.0
 
-func _ready():
-	movement.turn.connect(_on_turn)
-	fire_rate_timer.timeout.connect(_unlock_fire)
-	stats.no_magic.connect(_explode)
-	dress.self_modulate = Color8(96, 96, 96)
+func _ready() -> void:
+	dress.self_modulate = Color8(96, 96, 96)  # Ensure the dress starts with the correct color
+	_setup_components()
+	_connect_signals()
 
 func _input(_event: InputEvent):
-	if is_alive and Input.is_action_pressed("fire") and not fire_locked:
+	if is_alive and Input.is_action_pressed("fire") and not fire_lock:
 		_fire_zap()
+
+func _setup_components() -> void:
+	hurtbox_component.is_invincible = invincible
+	move_physical_component.set_mode("controlled")
+	move_physical_component.set_gravity(light_gravity)
+	move_physical_component.set_is_hovering(hovering)
+
+
+func _connect_signals() -> void:
+	SignalHandler.connect("freeze_everything", _on_freeze_everything)
+	fire_rate_timer.timeout.connect(_unlock_fire)
+	player_stats_component.no_magic.connect(_die)
+	move_physical_component.turn.connect(_on_turn)
 
 func _on_turn(dir: String):
 	direction = dir
@@ -40,7 +58,7 @@ func _on_turn(dir: String):
 		zap_marker.position.x = 7
 
 func _fire_zap():
-	var zap = spawner.spawn(zap_marker.global_position, GameData.current_level)
+	var zap = spawner.spawn(zap_marker.global_position, GameData.current_level_node)
 	zap.set_speed(500)
 	if direction == "left":
 		zap.set_direction(Vector2.RIGHT)
@@ -49,31 +67,43 @@ func _fire_zap():
 	_lock_fire()
 
 func _lock_fire():
-	fire_locked = true
+	fire_lock = true
 	fire_rate_timer.start(1)
 
 func _unlock_fire():
-	fire_locked = false
-
-func _explode():
-	is_alive = false
-	GameData.health = 0
-	hurtbox.is_invincible = true
-	flicker.enabled = true
-	movement.is_alive = false
-	await get_tree().create_timer(2.0).timeout
-	_die()
+	fire_lock = false
 
 func _die():
-	_hide()
-	explosion_spawner.spawn(global_position, GameData.current_level)
-	await get_tree().create_timer(1.0).timeout
-	GameData.level_requested.emit("high_score")
+	is_alive = false
+	GameData.spellpower = 0
+	hurtbox.is_invincible = true
+	color_flicker_component.enabled = true
+	move_physical_component.set_mode_data(false)
 
-func _hide():
+	get_parent().handle_player_death(global_position)
+
+func hide_player():
 	body.visible = false
 	dress.visible = false
 	hitbox.visible = false
 
 func set_carries_magic(value: bool):
 	carries_magic = value
+
+func _on_freeze_everything(is_frozen: bool) -> void:
+	if is_frozen:
+		_freeze()
+	else:
+		_unfreeze()
+
+func _freeze() -> void:
+	move_physical_component.set_speed(0)
+	hurtbox_component.set_enabled(false)
+	fire_lock = true
+	hurtbox_component.is_invincible = true
+
+func _unfreeze() -> void:
+	move_physical_component.start()
+	hurtbox_component.set_enabled(true)
+	fire_lock = false
+	hurtbox_component.is_invincible = invincible

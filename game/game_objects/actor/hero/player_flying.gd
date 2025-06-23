@@ -39,14 +39,14 @@ func _setup_components() -> void:
 	move_component.set_mode("controlled")
 
 func _connect_signals() -> void:
-	GameData.connect("freeze_everything", _on_freeze_everything)
+	SignalHandler.connect("freeze_everything", _on_freeze_everything)
 	fire_rate_timer.timeout.connect(_unlock_fire)
 	player_stats_component.no_magic.connect(die)
 	hurtbox_component.tilemap_hit.connect(_on_tilemap_hit)
 	flight_timer.timeout.connect(_land)
 
 func _fire_zap() -> void:
-	var bullet = spawner_component.spawn(zap_marker.global_position, GameData.current_level)
+	var bullet = spawner_component.spawn(zap_marker.global_position, GameData.current_level_node)
 	bullet.add_to_group("bullet")
 	_lock_fire()
 
@@ -66,7 +66,7 @@ func _on_tilemap_hit(_tilemap: Node) -> void:
 
 func die() -> void:
 	is_alive = false
-	GameData.health = 0
+	GameData.spellpower = 0
 	hurtbox_component.is_invincible = true
 	color_flicker_component.enabled = true
 	move_component.set_mode_data(false)

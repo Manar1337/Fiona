@@ -19,7 +19,7 @@ func _ready():
 
 func get_current_wall_component():
 	var current_wall_segment = wall_sequence.get_first_segment()
-	current_wall_segment.show_segment()
+	# current_wall_segment.show_segment()
 	var current_component = types[wall_sequence.get_first_segment().type]
 	current_component.set_data(current_wall_segment.data)
 	return current_component
@@ -59,7 +59,6 @@ func get_first_wall_segment():
 func lower_first_wall_count():
 	wall_sequence.lower_first_segment_count()
 	if wall_sequence.segments.size() == 0:
-		print("Change sequence")
 		make_next_wall_for_sequence()
 		show_sequence()
 	# Update current_wall_component to the new first segment type
@@ -76,7 +75,8 @@ func show_sequence():
 	wall_sequence.show_sequence()
 
 func show_current_wall_segment():
-	get_first_wall_segment().show_segment()
+	pass
+	# get_first_wall_segment().show_segment()
 
 func set_wall_data(segment: WallSegment) -> WallSegment:
 	segment.set_data(types[segment.get_type()].get_parameters())

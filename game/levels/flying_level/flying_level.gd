@@ -10,12 +10,12 @@ extends Node
 
 
 func _ready() -> void:
-	GameData.health = 2000
+	GameData.spellpower = 2000
 	flight_timer.wait_time = flight_time
 	flight_timer.start()
 
 	player_flying.has_landed.connect(_on_player_landed)
-	GameData.connect("should_fly_up", _on_should_fly_up)
+	SignalHandler.connect("should_fly_up", _on_should_fly_up)
 
 func _on_should_fly_up() -> void:
 	stop_level()
@@ -26,7 +26,7 @@ func _on_should_fly_up() -> void:
 	flyables.sort_custom(func(a, b): return a.global_position.x < b.global_position.x)
 
 	await _fly_game_objects_in_sequence(flyables)
-	GameData.flyUpFinished()
+	SignalHandler.flyUpFinished()
 
 func _fly_game_objects_in_sequence(game_objects: Array) -> void:
 	for game_object in game_objects:
@@ -48,30 +48,35 @@ func _gather_flyables(groups: Array[String]) -> Array:
 func stop_level() -> void:
 	flight_timer.stop()
 	landscape_background.stop()
-	GameData.freezeEverything(true)
+	SignalHandler.freezeEverything(true)
 
 	if flying_enemy_generator.has_method("stop_spawning"):
 		flying_enemy_generator.stop_spawning()
 
 
 func _on_player_landed() -> void:
-	GameData.level_name = LevelConstants.LevelName.POEM
+	SignalHandler.level_requested.emit(LevelConstants.LevelType.POEM, GameData.level)
 
 
 func handle_player_death(global_position: Vector2) -> void:
-	stop_level()
-
-	GameData.showDeathMessage(false)
 	GameData.has_fly_up_completed = false
 	await _on_should_fly_up()
 
 	player_flying._hide_player()
-	player_flying.big_explosion_spawner.spawn(global_position, GameData.current_level)
+	player_flying.big_explosion_spawner.spawn(global_position, GameData.current_level_node)
 
 	await get_tree().create_timer(1.0).timeout
-	GameData.showDeathMessage(true)
+	SignalHandler.show_death_message.emit(true)
 
 	await get_tree().create_timer(2.0).timeout
+	SignalHandler.show_death_message.emit(false)
 
-	GameData.lives -= 1
-	GameData.level_name = LevelConstants.LevelName.LEVEL_1
+	SignalHandler.player_sent_to_hell.emit()
+	# SignalHandler.show_death_message.emit(false)
+	
+
+	# When a player lose a life he will get a chance to get it back by completing the deathlevel. 
+	# If he dies there he will lose a life and be sent back to the last level.
+	# If he suceeds he will be sent back to the last level with his lives intact.
+	# If he lose his last life in the Death level it is game over
+	# Since we dont have a finished death level yet we will just send him back to the last level.

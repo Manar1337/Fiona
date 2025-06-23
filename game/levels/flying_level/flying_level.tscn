@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dcuxqcvtqhgkp" path="res://game/levels/flying_level/flying_level.gd" id="1_lbcyf"]
 [ext_resource type="PackedScene" uid="uid://d3iqt6cleme8e" path="res://game/game_objects/actor/hero/player_flying.tscn" id="2_7d1xw"]
+[ext_resource type="Script" uid="uid://cpb08u7bc5ll2" path="res://game/spawners/enemy_generator.gd" id="3_qe5el"]
 [ext_resource type="PackedScene" uid="uid://csinmdoj74g6t" path="res://game/backgrounds/background_flying.tscn" id="4_loi3w"]
-[ext_resource type="Script" uid="uid://c10y1p1jfvjtl" path="res://game/spawners/flying_enemy_generator.gd" id="5_2qq1r"]
 
 [node name="FlyingLevel" type="Node"]
 script = ExtResource("1_lbcyf")
@@ -11,8 +11,9 @@ script = ExtResource("1_lbcyf")
 [node name="PlayerFlying" parent="." instance=ExtResource("2_7d1xw")]
 position = Vector2(50, 51)
 
-[node name="FlyingEnemyGenerator" type="Node" parent="."]
-script = ExtResource("5_2qq1r")
+[node name="FlyingEnemyGenerator" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_qe5el")
+player = NodePath("../PlayerFlying")
 
 [node name="LandscapeBackground" parent="." instance=ExtResource("4_loi3w")]
 

@@ -1,7 +1,5 @@
 class_name MoveChaseComponent
-extends Node
-
-@export var speed: float = 50.0
+extends MoveComponentMode
 
 var direction = Vector2.ZERO
 var mode = "chase"
@@ -21,5 +19,3 @@ func set_data(data: Array):
 	target = data[0]
 	self_root = data[1]
 
-func set_speed(new_speed):
-	speed = new_speed

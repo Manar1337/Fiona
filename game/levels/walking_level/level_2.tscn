@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ulnqcadvxabe"]
+[gd_scene load_steps=8 format=3 uid="uid://ulnqcadvxabe"]
 
 [ext_resource type="PackedScene" uid="uid://dxqvelackaop3" path="res://game/levels/walking_level/walking_level.tscn" id="1_g1ylr"]
 [ext_resource type="Texture2D" uid="uid://c54pumcl608a1" path="res://assets/graphics/walking_level/Broom.png" id="2_6p877"]
-[ext_resource type="Script" uid="uid://duyl4ybl4v13k" path="res://game/components/color_flicker_component.gd" id="2_d0ehj"]
 [ext_resource type="PackedScene" uid="uid://bm7148dbxrgi" path="res://game/backgrounds/background_walking.tscn" id="2_utm2b"]
-[ext_resource type="Script" uid="uid://tpigtyxvrf86" path="res://game/spawners/walking_enemy_generator.gd" id="3_6p877"]
 [ext_resource type="PackedScene" uid="uid://dseoau3m3u7ju" path="res://game/spawners/timed_random_singlespawner.tscn" id="4_d0ehj"]
 [ext_resource type="PackedScene" uid="uid://clel6lktjkd28" path="res://game/game_objects/actor/enemies/skeleton/skeleton.tscn" id="5_aqrwj"]
 [ext_resource type="PackedScene" uid="uid://bb1o15ujvq82k" path="res://game/spawners/timed_random_multispawner.tscn" id="6_bs77d"]
@@ -12,19 +10,16 @@
 
 [node name="Level_2" instance=ExtResource("1_g1ylr")]
 
-[node name="ColorFlickerComponent" type="Node" parent="Treasure" index="0" node_paths=PackedStringArray("sprite")]
-script = ExtResource("2_d0ehj")
-sprite = NodePath("../Sprite2D")
-enabled = true
-metadata/_custom_type_script = "uid://duyl4ybl4v13k"
+[node name="Treasure" parent="." index="1"]
+visible = false
 
-[node name="Sprite2D" parent="Treasure" index="1"]
+[node name="Sprite2D" parent="Treasure" index="0"]
 texture = ExtResource("2_6p877")
 
 [node name="BackgroundLevel" parent="." index="2" instance=ExtResource("2_utm2b")]
 
-[node name="WalkingEnemyGenerator" type="Node" parent="." index="3"]
-script = ExtResource("3_6p877")
+[node name="Cauldron" parent="." index="3"]
+visible = false
 
 [node name="SkeletonSpawner" parent="WalkingEnemyGenerator" index="0" instance=ExtResource("4_d0ehj")]
 spawn_top = 184.0
@@ -37,6 +32,7 @@ timer_min = 4.0
 
 [node name="GhostSpawner" parent="WalkingEnemyGenerator" index="1" instance=ExtResource("6_bs77d")]
 position_array = PackedVector2Array(12, 188, 148, 188, 228, 188, 288, 188)
+active = false
 what_to_spawn = ExtResource("7_m8rih")
 timer_max = 1.0
 timer_min = 1.0

@@ -14,6 +14,7 @@ var state:states
 
 func _ready():
 	super()
+	add_to_group("enemies")
 	move_timer.start(1)
 	move_timer.timeout.connect(change_direction)
 	death_timer.timeout.connect(die)
@@ -48,7 +49,24 @@ func was_hit(obstacle:HitboxComponent):
 		move_timer.stop()
 		death_timer.start()
 
-
 func die():
-	star_spawner.spawn(self.global_position, GameData.current_level)
+	star_spawner.spawn(self.global_position, GameData.current_level_node)
 	queue_free()
+
+func freeze():
+	move_component.stop()
+	move_timer.stop()
+	death_timer.stop()
+	hitbox_component.set_enabled(false)
+	hurtbox_component.is_invincible = true
+
+func unfreeze():
+	move_component.start()
+	move_timer.start()
+	hitbox_component.set_enabled(true)
+	hurtbox_component.is_invincible = false
+	if state == states.DYING:
+		death_timer.start()
+	else:
+		move_timer.start()
+		change_direction()
