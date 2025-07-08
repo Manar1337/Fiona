@@ -5,3 +5,7 @@ extends Node
 
 func set_speed(new_speed):
 	speed = new_speed
+
+func set_data(_data: Array):
+	# This function can be overridden by subclasses to set specific data
+	pass

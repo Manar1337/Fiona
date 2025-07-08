@@ -17,23 +17,21 @@ func _physics_process(_delta):
 	if is_on_floor():
 		if state == states.FALLING: die()
 	else:
-		print("Skeleton is not on the floor, current state: ", state)
-		# move_component.set_speed(0)
-		# move_physical_component.set_speed(0)
-		print("velocity: ", velocity)
 		if state == states.JUMPING and velocity.y > 10: state = states.FALLING
 
 
 func was_hit(_obstacle:HitboxComponent):
 	print("Skeleton was hit by: ", _obstacle.name)
+	if _obstacle.is_player:
+		if hurtbox_component.is_invincible: return
+		die()
+
 	if is_on_floor():
-		print("Skeleton is on the floor, jumping!")
 		hurtbox_component.is_invincible = true
 		hitbox_component.is_harmless = true
 		state = states.JUMPING
-		# move_component.set_speed(0)
-		move_physical_component.set_speed(300)
-		move_physical_component.set_mode_data([Vector2.UP])
+		move_physical_component.set_mode("jump")
+		move_physical_component.set_current_velocity(Vector2(0, -370))
 
 func die():
 	star_spawner.spawn(self.global_position, GameData.current_level_node)

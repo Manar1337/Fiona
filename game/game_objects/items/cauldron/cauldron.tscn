@@ -69,3 +69,4 @@ shape = SubResource("RectangleShape2D_70sv7")
 sprite_frames = SubResource("SpriteFrames_ynrwn")
 animation = &"splash"
 autoplay = "default"
+frame = 4

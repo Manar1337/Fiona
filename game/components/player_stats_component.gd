@@ -16,7 +16,7 @@ var magic: int = start_magic:
 func take_damage(amount: int):
 	if GameData.is_paused:
 		return
-	if GameData.spellpower <= 0:
+	if GameData.spellpower < 0:
 		return
 	if amount <= 0:
 		return

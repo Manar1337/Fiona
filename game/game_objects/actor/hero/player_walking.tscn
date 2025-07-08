@@ -132,7 +132,7 @@ script = ExtResource("4_tpvx3")
 
 [node name="MovePhysicalControlledComponent" type="Node" parent="MovePhysicalComponent"]
 script = ExtResource("5_t7jg6")
-speed = 75.0
+speed = 100.0
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 collision_mask = 2
@@ -144,6 +144,7 @@ polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, 
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_mask = 18
 script = ExtResource("6_fpiu8")
+is_player = true
 
 [node name="HitArea" type="CollisionPolygon2D" parent="HitboxComponent"]
 polygon = PackedVector2Array(3, 2, 2, -3, 2, -6, 0, -9, -1, -9, -3, -6, -3, -2, -4, 3, -4, 10, 2, 10, 2, 6, 3, 3)
@@ -168,7 +169,6 @@ one_shot = true
 
 [node name="PlayerStatsComponent" type="Node" parent="."]
 script = ExtResource("10_60m8j")
-start_magic = 200
 
 [node name="BigExplosionSpawner" type="Node2D" parent="."]
 script = ExtResource("10_vj1be")

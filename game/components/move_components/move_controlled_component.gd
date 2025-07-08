@@ -21,8 +21,8 @@ func calculate_movement(delta):
 
 	return (direction * delta).normalized() * speed
 
-func set_data(data: bool):
-	control_active = data
+func set_data(_data: Array):
+	control_active = _data[0]
 
 func set_direction(new_direction):
 	direction = new_direction

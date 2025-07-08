@@ -18,9 +18,6 @@ texture = ExtResource("2_6p877")
 
 [node name="BackgroundLevel" parent="." index="2" instance=ExtResource("2_utm2b")]
 
-[node name="Cauldron" parent="." index="3"]
-visible = false
-
 [node name="SkeletonSpawner" parent="WalkingEnemyGenerator" index="0" instance=ExtResource("4_d0ehj")]
 spawn_top = 184.0
 spawn_bottom = 184.0
@@ -32,7 +29,6 @@ timer_min = 4.0
 
 [node name="GhostSpawner" parent="WalkingEnemyGenerator" index="1" instance=ExtResource("6_bs77d")]
 position_array = PackedVector2Array(12, 188, 148, 188, 228, 188, 288, 188)
-active = false
 what_to_spawn = ExtResource("7_m8rih")
 timer_max = 1.0
 timer_min = 1.0

@@ -13,7 +13,7 @@ extends CharacterBody2D
 @export var hovering: bool = false
 
 var target = null
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")/10
 
 func _ready():
 	move_physical_component.set_is_hovering(hovering)
@@ -56,4 +56,3 @@ func unfreeze():
 	velocity = Vector2.ZERO
 	if is_on_floor():
 		velocity.y = 0
-

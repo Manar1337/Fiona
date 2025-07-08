@@ -15,7 +15,6 @@ signal has_landed()
 @onready var dress: Sprite2D = $Dress
 @onready var big_explosion_spawner: BigExplosionSpawner = $BigExplosionSpawner
 @onready var body: AnimatedSprite2D = $Body
-@onready var flight_timer: Timer = $"../FlightTimer"
 
 var fire_lock := false
 var is_alive := true
@@ -43,7 +42,6 @@ func _connect_signals() -> void:
 	fire_rate_timer.timeout.connect(_unlock_fire)
 	player_stats_component.no_magic.connect(die)
 	hurtbox_component.tilemap_hit.connect(_on_tilemap_hit)
-	flight_timer.timeout.connect(_land)
 
 func _fire_zap() -> void:
 	var bullet = spawner_component.spawn(zap_marker.global_position, GameData.current_level_node)
@@ -73,7 +71,7 @@ func die() -> void:
 
 	get_parent().handle_player_death(global_position)
 
-func _land() -> void:
+func land() -> void:
 	is_landing = true
 	hurtbox_component.is_invincible = true
 	fire_lock = true

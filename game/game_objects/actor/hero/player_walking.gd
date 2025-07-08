@@ -24,6 +24,7 @@ var carries_magic := false
 var direction := "left"
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var light_gravity = gravity/2.0
+var heavy_gravity = gravity * 5.0
 
 func _ready() -> void:
 	dress.self_modulate = Color8(96, 96, 96)  # Ensure the dress starts with the correct color
@@ -75,10 +76,9 @@ func _unlock_fire():
 
 func _die():
 	is_alive = false
-	GameData.spellpower = 0
 	hurtbox.is_invincible = true
 	color_flicker_component.enabled = true
-	move_physical_component.set_mode_data(false)
+	move_physical_component.set_mode_data([false])
 
 	get_parent().handle_player_death(global_position)
 

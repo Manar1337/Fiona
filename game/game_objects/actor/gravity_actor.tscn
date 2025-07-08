@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dv58ibdqgd66b"]
+[gd_scene load_steps=13 format=3 uid="uid://dv58ibdqgd66b"]
 
 [ext_resource type="Script" uid="uid://bnll6dq2q8pp4" path="res://game/game_objects/actor/gravity_actor.gd" id="1_3r06a"]
 [ext_resource type="Script" uid="uid://bspe6mkgk7qsl" path="res://game/components/move_component.gd" id="1_p33uu"]
 [ext_resource type="Script" uid="uid://hjccq835qqs5" path="res://game/components/hurtbox_component.gd" id="2_prg5s"]
+[ext_resource type="Script" uid="uid://finu86pnqyie" path="res://game/components/move_components/move_steady_component.gd" id="3_84n74"]
 [ext_resource type="Script" uid="uid://c2kdofbj4lv2b" path="res://game/components/move_physical_component.gd" id="3_je8kg"]
 [ext_resource type="Script" uid="uid://cvlrwryvqfpj0" path="res://game/components/hitbox_component.gd" id="3_rtkbk"]
 [ext_resource type="Script" uid="uid://muef05wpd2ty" path="res://game/components/stats_component.gd" id="4_vlxg7"]
@@ -19,6 +20,8 @@ size = Vector2(20, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ji0i0"]
 
 [node name="GravityActor" type="CharacterBody2D"]
+slide_on_ceiling = false
+floor_constant_speed = true
 script = ExtResource("1_3r06a")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
@@ -26,6 +29,10 @@ sprite_frames = SubResource("SpriteFrames_ld7m1")
 
 [node name="MoveComponent" type="Node" parent="."]
 script = ExtResource("1_p33uu")
+
+[node name="MoveSteadyComponent" type="Node" parent="MoveComponent"]
+script = ExtResource("3_84n74")
+metadata/_custom_type_script = "uid://finu86pnqyie"
 
 [node name="MovePhysicalComponent" type="Node" parent="."]
 script = ExtResource("3_je8kg")
@@ -54,4 +61,5 @@ shape = SubResource("RectangleShape2D_ji0i0")
 
 [node name="FlyUpComponent" type="Node" parent="."]
 script = ExtResource("6_pjgav")
+move_component_path = NodePath("../MoveComponent")
 metadata/_custom_type_script = "uid://c6jijjgge4dp1"

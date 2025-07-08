@@ -7,6 +7,8 @@ signal turn(direction)
 
 @export var turning: bool = false
 
+# Glöm inte att utgå från att det här är en rigid bosdy så använda dess inbygda funktioner för rörelse.
+
 var modes = []
 var mode = null
 var is_moving = true
@@ -25,9 +27,8 @@ func _physics_process(delta):
 	if not active: return
 	if mode == null: return
 	if not is_moving: return
-	movement_velocity = Vector2.ZERO
 
-	movement_velocity += mode.calculate_movement(delta)
+	movement_velocity = mode.calculate_movement(delta)
 
 	if movement_velocity.x > 0:
 		turn.emit("left")
@@ -35,6 +36,7 @@ func _physics_process(delta):
 		turn.emit("right")
 	owner.velocity = movement_velocity
 	apply_gravity()
+	mode.set_current_velocity(owner.velocity)
 
 
 
@@ -52,7 +54,6 @@ func apply_gravity():
 	if not mode.uses_gravity:
 		return
 	if not is_hovering && mode.uses_gravity():
-		print("Applying gravity: ", gravity)
 		owner.velocity.y += gravity
 
 func set_mode(new_mode)	:
@@ -71,11 +72,13 @@ func set_is_hovering(new_is_hovering: bool):
 func set_speed(new_speed):
 	mode.set_speed(new_speed)
 
+func set_current_velocity(new_velocity: Vector2):
+	mode.set_current_velocity(new_velocity)
+
 func set_mode_data(data):
 	mode.set_data(data)
 
 func set_movement_velocity(new_movement_velocity: Vector2):
-	print("Setting movement velocity to: ", new_movement_velocity)
 	movement_velocity = new_movement_velocity
 
 func stop():

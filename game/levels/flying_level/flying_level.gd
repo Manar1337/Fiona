@@ -8,7 +8,6 @@ extends Node
 @onready var flight_timer: Timer = $FlightTimer
 @onready var flying_enemy_generator: Node = $FlyingEnemyGenerator
 
-
 func _ready() -> void:
 	GameData.spellpower = 2000
 	flight_timer.wait_time = flight_time
@@ -16,6 +15,7 @@ func _ready() -> void:
 
 	player_flying.has_landed.connect(_on_player_landed)
 	SignalHandler.connect("should_fly_up", _on_should_fly_up)
+	flight_timer.timeout.connect(player_flying.land)
 
 func _on_should_fly_up() -> void:
 	stop_level()
@@ -53,10 +53,8 @@ func stop_level() -> void:
 	if flying_enemy_generator.has_method("stop_spawning"):
 		flying_enemy_generator.stop_spawning()
 
-
 func _on_player_landed() -> void:
 	SignalHandler.level_requested.emit(LevelConstants.LevelType.POEM, GameData.level)
-
 
 func handle_player_death(global_position: Vector2) -> void:
 	GameData.has_fly_up_completed = false
@@ -72,11 +70,4 @@ func handle_player_death(global_position: Vector2) -> void:
 	SignalHandler.show_death_message.emit(false)
 
 	SignalHandler.player_sent_to_hell.emit()
-	# SignalHandler.show_death_message.emit(false)
-	
 
-	# When a player lose a life he will get a chance to get it back by completing the deathlevel. 
-	# If he dies there he will lose a life and be sent back to the last level.
-	# If he suceeds he will be sent back to the last level with his lives intact.
-	# If he lose his last life in the Death level it is game over
-	# Since we dont have a finished death level yet we will just send him back to the last level.

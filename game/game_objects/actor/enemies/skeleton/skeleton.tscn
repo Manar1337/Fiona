@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://dv58ibdqgd66b" path="res://game/game_objects/actor/gravity_actor.tscn" id="1_bxljs"]
 [ext_resource type="Script" uid="uid://chnovcte62n32" path="res://game/game_objects/actor/enemies/skeleton/skeleton.gd" id="2_ac6qx"]
 [ext_resource type="Texture2D" uid="uid://dncoj732ggvar" path="res://assets/graphics/walking_level/Skeleton.png" id="2_vwlbr"]
-[ext_resource type="Script" uid="uid://finu86pnqyie" path="res://game/components/move_components/move_steady_component.gd" id="3_e0svi"]
 [ext_resource type="Script" uid="uid://pst0ptjvqyrq" path="res://game/components/move_physical_components/move_physical_steady_component.gd" id="5_57wor"]
 [ext_resource type="Script" uid="uid://ciooam1aml12j" path="res://game/components/spawner_component.gd" id="5_gy5i0"]
 [ext_resource type="PackedScene" uid="uid://bd56tweuqfpgb" path="res://game/game_objects/items/magic/magic.tscn" id="6_iar00"]
+[ext_resource type="Script" uid="uid://dq72o33gtjmwr" path="res://game/components/move_physical_components/move_physical_jump_component.gd" id="6_jbfa3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_01m0f"]
 atlas = ExtResource("2_vwlbr")
@@ -56,7 +56,6 @@ size = Vector2(18, 42)
 [node name="Skeleton" instance=ExtResource("1_bxljs")]
 collision_layer = 2
 collision_mask = 8
-floor_block_on_wall = false
 script = ExtResource("2_ac6qx")
 score = 100
 
@@ -65,19 +64,16 @@ sprite_frames = SubResource("SpriteFrames_873l2")
 autoplay = "default"
 frame_progress = 0.884962
 
-[node name="MoveComponent" parent="." index="1"]
-active = false
-
-[node name="MoveSteadyComponent" type="Node" parent="MoveComponent" index="0"]
-script = ExtResource("3_e0svi")
-direction = Vector2(-1, 0)
-speed = 50.0
-
 [node name="MovePhysicalSteadyComponent" type="Node" parent="MovePhysicalComponent" index="0"]
 script = ExtResource("5_57wor")
 direction = Vector2(-1, 0)
-speed = 25.0
+speed = 50.0
 metadata/_custom_type_script = "uid://pst0ptjvqyrq"
+
+[node name="MovePhysicalJumpComponent" type="Node" parent="MovePhysicalComponent" index="1"]
+script = ExtResource("6_jbfa3")
+speed = 100.0
+metadata/_custom_type_script = "uid://dq72o33gtjmwr"
 
 [node name="HurtboxComponent" parent="." index="4"]
 collision_layer = 2
@@ -101,6 +97,3 @@ what_to_spawn = ExtResource("6_iar00")
 [node name="CollisionShape2D" parent="." index="8"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_ronlh")
-
-[node name="FlyUpComponent" parent="." index="9"]
-move_component_path = NodePath("../MoveComponent")

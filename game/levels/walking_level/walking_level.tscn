@@ -9,6 +9,7 @@
 
 [node name="WalkingLevel" type="Node"]
 script = ExtResource("1_4nye5")
+magic_to_win = 2100
 
 [node name="PlayerWalking" parent="." instance=ExtResource("2_hpdu1")]
 position = Vector2(184, 52)

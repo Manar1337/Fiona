@@ -1,19 +1,21 @@
 class_name WalkingLevel
 extends Node
 
+@export var magic_to_win: int = 4000
+
 @onready var player_walking: PlayerWalking = $PlayerWalking
 @onready var treasure: Node2D = $Treasure
 @onready var cauldron: Cauldron = $Cauldron
 @onready var walking_enemy_generator: Node = $WalkingEnemyGenerator
 
-
 func _ready() -> void:
 	GameData.spellpower = 2000
 	SignalHandler.connect("should_fly_up", _on_should_fly_up)
+	SignalHandler.connect("spellpower_changed", _on_spellpower_changed)
 
-func _input(_event):
-	if Input.is_action_just_pressed("fire"):
-		treasure.enabled(!treasure.visible)
+# func _input(_event):
+	# if Input.is_action_just_pressed("fire"):
+		# treasure.enabled(!treasure.visible)
 
 func _on_should_fly_up() -> void:
 	stop_level()
@@ -26,8 +28,11 @@ func _on_should_fly_up() -> void:
 	await _fly_game_objects_in_sequence(flyables)
 	SignalHandler.flyUpFinished()
 
+func _on_spellpower_changed(new_spellpower: int) -> void:
+	if new_spellpower >= magic_to_win:
+		start_win_sequence()
+
 func _gather_flyables(groups: Array[String]) -> Array:
-	print("Gathering flyables from groups: ", groups)
 	var results: Array = []
 	for group_name in groups:
 		for node in get_tree().get_nodes_in_group(group_name):
@@ -66,3 +71,14 @@ func stop_level() -> void:
 
 	if walking_enemy_generator.has_method("stop_spawning"):
 		walking_enemy_generator.stop_spawning()
+
+func start_win_sequence():
+	stop_level()
+	player_walking.color_flicker_component.enabled = true
+	GameData.has_fly_up_completed = false
+	await _on_should_fly_up()
+	player_walking.color_flicker_component.enabled = false
+	treasure.enabled(!treasure.visible)
+	await get_tree().create_timer(5.0).timeout
+	SignalHandler.level_requested.emit(LevelConstants.LevelType.POEM, GameData.level)
+

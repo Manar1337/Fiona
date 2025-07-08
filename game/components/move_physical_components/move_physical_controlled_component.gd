@@ -35,8 +35,8 @@ func set_speed(new_speed):
 func set_direction(new_direction):
 	direction = new_direction
 
-func set_data(data: bool):
-	control_active = data
+func set_data(data: Array):
+	control_active = data[0]
 
 func uses_gravity():
 	return direction == Vector2.ZERO || direction == Vector2.LEFT || direction == Vector2.RIGHT
