@@ -1,6 +1,6 @@
 class_name Ghost
 
-extends GravityActor
+extends Actor
 
 @onready var move_timer: Timer = $MoveTimer
 @onready var death_timer: Timer = $DeathTimer
@@ -16,8 +16,11 @@ func _ready():
 	super()
 	add_to_group("enemies")
 	move_timer.start(1)
-	move_timer.timeout.connect(change_direction)
+	move_timer.timeout.connect(_on_move_timer_timeout)
 	death_timer.timeout.connect(die)
+
+func _on_move_timer_timeout():
+	change_direction()
 
 func change_direction():
 	if state != states.FLYING: return
@@ -50,6 +53,7 @@ func was_hit(obstacle:HitboxComponent):
 		death_timer.start()
 
 func die():
+	print("Ghost died")
 	star_spawner.spawn(self.global_position, GameData.current_level_node)
 	queue_free()
 

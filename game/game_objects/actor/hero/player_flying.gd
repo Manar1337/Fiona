@@ -38,9 +38,9 @@ func _setup_components() -> void:
 	move_component.set_mode("controlled")
 
 func _connect_signals() -> void:
-	SignalHandler.connect("freeze_everything", _on_freeze_everything)
+	SignalHandler.freeze_everything.connect(_on_freeze_everything)
 	fire_rate_timer.timeout.connect(_unlock_fire)
-	player_stats_component.no_magic.connect(die)
+	player_stats_component.no_magic.connect(_on_no_magic)
 	hurtbox_component.tilemap_hit.connect(_on_tilemap_hit)
 
 func _fire_zap() -> void:
@@ -62,12 +62,15 @@ func _on_tilemap_hit(_tilemap: Node) -> void:
 		return
 	die()
 
+func _on_no_magic():
+	die()
+
 func die() -> void:
 	is_alive = false
 	GameData.spellpower = 0
 	hurtbox_component.is_invincible = true
 	color_flicker_component.enabled = true
-	move_component.set_mode_data(false)
+	move_component.set_mode_data([false])
 
 	get_parent().handle_player_death(global_position)
 

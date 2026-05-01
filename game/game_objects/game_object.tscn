@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://finu86pnqyie" path="res://game/components/move_components/move_steady_component.gd" id="3_4oe43"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4oe43"]
-size = Vector2(22, 6)
+size = Vector2(8, 9.3125)
 
 [node name="GameObject" type="Node2D"]
 script = ExtResource("1_nvq38")

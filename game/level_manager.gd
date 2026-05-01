@@ -3,7 +3,7 @@ extends Node
 @onready var game: Node = $".."
 
 var previous_level_name: String = ""
-var current_max_level: int = 2
+var current_max_level: int = 4
 
 var LT = LevelConstants.LevelType
 
@@ -19,13 +19,13 @@ var levels_dir: Dictionary = {
 const DEFAULT_LEVEL_INDEX: int = 0
 
 func _ready():
-	SignalHandler.connect("level_requested", request_level)
-	SignalHandler.connect("next_level_requested", request_next_level)
-	SignalHandler.connect("restart_game", _on_restart_game)
+	SignalHandler.level_requested.connect(_on_level_requested)
+	SignalHandler.next_level_requested.connect(_on_next_level_requested)
+	SignalHandler.restart_game.connect(_on_restart_game)
 
 	GameData.level = DEFAULT_LEVEL_INDEX
 
-func request_level(level_type: LevelConstants.LevelType, level_nr: int):
+func _on_level_requested(level_type: LevelConstants.LevelType, level_nr: int):
 	match level_type:
 		LT.START:
 			SignalHandler.show_gui.emit(false)
@@ -51,7 +51,7 @@ func request_level(level_type: LevelConstants.LevelType, level_nr: int):
 			load_level(level_type, level_nr)
 
 
-func request_next_level():
+func _on_next_level_requested():
 	var next_level = GameData.level + 1
 	if next_level > current_max_level:
 		next_level = 1
@@ -76,6 +76,7 @@ func load_level(level_type: LevelConstants.LevelType, level_nr: int):
 		if level_scene:
 			GameData.current_level_node = level_scene.instantiate()
 			level_holder.add_child(GameData.current_level_node)
+			print(GameData.current_level_node, " Level loaded: ", level_path)
 
 			if GameData.current_level_node.has_method("on_enter"):
 				GameData.current_level_node.on_enter()

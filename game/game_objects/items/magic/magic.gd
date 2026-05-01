@@ -15,7 +15,7 @@ func _ready() -> void:
 	add_to_group("magic")
 	state = states.FREE
 	area_entered.connect(_on_area_entered)
-	death_timer.timeout.connect(die)
+	death_timer.timeout.connect(_on_death_timer_timeout)
 
 func _process(_delta):
 	match state:
@@ -52,6 +52,9 @@ func remove_carrier():
 	if carrier:
 		carrier.carries_magic = false
 		carrier = null;
+
+func _on_death_timer_timeout():
+	die()
 
 func die():
 	remove_carrier()

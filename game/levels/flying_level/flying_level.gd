@@ -14,8 +14,8 @@ func _ready() -> void:
 	flight_timer.start()
 
 	player_flying.has_landed.connect(_on_player_landed)
-	SignalHandler.connect("should_fly_up", _on_should_fly_up)
-	flight_timer.timeout.connect(player_flying.land)
+	SignalHandler.should_fly_up.connect(_on_should_fly_up)
+	flight_timer.timeout.connect(_on_flight_timer_timeout)
 
 func _on_should_fly_up() -> void:
 	stop_level()
@@ -52,6 +52,9 @@ func stop_level() -> void:
 
 	if flying_enemy_generator.has_method("stop_spawning"):
 		flying_enemy_generator.stop_spawning()
+
+func _on_flight_timer_timeout() -> void:
+	player_flying.land()
 
 func _on_player_landed() -> void:
 	SignalHandler.level_requested.emit(LevelConstants.LevelType.POEM, GameData.level)

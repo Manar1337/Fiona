@@ -1,43 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm7148dbxrgi"]
-
-[ext_resource type="Texture2D" uid="uid://5wsyuie5q30e" path="res://assets/graphics/walking_level/BackgroundGraveyard.png" id="1_k4lrj"]
-[ext_resource type="Texture2D" uid="uid://chybkjo7d215r" path="res://assets/graphics/walking_level/ForegroundGraveyard.png" id="2_fralu"]
+[gd_scene load_steps=2 format=3 uid="uid://bm7148dbxrgi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5h1d"]
 size = Vector2(320, 8)
 
 [node name="BackgroundWalking" type="Node"]
 
-[node name="Background" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
-
-[node name="BackgroundGraveyard" type="Sprite2D" parent="Background/ParallaxLayer"]
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(160, 100)
-texture = ExtResource("1_k4lrj")
 
-[node name="Foreground" type="ParallaxBackground" parent="."]
-layer = 100
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Foreground"]
-
-[node name="ForegroundGraveyard" type="Sprite2D" parent="Foreground/ParallaxLayer"]
+[node name="Foreground" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(160, 164)
-texture = ExtResource("2_fralu")
 offset = Vector2(0, 6)
 
 [node name="Walls" type="StaticBody2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+visible = false
 position = Vector2(10, 10)
 polygon = PackedVector2Array(310, 182, 294, 182, 294, 166, 270, 166, 270, 182, 238, 182, 238, 142, 222, 142, 222, 134, 214, 134, 214, 142, 198, 142, 198, 182, 150, 182, 150, 166, 126, 166, 126, 182, 86, 182, 86, 166, 62, 166, 62, 158, 54, 158, 54, 118, 70, 118, 70, 110, 86, 110, 86, 102, 62, 102, 62, 62, 86, 62, 86, 54, 102, 54, 102, 62, 110, 62, 110, 70, 142, 70, 142, 78, 182, 78, 182, 70, 206, 70, 206, 62, 150, 62, 150, 30, 102, 30, 102, -10, 310, -10, 310, 190, 318, 190, 318, -18, -10, -18, -10, 190, 310, 190)
 
 [node name="Floor" type="StaticBody2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+visible = false
 position = Vector2(160, 204)
 shape = SubResource("RectangleShape2D_j5h1d")

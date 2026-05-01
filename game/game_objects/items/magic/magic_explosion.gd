@@ -8,9 +8,9 @@ extends AnimatedSprite2D
 
 func _ready() -> void:
 	add_to_group("magic")
-	SignalHandler.connect("freeze_everything", _on_freeze_everything) 
+	SignalHandler.freeze_everything.connect(_on_freeze_everything)
 
-	death_timer.timeout.connect(die)
+	death_timer.timeout.connect(queue_free)
 	visible_on_screen_enabler_2d.screen_exited.connect(queue_free)
 
 func set_speed(speed):
@@ -18,9 +18,6 @@ func set_speed(speed):
 
 func set_direction(direction):
 	move_component.set_mode_data([direction])
-
-func die():
-	queue_free()
 
 func _on_freeze_everything(is_frozen: bool) -> void:
 	if is_frozen:

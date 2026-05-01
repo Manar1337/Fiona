@@ -3,13 +3,12 @@ extends Node
 @export var start_lives: int = 4
 @export var start_spellpower: int = 2000
 
-
 @onready var level_manager: Node = $LevelManager
 @onready var gui: Node = $GUI
 
 func _ready():
 	# Connect signals
-	SignalHandler.connect("restart_game", setup_game)
+	SignalHandler.restart_game.connect(_on_restart_game)
 
 	GameData.score = 0
 	GameData.spellpower = start_spellpower
@@ -37,6 +36,9 @@ func swap_fullscreen_mode():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+
+func _on_restart_game():
+	setup_game()
 
 func setup_game():
 	GameData.game_data_reset()

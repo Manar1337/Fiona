@@ -10,7 +10,7 @@ extends Node2D
 @onready var player_blasting: CharacterBody2D = $PlayerBlasting
 @onready var tunnel: Node2D = $Tunnel
 func _ready():
-	SignalHandler.connect("game_over", _on_game_over)
+	SignalHandler.game_over.connect(_on_game_over)
 
 func _input(_event):
 	# Since the deathlevel is far from finished we will replace the function with this mockup

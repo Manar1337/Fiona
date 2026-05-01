@@ -11,7 +11,10 @@ var target: Node = null
 
 func _ready():
 	super._ready()
-	hurtbox_component.hurt.connect(was_hit)
+	hurtbox_component.hurt.connect(_on_hurt)
+
+func _on_hurt(_obstacle: HitboxComponent):
+	was_hit(_obstacle)
 
 func was_hit(_obstacle: HitboxComponent):
 	pass

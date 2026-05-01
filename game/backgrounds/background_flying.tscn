@@ -5,8 +5,7 @@
 
 [node name="LandscapeBackground" type="ParallaxBackground"]
 script = ExtResource("1_nn6k3")
-speed = 256
-start_position = Vector2(800, 0)
+speed = 64
 
 [node name="BackgroundLayer" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.5, 0.5)

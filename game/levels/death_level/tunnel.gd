@@ -10,7 +10,7 @@ extends Node2D
 var is_moving: bool = true
 
 func _ready() -> void:
-	SignalHandler.connect("game_over", _on_game_over)
+	SignalHandler.game_over.connect(_on_game_over)
 	for i in range(10):
 		wall_component_controller.make_next_wall_for_sequence()
 

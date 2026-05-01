@@ -2,13 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://dxqvelackaop3" path="res://game/levels/walking_level/walking_level.tscn" id="1_g1ylr"]
 [ext_resource type="Texture2D" uid="uid://c54pumcl608a1" path="res://assets/graphics/walking_level/Broom.png" id="2_6p877"]
-[ext_resource type="PackedScene" uid="uid://bm7148dbxrgi" path="res://game/backgrounds/background_walking.tscn" id="2_utm2b"]
+[ext_resource type="Texture2D" uid="uid://5wsyuie5q30e" path="res://assets/graphics/walking_level/BackgroundGraveyard.png" id="2_d0ehj"]
 [ext_resource type="PackedScene" uid="uid://dseoau3m3u7ju" path="res://game/spawners/timed_random_singlespawner.tscn" id="4_d0ehj"]
 [ext_resource type="PackedScene" uid="uid://clel6lktjkd28" path="res://game/game_objects/actor/enemies/skeleton/skeleton.tscn" id="5_aqrwj"]
 [ext_resource type="PackedScene" uid="uid://bb1o15ujvq82k" path="res://game/spawners/timed_random_multispawner.tscn" id="6_bs77d"]
-[ext_resource type="PackedScene" uid="uid://cuab70t7w05jm" path="res://game/game_objects/actor/enemies/ghost/ghost.tscn" id="7_m8rih"]
+[ext_resource type="PackedScene" uid="uid://xcjxxdvkwrd5" path="res://game/game_objects/actor/enemies/ghost/ghost.tscn" id="7_g1ylr"]
 
 [node name="Level_2" instance=ExtResource("1_g1ylr")]
+
+[node name="Background" parent="Graphics" index="0"]
+texture = ExtResource("2_d0ehj")
+
+[node name="CollisionPolygon2D" parent="Graphics/Walls" index="0"]
+polygon = PackedVector2Array(310, 182, 294, 182, 294, 166, 270, 166, 270, 182, 238, 182, 238, 142, 222, 142, 222, 134, 214, 134, 214, 142, 198, 142, 198, 182, 150, 182, 150, 166, 126, 166, 126, 182, 86, 182, 86, 166, 62, 166, 62, 158, 54, 158, 54, 118, 70, 118, 70, 110, 86, 110, 86, 102, 62, 102, 62, 62, 86, 62, 86, 54, 102, 54, 102, 62, 110, 62, 110, 70, 142, 70, 142, 78, 182, 78, 182, 70, 206, 70, 206, 62, 150, 62, 150, 30, 102, 30, 102, -10, 310, -10, 310, 190, 318, 190, 318, -18, -10, -18, -10, 190, 310, 190)
 
 [node name="Treasure" parent="." index="1"]
 visible = false
@@ -16,20 +22,18 @@ visible = false
 [node name="Sprite2D" parent="Treasure" index="0"]
 texture = ExtResource("2_6p877")
 
-[node name="BackgroundLevel" parent="." index="2" instance=ExtResource("2_utm2b")]
-
 [node name="SkeletonSpawner" parent="WalkingEnemyGenerator" index="0" instance=ExtResource("4_d0ehj")]
 spawn_top = 184.0
 spawn_bottom = 184.0
 spawn_left = 324.0
 spawn_right = 324.0
 what_to_spawn = ExtResource("5_aqrwj")
-timer_max = 4.0
 timer_min = 4.0
+timer_max = 4.0
 
 [node name="GhostSpawner" parent="WalkingEnemyGenerator" index="1" instance=ExtResource("6_bs77d")]
 position_array = PackedVector2Array(12, 188, 148, 188, 228, 188, 288, 188)
-what_to_spawn = ExtResource("7_m8rih")
-timer_max = 1.0
+what_to_spawn = ExtResource("7_g1ylr")
 timer_min = 1.0
+timer_max = 10.0
 target_player = true

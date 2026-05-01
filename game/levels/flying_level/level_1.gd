@@ -1,3 +1,5 @@
+class_name Level1
+
 extends FlyingLevel
 
 func _ready() -> void:

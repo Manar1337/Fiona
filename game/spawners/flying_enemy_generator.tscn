@@ -32,8 +32,8 @@ spawn_bottom = 100.0
 spawn_left = 324.0
 spawn_right = 324.0
 what_to_spawn = ExtResource("4_xxtph")
-timer_max = 20.0
 timer_min = 60.0
+timer_max = 20.0
 target_player = true
 
 [node name="CloudSpawner" parent="." instance=ExtResource("6_yaw4k")]
@@ -41,5 +41,5 @@ spawn_bottom = 50.0
 spawn_left = 324.0
 spawn_right = 324.0
 what_to_spawn = ExtResource("5_52v4s")
-timer_max = 50.0
 timer_min = 100.0
+timer_max = 50.0

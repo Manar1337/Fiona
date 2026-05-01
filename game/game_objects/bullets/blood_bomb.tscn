@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmlrk6i8kljwm"]
+
+[ext_resource type="PackedScene" uid="uid://bvirga0t5lm3h" path="res://game/game_objects/bullets/bullet.tscn" id="1_ho0cd"]
+[ext_resource type="Texture2D" uid="uid://dy1vp8hv7gqim" path="res://assets/graphics/walking_level/BloodDrop.png" id="2_4dscf"]
+
+[node name="BloodBomb" instance=ExtResource("1_ho0cd")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_4dscf")
+
+[node name="VisibleOnScreenEnabler2D" parent="." index="1"]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(0.363636, 1.66667)
+
+[node name="MoveSteadyComponent" parent="MoveComponent" index="0"]
+direction = Vector2(0, -1)
+speed = 50.0

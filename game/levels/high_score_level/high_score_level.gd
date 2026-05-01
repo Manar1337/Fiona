@@ -6,7 +6,7 @@ extends Node
 @onready var high_score_table: HighScoreTable = $HighScoreTable
 
 func _ready():
-	SignalHandler.connect("show_high_score", _on_show_high_score)
+	SignalHandler.show_high_score.connect(_on_show_high_score)
 	set_random_position()
 
 func set_position(new_position: float):

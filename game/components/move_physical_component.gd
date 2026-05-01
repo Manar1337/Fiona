@@ -38,8 +38,6 @@ func _physics_process(delta):
 	apply_gravity()
 	mode.set_current_velocity(owner.velocity)
 
-
-
 	# var directionY = Input.get_axis("ui_up", "ui_down")
 	# if directionY:
 	# 	if directionY != 0:
@@ -55,6 +53,9 @@ func apply_gravity():
 		return
 	if not is_hovering && mode.uses_gravity():
 		owner.velocity.y += gravity
+
+func get_modes():
+	return modes
 
 func set_mode(new_mode)	:
 	assert(modes.has(new_mode), "Error: Movement mode '" + new_mode + "' was not set.")

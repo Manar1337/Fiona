@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://xnwve7s5vw7p"]
+
+[ext_resource type="PackedScene" uid="uid://dxqvelackaop3" path="res://game/levels/walking_level/walking_level.tscn" id="1_om7mb"]
+[ext_resource type="Texture2D" uid="uid://cwdi40qmsj4cf" path="res://assets/graphics/walking_level/BackgroundHut.png" id="2_kv7u8"]
+[ext_resource type="PackedScene" uid="uid://dseoau3m3u7ju" path="res://game/spawners/timed_random_singlespawner.tscn" id="3_1nfcb"]
+[ext_resource type="PackedScene" uid="uid://b3htr5norhkn8" path="res://game/game_objects/actor/enemies/foot/foot.tscn" id="4_gke3m"]
+[ext_resource type="PackedScene" uid="uid://bmlrk6i8kljwm" path="res://game/game_objects/bullets/blood_bomb.tscn" id="5_gke3m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv7u8"]
+size = Vector2(56, 39)
+
+[node name="Level_4" instance=ExtResource("1_om7mb")]
+
+[node name="Background" parent="Graphics" index="0"]
+texture = ExtResource("2_kv7u8")
+
+[node name="CollisionPolygon2D" parent="Graphics/Walls" index="0"]
+polygon = PackedVector2Array(294, 166, 262, 166, 262, 158, 198, 158, 198, 182, 78, 182, 78, 158, 8, 158, 8, 86, 70, 86, 70, 78, 8, 78, 8, 62, 30, 40, 30, 32, 270, 32, 270, 40, 294, 64, 294, 158, 310, 158, 310, 0, -10, 0, -10, 190, 310, 190, 310, 166)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Walls" index="1"]
+position = Vector2(236, 100)
+shape = SubResource("RectangleShape2D_kv7u8")
+
+[node name="FootSpawner" parent="WalkingEnemyGenerator" index="0" instance=ExtResource("3_1nfcb")]
+spawn_top = 184.0
+spawn_bottom = 184.0
+what_to_spawn = ExtResource("4_gke3m")
+timer_min = 1.0
+timer_max = 2.0
+
+[node name="BloodBomb" parent="." index="5" instance=ExtResource("5_gke3m")]
+position = Vector2(84, 120)

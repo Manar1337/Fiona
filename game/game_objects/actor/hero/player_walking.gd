@@ -43,9 +43,9 @@ func _setup_components() -> void:
 
 
 func _connect_signals() -> void:
-	SignalHandler.connect("freeze_everything", _on_freeze_everything)
-	fire_rate_timer.timeout.connect(_unlock_fire)
-	player_stats_component.no_magic.connect(_die)
+	SignalHandler.freeze_everything.connect(_on_freeze_everything)
+	fire_rate_timer.timeout.connect(_on_fire_rate_timeout)
+	player_stats_component.no_magic.connect(_on_no_magic)
 	move_physical_component.turn.connect(_on_turn)
 
 func _on_turn(dir: String):
@@ -71,10 +71,13 @@ func _lock_fire():
 	fire_lock = true
 	fire_rate_timer.start(1)
 
-func _unlock_fire():
+func _on_fire_rate_timeout():
 	fire_lock = false
 
-func _die():
+func _on_no_magic():
+	die()
+
+func die():
 	is_alive = false
 	hurtbox.is_invincible = true
 	color_flicker_component.enabled = true

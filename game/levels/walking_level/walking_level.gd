@@ -10,8 +10,8 @@ extends Node
 
 func _ready() -> void:
 	GameData.spellpower = 2000
-	SignalHandler.connect("should_fly_up", _on_should_fly_up)
-	SignalHandler.connect("spellpower_changed", _on_spellpower_changed)
+	SignalHandler.should_fly_up.connect(_on_should_fly_up)
+	SignalHandler.spellpower_changed.connect(_on_spellpower_changed)
 
 # func _input(_event):
 	# if Input.is_action_just_pressed("fire"):
@@ -36,14 +36,14 @@ func _gather_flyables(groups: Array[String]) -> Array:
 	var results: Array = []
 	for group_name in groups:
 		for node in get_tree().get_nodes_in_group(group_name):
-			if node.has_node("FlyUpComponent"):
+			if node.has_node("FlyUpPhysicalComponent"):
 				results.append(node)
 	return results
 
 func _fly_game_objects_in_sequence(game_objects: Array) -> void:
 	for game_object in game_objects:
-		if game_object and game_object.has_node("FlyUpComponent"):
-			var fly_up_component: FlyUpComponent = game_object.get_node("FlyUpComponent") as FlyUpComponent
+		if game_object and game_object.has_node("FlyUpPhysicalComponent"):
+			var fly_up_component: FlyUpPhysicalComponent = game_object.get_node("FlyUpPhysicalComponent") as FlyUpPhysicalComponent
 			fly_up_component.fly_up()
 			while is_instance_valid(game_object) and game_object.global_position.y + 32 > 0:
 				await get_tree().process_frame
@@ -81,4 +81,3 @@ func start_win_sequence():
 	treasure.enabled(!treasure.visible)
 	await get_tree().create_timer(5.0).timeout
 	SignalHandler.level_requested.emit(LevelConstants.LevelType.POEM, GameData.level)
-

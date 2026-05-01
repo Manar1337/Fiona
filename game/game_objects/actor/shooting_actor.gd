@@ -13,7 +13,7 @@ var fire_lock: bool = false
 
 func _ready():
 	super()
-	fire_rate_timer.timeout.connect(unlock_fire)
+	fire_rate_timer.timeout.connect(_on_fire_rate_timeout)
 	if random_spawntime:
 		fire_rate_timer.start(randf_range(0, spawn_time))
 	else:
@@ -32,7 +32,7 @@ func lock_fire():
 	fire_lock = true
 	fire_rate_timer.start(randf_range(0, spawn_time) if random_spawntime else float(spawn_time))
 
-func unlock_fire():
+func _on_fire_rate_timeout():
 	fire_lock = false
 
 func freeze():

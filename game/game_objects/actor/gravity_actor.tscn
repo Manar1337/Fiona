@@ -1,25 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://dv58ibdqgd66b"]
+[gd_scene load_steps=11 format=3 uid="uid://dv58ibdqgd66b"]
 
 [ext_resource type="Script" uid="uid://bnll6dq2q8pp4" path="res://game/game_objects/actor/gravity_actor.gd" id="1_3r06a"]
-[ext_resource type="Script" uid="uid://bspe6mkgk7qsl" path="res://game/components/move_component.gd" id="1_p33uu"]
 [ext_resource type="Script" uid="uid://hjccq835qqs5" path="res://game/components/hurtbox_component.gd" id="2_prg5s"]
-[ext_resource type="Script" uid="uid://finu86pnqyie" path="res://game/components/move_components/move_steady_component.gd" id="3_84n74"]
 [ext_resource type="Script" uid="uid://c2kdofbj4lv2b" path="res://game/components/move_physical_component.gd" id="3_je8kg"]
 [ext_resource type="Script" uid="uid://cvlrwryvqfpj0" path="res://game/components/hitbox_component.gd" id="3_rtkbk"]
 [ext_resource type="Script" uid="uid://muef05wpd2ty" path="res://game/components/stats_component.gd" id="4_vlxg7"]
-[ext_resource type="Script" uid="uid://c6jijjgge4dp1" path="res://game/components/fly_up_component.gd" id="6_pjgav"]
+[ext_resource type="Script" uid="uid://dhkgu28qhwvym" path="res://game/components/fly_up_physical_component.gd" id="6_pjgav"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ld7m1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rcyx4"]
-size = Vector2(18, 24)
+size = Vector2(21.125, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76nib"]
-size = Vector2(20, 24)
+size = Vector2(21, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ji0i0"]
+size = Vector2(22, 12)
 
 [node name="GravityActor" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 8
 slide_on_ceiling = false
 floor_constant_speed = true
 script = ExtResource("1_3r06a")
@@ -27,19 +28,12 @@ script = ExtResource("1_3r06a")
 [node name="Body" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ld7m1")
 
-[node name="MoveComponent" type="Node" parent="."]
-script = ExtResource("1_p33uu")
-
-[node name="MoveSteadyComponent" type="Node" parent="MoveComponent"]
-script = ExtResource("3_84n74")
-metadata/_custom_type_script = "uid://finu86pnqyie"
-
 [node name="MovePhysicalComponent" type="Node" parent="."]
 script = ExtResource("3_je8kg")
 metadata/_custom_type_script = "uid://c2kdofbj4lv2b"
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-enable_node_path = NodePath("../MoveComponent")
+enable_node_path = NodePath("")
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 script = ExtResource("2_prg5s")
@@ -59,7 +53,7 @@ script = ExtResource("4_vlxg7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ji0i0")
 
-[node name="FlyUpComponent" type="Node" parent="."]
+[node name="FlyUpPhysicalComponent" type="Node" parent="."]
 script = ExtResource("6_pjgav")
-move_component_path = NodePath("../MoveComponent")
-metadata/_custom_type_script = "uid://c6jijjgge4dp1"
+move_physical_component_path = NodePath("../MovePhysicalComponent")
+metadata/_custom_type_script = "uid://dhkgu28qhwvym"

@@ -8,8 +8,8 @@ signal targeting_enemy_spawned(enemy)
 @export var what_to_spawn: PackedScene
 
 @export_group("Timer")
-@export var timer_max: float
 @export var timer_min: float
+@export var timer_max: float
 
 @export_group("Targets")
 @export var target_player: bool = false
@@ -18,8 +18,10 @@ signal targeting_enemy_spawned(enemy)
 @onready var timer = $Timer as Timer
 
 func _ready():
-	SignalHandler.connect("freeze_everything", _on_freeze_everything)
-	timer.timeout.connect(handle_spawn)
+	randomize()
+	SignalHandler.freeze_everything.connect(_on_freeze_everything)
+	timer.start(randf_range(timer_min, timer_max))
+	timer.timeout.connect(_spawn_timer_timeout)
 
 func validate() -> bool:
 	if not what_to_spawn:
@@ -39,7 +41,7 @@ func validate() -> bool:
 		return false
 	return true
 
-func handle_spawn():
+func _spawn_timer_timeout():
 	if not validate():
 		return
 	if not active:

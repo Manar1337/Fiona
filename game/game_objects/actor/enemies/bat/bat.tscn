@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://dnp0tx0ihbfd"]
+
+[ext_resource type="PackedScene" uid="uid://bxqo66k6111ej" path="res://game/game_objects/actor/actor.tscn" id="1_eg1r3"]
+[ext_resource type="Texture2D" uid="uid://mufindf8xm7p" path="res://assets/graphics/flying_level/Bat.png.png" id="2_707mo"]
+[ext_resource type="Script" uid="uid://u06fvbrs4jlo" path="res://game/game_objects/actor/enemies/bat/bat.gd" id="2_yi8dt"]
+[ext_resource type="Script" uid="uid://b4pjq4g5q3ceg" path="res://game/components/move_components/move_fall_component.gd" id="4_xxbop"]
+[ext_resource type="Script" uid="uid://ciooam1aml12j" path="res://game/components/spawner_component.gd" id="5_cng7j"]
+[ext_resource type="PackedScene" uid="uid://boryxbcca7kbq" path="res://game/game_objects/items/magic/magic_explosion.tscn" id="6_xookb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl3bg"]
+atlas = ExtResource("2_707mo")
+region = Rect2(0, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yi8dt"]
+atlas = ExtResource("2_707mo")
+region = Rect2(0, 16, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxbop"]
+atlas = ExtResource("2_707mo")
+region = Rect2(0, 32, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cng7j"]
+atlas = ExtResource("2_707mo")
+region = Rect2(0, 48, 24, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xookb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl3bg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yi8dt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxbop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cng7j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Bat" instance=ExtResource("1_eg1r3")]
+script = ExtResource("2_yi8dt")
+entrance_time = 2.0
+entrance_speed = 32.0
+random_flight_time = 1.0
+random_flight_speed = 64.0
+score = 150
+
+[node name="Body" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_xookb")
+autoplay = "default"
+frame_progress = 0.166065
+
+[node name="VisibleOnScreenEnabler2D" parent="." index="1"]
+position = Vector2(-0.499999, 3.5)
+scale = Vector2(1.15, 0.45)
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+visible = false
+position = Vector2(0, 1.75)
+
+[node name="MoveSteadyComponent" parent="MoveComponent" index="0"]
+direction = Vector2(0, 1)
+speed = 33.0
+
+[node name="MoveFallComponent" type="Node" parent="MoveComponent" index="1"]
+script = ExtResource("4_xxbop")
+acceleration = 1.5
+metadata/_custom_type_script = "uid://b4pjq4g5q3ceg"
+
+[node name="HitboxComponent" parent="." index="4"]
+collision_layer = 0
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, 4)
+
+[node name="ExplosionSpawner" type="Node2D" parent="." index="8"]
+script = ExtResource("5_cng7j")
+what_to_spawn = ExtResource("6_xookb")
+metadata/_custom_type_script = "uid://ciooam1aml12j"

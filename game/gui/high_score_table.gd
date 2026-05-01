@@ -8,7 +8,7 @@ var current_score: int = 0
 func _ready():
 	input_name.text = ".".repeat(input_name.MAX_LENGTH)
 	input_name.grab_focus()
-	input_name.connect("text_submitted", _on_input_name_submitted)
+	input_name.text_submitted.connect(_on_input_name_submitted)
 
 func _on_input_name_submitted(submitted_name: String):
 	var final_name = submitted_name.strip_edges()

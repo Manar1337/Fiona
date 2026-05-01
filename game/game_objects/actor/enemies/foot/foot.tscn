@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3htr5norhkn8"]
+
+[ext_resource type="PackedScene" uid="uid://b3oa6s50xqdmo" path="res://game/game_objects/actor/shooting_gravity_actor.tscn" id="1_5kihc"]
+[ext_resource type="Script" uid="uid://piwwfxxygcsv" path="res://game/game_objects/actor/enemies/foot/foot.gd" id="2_krp4x"]
+[ext_resource type="Texture2D" uid="uid://c53yo27be7ia" path="res://assets/graphics/walking_level/Foot.png" id="3_auoa7"]
+[ext_resource type="Script" uid="uid://pst0ptjvqyrq" path="res://game/components/move_physical_components/move_physical_steady_component.gd" id="3_krp4x"]
+[ext_resource type="Script" uid="uid://dq72o33gtjmwr" path="res://game/components/move_physical_components/move_physical_jump_component.gd" id="5_fnvc1"]
+[ext_resource type="PackedScene" uid="uid://bmlrk6i8kljwm" path="res://game/game_objects/bullets/blood_bomb.tscn" id="6_6n481"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnvc1"]
+atlas = ExtResource("3_auoa7")
+region = Rect2(0, 0, 24, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6n481"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnvc1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_auoa7"]
+size = Vector2(22, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnvc1"]
+size = Vector2(22, 12)
+
+[node name="Foot" instance=ExtResource("1_5kihc")]
+floor_stop_on_slope = false
+script = ExtResource("2_krp4x")
+
+[node name="Body" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_6n481")
+
+[node name="MovePhysicalSteadyComponent" type="Node" parent="MovePhysicalComponent" index="0"]
+script = ExtResource("3_krp4x")
+direction = Vector2(1, -1)
+speed = 50.0
+metadata/_custom_type_script = "uid://pst0ptjvqyrq"
+
+[node name="MovePhysicalJumpComponent" type="Node" parent="MovePhysicalComponent" index="1"]
+script = ExtResource("5_fnvc1")
+jump_speed = 225.0
+direction = Vector2(0.5, -1)
+metadata/_custom_type_script = "uid://dq72o33gtjmwr"
+
+[node name="VisibleOnScreenEnabler2D" parent="." index="2"]
+position = Vector2(-0.999999, 0.5)
+scale = Vector2(1.1, 0.65)
+rect = Rect2(-10, -10, 20, 19)
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_auoa7")
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_fnvc1")
+
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(-1, 0)
+
+[node name="SpawnerComponent" parent="." index="8"]
+what_to_spawn = ExtResource("6_6n481")
+
+[node name="FireRateTimer" parent="." index="9"]
+autostart = true
+
+[node name="ShootingMarker" parent="." index="10"]
+position = Vector2(-2, -5)

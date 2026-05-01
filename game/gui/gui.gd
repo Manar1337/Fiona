@@ -8,13 +8,13 @@ extends Control
 @onready var game_over_message: Control = $GameOverMessage
 
 func _ready():
-	SignalHandler.connect("score_changed", _on_score_changed)
-	SignalHandler.connect("spellpower_changed", _on_spellpower_changed)
-	SignalHandler.connect("lives_changed", _on_lives_changed)
-	SignalHandler.connect("level_changed", _on_level_changed)
-	SignalHandler.connect("show_death_message", _on_show_death_message)
-	SignalHandler.connect("show_game_over_message", _on_show_game_over_message)
-	SignalHandler.connect("show_gui", _on_show_gui)
+	SignalHandler.score_changed.connect(_on_score_changed)
+	SignalHandler.spellpower_changed.connect(_on_spellpower_changed)
+	SignalHandler.lives_changed.connect(_on_lives_changed)
+	SignalHandler.level_changed.connect(_on_level_changed)
+	SignalHandler.show_death_message.connect(_on_show_death_message)
+	SignalHandler.show_game_over_message.connect(_on_show_game_over_message)
+	SignalHandler.show_gui.connect(_on_show_gui)
 
 	_on_score_changed(GameData.score)
 	_on_spellpower_changed(GameData.spellpower)

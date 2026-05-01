@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxqvelackaop3"]
+[gd_scene load_steps=8 format=3 uid="uid://dxqvelackaop3"]
 
 [ext_resource type="Script" uid="uid://cqpqlyptbwwsu" path="res://game/levels/walking_level/walking_level.gd" id="1_4nye5"]
 [ext_resource type="PackedScene" uid="uid://bdnuk6p5n635l" path="res://game/game_objects/actor/hero/player_walking.tscn" id="2_hpdu1"]
@@ -7,13 +7,36 @@
 [ext_resource type="PackedScene" uid="uid://cycs7at4s357m" path="res://game/game_objects/items/cauldron/cauldron.tscn" id="4_mi2te"]
 [ext_resource type="Script" uid="uid://cpb08u7bc5ll2" path="res://game/spawners/enemy_generator.gd" id="6_lypqr"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5h1d"]
+size = Vector2(320, 8)
+
 [node name="WalkingLevel" type="Node"]
 script = ExtResource("1_4nye5")
 magic_to_win = 2100
 
-[node name="PlayerWalking" parent="." instance=ExtResource("2_hpdu1")]
-position = Vector2(184, 52)
-scale = Vector2(2, 2)
+[node name="Graphics" type="Node" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Graphics"]
+position = Vector2(160, 100)
+
+[node name="Foreground" type="Sprite2D" parent="Graphics"]
+position = Vector2(160, 164)
+
+[node name="Walls" type="StaticBody2D" parent="Graphics"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Graphics/Walls"]
+position = Vector2(10, 10)
+polygon = PackedVector2Array(0, 0)
+
+[node name="Floor" type="StaticBody2D" parent="Graphics"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Floor"]
+position = Vector2(160, 205)
+shape = SubResource("RectangleShape2D_j5h1d")
 
 [node name="Treasure" type="Node2D" parent="."]
 position = Vector2(292, 168)
@@ -33,3 +56,7 @@ position = Vector2(292, 176)
 [node name="WalkingEnemyGenerator" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("6_lypqr")
 player = NodePath("../PlayerWalking")
+
+[node name="PlayerWalking" parent="." instance=ExtResource("2_hpdu1")]
+position = Vector2(184, 52)
+scale = Vector2(2, 2)

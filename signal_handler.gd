@@ -20,7 +20,7 @@ signal restart_game()
 signal level_completed()
 
 func _ready() -> void:
-	connect("player_sent_to_hell", _on_player_sent_to_hell)
+	player_sent_to_hell.connect(_on_player_sent_to_hell)
 
 
 # --- Sprite Control ---

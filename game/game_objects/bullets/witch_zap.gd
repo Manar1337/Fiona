@@ -20,16 +20,3 @@ func _spawn_explosion():
 			magic.freeze()
 
 	queue_free()
-func _on_freeze_everything(is_frozen):
-	if is_frozen:
-		freeze()
-	else:
-		unfreeze()
-
-func freeze():
-	super.freeze()
-	_is_frozen = true
-
-func unfreeze():
-	super.unfreeze()
-	_is_frozen = false

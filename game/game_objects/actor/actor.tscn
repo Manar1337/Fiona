@@ -10,6 +10,7 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_pwtcy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d467e"]
+size = Vector2(24, 12.5)
 
 [node name="Actor" instance=ExtResource("1_j5l1a")]
 script = ExtResource("1_4e8xd")
