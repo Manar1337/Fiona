@@ -1,6 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbt68ylqoehsx"]
+[gd_scene load_steps=12 format=3 uid="uid://bbt68ylqoehsx"]
 
 [ext_resource type="Texture2D" uid="uid://dqxgu61f3t8b0" path="res://assets/graphics/death_level/Fiona-Blasting.png" id="1_ige4u"]
+[ext_resource type="Script" path="res://game/game_objects/actor/hero/player_blasting.gd" id="1_k03ad"]
+[ext_resource type="Script" uid="uid://duyl4ybl4v13k" path="res://game/components/color_flicker_component.gd" id="2_urxqq"]
+[ext_resource type="Script" uid="uid://b2i5vjbkb7t5s" path="res://game/game_objects/items/magic/big_explosion_spawner.gd" id="3_p1wu0"]
+[ext_resource type="PackedScene" uid="uid://boryxbcca7kbq" path="res://game/game_objects/items/magic/magic_explosion.tscn" id="4_ijwo3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8nbdt"]
 atlas = ExtResource("1_ige4u")
@@ -42,6 +46,7 @@ animations = [{
 size = Vector2(10, 26)
 
 [node name="PlayerBlasting" type="CharacterBody2D"]
+script = ExtResource("1_k03ad")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0g2vs")
@@ -53,3 +58,18 @@ flip_h = true
 visible = false
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_hdci2")
+
+[node name="WallSensor" type="Area2D" parent="."]
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallSensor"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_hdci2")
+
+[node name="ColorFlickerComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("2_urxqq")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="BigExplosionSpawner" type="Node2D" parent="."]
+script = ExtResource("3_p1wu0")
+what_to_spawn = ExtResource("4_ijwo3")

@@ -34,7 +34,9 @@ func _input(_event: InputEvent) -> void:
 		_fire_zap()
 
 func _setup_components() -> void:
-	hurtbox_component.is_invincible = invincible
+	hurtbox_component.is_invincible = invincible or (TestSettings.is_available() and TestSettings.fiona_invulnerable)
+	if TestSettings.is_available():
+		player_stats_component.magic = TestSettings.start_spellpower
 	move_component.set_mode("controlled")
 
 func _connect_signals() -> void:
@@ -102,4 +104,4 @@ func _unfreeze() -> void:
 	move_component.start()
 	hurtbox_component.set_enabled(true)
 	fire_lock = false
-	hurtbox_component.is_invincible = invincible
+	hurtbox_component.is_invincible = invincible or (TestSettings.is_available() and TestSettings.fiona_invulnerable)

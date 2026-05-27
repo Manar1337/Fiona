@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dnp0tx0ihbfd" path="res://game/game_objects/actor/enemies/bat/bat.tscn" id="1_3u6jo"]
+
+[node name="WalkingBat" instance=ExtResource("1_3u6jo")]
+fall_spawns_pickup_magic = true
+landing_y = 184.0
+can_target_player = true
+explode_on_touch = false
+touch_spawns_pickup_magic = true
+target_follow_speed = 100.0
+target_max_duration = 10.0
+target_cooldown = 10.0
+
+[node name="HitboxComponent" parent="." index="4"]
+collision_layer = 2
+damage = 300

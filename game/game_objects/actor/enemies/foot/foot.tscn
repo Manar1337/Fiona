@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3htr5norhkn8"]
+[gd_scene format=3 uid="uid://b3htr5norhkn8"]
 
 [ext_resource type="PackedScene" uid="uid://b3oa6s50xqdmo" path="res://game/game_objects/actor/shooting_gravity_actor.tscn" id="1_5kihc"]
 [ext_resource type="Script" uid="uid://piwwfxxygcsv" path="res://game/game_objects/actor/enemies/foot/foot.gd" id="2_krp4x"]
@@ -28,22 +28,24 @@ size = Vector2(22, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnvc1"]
 size = Vector2(22, 12)
 
-[node name="Foot" instance=ExtResource("1_5kihc")]
+[node name="Foot" unique_id=1702739643 instance=ExtResource("1_5kihc")]
 floor_stop_on_slope = false
 script = ExtResource("2_krp4x")
+blood_bomb_launch_rise_distance = 32.0
+score = 250
 
 [node name="Body" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_6n481")
 
-[node name="MovePhysicalSteadyComponent" type="Node" parent="MovePhysicalComponent" index="0"]
+[node name="MovePhysicalSteadyComponent" type="Node" parent="MovePhysicalComponent" index="0" unique_id=1722318757]
 script = ExtResource("3_krp4x")
 direction = Vector2(1, -1)
 speed = 50.0
 metadata/_custom_type_script = "uid://pst0ptjvqyrq"
 
-[node name="MovePhysicalJumpComponent" type="Node" parent="MovePhysicalComponent" index="1"]
+[node name="MovePhysicalJumpComponent" type="Node" parent="MovePhysicalComponent" index="1" unique_id=1624831236]
 script = ExtResource("5_fnvc1")
-jump_speed = 225.0
+jump_speed = 123.75
 direction = Vector2(0.5, -1)
 metadata/_custom_type_script = "uid://dq72o33gtjmwr"
 
@@ -52,9 +54,17 @@ position = Vector2(-0.999999, 0.5)
 scale = Vector2(1.1, 0.65)
 rect = Rect2(-10, -10, 20, 19)
 
+[node name="HurtboxComponent" parent="." index="3"]
+collision_layer = 2
+
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+visible = false
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_auoa7")
+
+[node name="HitboxComponent" parent="." index="4"]
+collision_layer = 2
+damage = 1250
 
 [node name="CollisionShape2D" parent="HitboxComponent" index="0"]
 position = Vector2(-1, 0)

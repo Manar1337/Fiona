@@ -21,6 +21,9 @@ func _ready() -> void:
 	wall1.set_type(WallPolygon.WallPolygonType.RIGHT)
 	wall2.set_type(WallPolygon.WallPolygonType.RIGHT)
 	wall3.set_type(WallPolygon.WallPolygonType.RIGHT)
+	wall1.segment_type = "straight"
+	wall2.segment_type = "straight"
+	wall3.segment_type = "straight"
 
 	walls.append(wall1)
 	walls.append(wall2)
@@ -36,6 +39,8 @@ static func fit_walls(upper_wall: Wall, lower_wall: Wall) -> void:
 	update_bottom_section(upper_polygon, upper_edge, lower_edge)
 	
 	upper_polygon.update_polygon()
+	upper_wall.sync_collision_polygon()
+	lower_wall.sync_collision_polygon()
 
 static func update_mid_section_bottom(polygon: WallPolygon, edge: SectionEdge) -> void:
 	polygon.mid_section.bottom_edge.left_coord.x = edge.left_coord.x
@@ -70,6 +75,7 @@ func flip_walls(wall_component:WallComponent):
 	bottom_wall = (bottom_wall + 1) % NR_OF_WALLS
 			
 func change_wall(wall:Wall, wall_type:WallComponent) -> Wall:
+	wall.segment_type = wall_type.get_type()
 	return wall_type.change_right_wall(wall)
 
 func print_walls():

@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Fiona Rides Out"
-run/main_scene="res://game/game.tscn"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
 
 [autoload]
@@ -24,6 +24,7 @@ GameData="*res://game_data.gd"
 SignalLens="*res://addons/signal_lens/autoload/signal_lens_autoload.gd"
 LevelConstants="*res://level_constants.gd"
 SignalHandler="*res://signal_handler.gd"
+TestSettings="*res://test_settings.gd"
 
 [debug]
 
@@ -32,13 +33,12 @@ gdscript/warnings/integer_division=0
 
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=200
+window/size/viewport_width=1280
+window/size/viewport_height=800
 window/size/resizable=false
 window/size/transparent=true
 window/size/window_width_override=1280
 window/size/window_height_override=800
-window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
 [editor]

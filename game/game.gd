@@ -42,8 +42,12 @@ func _on_restart_game():
 
 func setup_game():
 	GameData.game_data_reset()
-	SignalHandler.level_requested.emit(LevelConstants.LevelType.START, 0)
-	SignalHandler.show_gui.emit(false)
+	if TestSettings.is_available():
+		TestSettings.apply_start_values()
+		TestSettings.request_start_target()
+	else:
+		GameData.score = 0
+		GameData.spellpower = start_spellpower
+		GameData.lives = start_lives
+		SignalHandler.level_requested.emit(LevelConstants.LevelType.START, 0)
 	SignalHandler.show_high_score.emit(false)
-	GameData.lives = start_lives
-	

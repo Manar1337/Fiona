@@ -9,7 +9,7 @@ extends Node
 @onready var flying_enemy_generator: Node = $FlyingEnemyGenerator
 
 func _ready() -> void:
-	GameData.spellpower = 2000
+	GameData.spellpower = TestSettings.start_spellpower if TestSettings.is_available() else 2000
 	flight_timer.wait_time = flight_time
 	flight_timer.start()
 
@@ -73,4 +73,3 @@ func handle_player_death(global_position: Vector2) -> void:
 	SignalHandler.show_death_message.emit(false)
 
 	SignalHandler.player_sent_to_hell.emit()
-

@@ -12,7 +12,7 @@ size = Vector2(320, 8)
 
 [node name="WalkingLevel" type="Node"]
 script = ExtResource("1_4nye5")
-magic_to_win = 2100
+magic_to_win = 4000
 
 [node name="Graphics" type="Node" parent="."]
 

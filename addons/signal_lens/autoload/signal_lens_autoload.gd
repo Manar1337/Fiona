@@ -5,11 +5,19 @@ extends Node
 
 ## Reference to the currently targeted node in the remote tree
 var target_node: Node = null
+var _message_capture_registered: bool = false
 
 ## On singleton ready in scene
 ## subscribe to the editor panel's request
 func _ready() -> void:
-	EngineDebugger.register_message_capture("signal_lens", _on_node_signal_data_requested)
+	if EngineDebugger.is_active():
+		EngineDebugger.register_message_capture("signal_lens", _on_node_signal_data_requested)
+		_message_capture_registered = true
+
+func _exit_tree() -> void:
+	if _message_capture_registered:
+		EngineDebugger.unregister_message_capture("signal_lens")
+		_message_capture_registered = false
 
 ## This callback parses a node's signal data into an array that can be sent to the debugger
 ## The data is packaged in the following structure:

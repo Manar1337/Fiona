@@ -42,6 +42,10 @@ func _on_level_requested(level_type: LevelConstants.LevelType, level_nr: int):
 			SignalHandler.show_gui.emit(true)
 			load_level(level_type, level_nr)
 		LT.POEM:
+			if TestSettings.is_available() and TestSettings.skip_poems:
+				GameData.poem_level = level_nr
+				_on_next_level_requested()
+				return
 			SignalHandler.show_gui.emit(false)
 			GameData.poem_level = level_nr
 			load_level(level_type, level_nr)
@@ -56,24 +60,33 @@ func _on_next_level_requested():
 	if next_level > current_max_level:
 		next_level = 1
 	var next_level_structure = LevelConstants.level_structure.get("level_" + str(next_level ))
-	load_level(next_level_structure["type"], next_level_structure["number"])
+	if next_level_structure == null:
+		print("Invalid next level: ", next_level)
+		return
+	SignalHandler.level_requested.emit(next_level_structure["type"], next_level_structure["number"])
 		
 
 func load_level(level_type: LevelConstants.LevelType, level_nr: int):
 	if GameData.current_level_node:
 		unload_current_level()
+
+	if GameData.everything_frozen:
+		SignalHandler.freezeEverything(false)
 	
 	if levels_dir.has(level_type):
 		var level_path: String
 		if level_type == LT.FLYING:
 			level_path = levels_dir[level_type].path + "_" + str(level_nr) + ".tscn"
-		else: if level_type == LT.WALKING:
+		elif level_type == LT.WALKING:
 			level_path = levels_dir[level_type].path + "_" + str(level_nr) + ".tscn"
 		else :
 			level_path = levels_dir[level_type].path
 
 		var level_scene: PackedScene = load(level_path)
 		if level_scene:
+			GameData.previous_level_type = GameData.current_level_type
+			GameData.current_level_type = level_type
+			GameData.level = level_nr
 			GameData.current_level_node = level_scene.instantiate()
 			level_holder.add_child(GameData.current_level_node)
 			print(GameData.current_level_node, " Level loaded: ", level_path)
@@ -81,9 +94,6 @@ func load_level(level_type: LevelConstants.LevelType, level_nr: int):
 			if GameData.current_level_node.has_method("on_enter"):
 				GameData.current_level_node.on_enter()
 			previous_level_name = str(level_type)
-			GameData.level = level_nr
-			GameData.previous_level_type = GameData.current_level_type
-			GameData.current_level_type = level_type
 			SignalHandler.level_changed.emit(GameData.level)
 		else:
 			print("Failed to load level scene: ", level_path)
@@ -100,3 +110,5 @@ func _on_restart_game():
 		level_holder.remove_child(GameData.current_level_node)
 		GameData.current_level_node.queue_free()
 		GameData.current_level_node = null
+	if GameData.everything_frozen:
+		SignalHandler.freezeEverything(false)

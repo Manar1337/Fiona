@@ -26,8 +26,8 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _on_area_entered(area: Area2D) -> void:
-	if area is HitboxComponent and not area.is_harmless:
-		hurt.emit(area)
+	if area is HitboxComponent and not area.is_harmless and debug_enabled:
+		print("Hurtbox entered hitbox: ", area.name)
 
 func _on_body_entered(tilemap: Node2D) -> void:
 	if tilemap is TileMapLayer and not is_invincible:

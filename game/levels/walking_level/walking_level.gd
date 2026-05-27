@@ -9,7 +9,9 @@ extends Node
 @onready var walking_enemy_generator: Node = $WalkingEnemyGenerator
 
 func _ready() -> void:
-	GameData.spellpower = 2000
+	GameData.spellpower = TestSettings.start_spellpower if TestSettings.is_available() else 2000
+	if TestSettings.is_available() and TestSettings.walking_magic_to_win > 0:
+		magic_to_win = TestSettings.walking_magic_to_win
 	SignalHandler.should_fly_up.connect(_on_should_fly_up)
 	SignalHandler.spellpower_changed.connect(_on_spellpower_changed)
 
@@ -77,7 +79,6 @@ func start_win_sequence():
 	player_walking.color_flicker_component.enabled = true
 	GameData.has_fly_up_completed = false
 	await _on_should_fly_up()
-	player_walking.color_flicker_component.enabled = false
 	treasure.enabled(!treasure.visible)
 	await get_tree().create_timer(5.0).timeout
 	SignalHandler.level_requested.emit(LevelConstants.LevelType.POEM, GameData.level)

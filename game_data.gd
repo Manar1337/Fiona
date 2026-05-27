@@ -60,6 +60,15 @@ var high_score_table: Array = default_high_score_table:
 	set(value):
 		high_score_table = value
 
+func qualifies_for_high_score(score_value: int) -> bool:
+	if high_score_table.size() < 8:
+		return true
+
+	for entry in high_score_table:
+		if score_value > int(entry.get("score", "0")):
+			return true
+	return false
+
 
 func game_data_reset():
 	# Reset all game data to initial state

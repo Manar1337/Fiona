@@ -12,5 +12,3 @@ func splash():
 	print(animated_sprite_2d.animation)
 	print(animated_sprite_2d.frame)
 	GameData.spellpower += 300
-	if GameData.spellpower >= 4000:
-		GameData.level_requested.emit("poem")

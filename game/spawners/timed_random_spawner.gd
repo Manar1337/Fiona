@@ -20,6 +20,10 @@ signal targeting_enemy_spawned(enemy)
 func _ready():
 	randomize()
 	SignalHandler.freeze_everything.connect(_on_freeze_everything)
+	if not _is_allowed_by_test_settings():
+		active = false
+		timer.stop()
+		return
 	timer.start(randf_range(timer_min, timer_max))
 	timer.timeout.connect(_spawn_timer_timeout)
 
@@ -46,6 +50,10 @@ func _spawn_timer_timeout():
 		return
 	if not active:
 		return
+	if not _is_allowed_by_test_settings():
+		active = false
+		timer.stop()
+		return
 		
 	spawner_component.what_to_spawn = what_to_spawn
 	var level = GameData.current_level_node
@@ -63,3 +71,8 @@ func getSpawnpos():
 
 func _on_freeze_everything(is_frozen):
 	timer.paused = is_frozen
+
+func _is_allowed_by_test_settings() -> bool:
+	if not TestSettings.is_available():
+		return true
+	return TestSettings.is_spawner_enabled(what_to_spawn, GameData.current_level_type)

@@ -16,11 +16,8 @@ func _ready() -> void:
 	show_line(GameData.poem_level)
 
 func _input(_event: InputEvent):
-	if Input.is_action_pressed("fire"):
-		if GameData.poem_level%2 == 0:
-			SignalHandler.level_requested.emit(LevelConstants.LevelType.FLYING, GameData.level + 1)
-		else:
-			SignalHandler.level_requested.emit(LevelConstants.LevelType.WALKING, GameData.level + 1)
+	if Input.is_action_just_pressed("fire"):
+		SignalHandler.next_level_requested.emit()
 
 func show_line(lineNr):
 	if lineNr >0:

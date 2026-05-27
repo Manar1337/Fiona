@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmlrk6i8kljwm"]
+[gd_scene load_steps=7 format=3 uid="uid://bmlrk6i8kljwm"]
 
 [ext_resource type="PackedScene" uid="uid://bvirga0t5lm3h" path="res://game/game_objects/bullets/bullet.tscn" id="1_ho0cd"]
+[ext_resource type="Script" path="res://game/game_objects/bullets/blood_bomb.gd" id="2_23m0d"]
 [ext_resource type="Texture2D" uid="uid://dy1vp8hv7gqim" path="res://assets/graphics/walking_level/BloodDrop.png" id="2_4dscf"]
+[ext_resource type="Script" uid="uid://hjccq835qqs5" path="res://game/components/hurtbox_component.gd" id="3_hurtb"]
+[ext_resource type="Script" uid="uid://ciooam1aml12j" path="res://game/components/spawner_component.gd" id="4_spawn"]
+[ext_resource type="PackedScene" uid="uid://boryxbcca7kbq" path="res://game/game_objects/items/magic/magic_explosion.tscn" id="5_magic"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
+size = Vector2(8, 9.3125)
 
 [node name="BloodBomb" instance=ExtResource("1_ho0cd")]
+script = ExtResource("2_23m0d")
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_4dscf")
@@ -15,3 +23,19 @@ scale = Vector2(0.363636, 1.66667)
 [node name="MoveSteadyComponent" parent="MoveComponent" index="0"]
 direction = Vector2(0, -1)
 speed = 50.0
+
+[node name="HitboxComponent" parent="." index="3"]
+collision_layer = 2
+damage = 2000
+
+[node name="HurtboxComponent" type="Area2D" parent="." index="4"]
+collision_layer = 2
+script = ExtResource("3_hurtb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_hurt")
+
+[node name="ExplosionSpawner" type="Node2D" parent="." index="5"]
+script = ExtResource("4_spawn")
+what_to_spawn = ExtResource("5_magic")
+metadata/_custom_type_script = "uid://ciooam1aml12j"

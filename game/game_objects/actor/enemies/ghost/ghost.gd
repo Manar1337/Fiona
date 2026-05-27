@@ -9,8 +9,8 @@ extends Actor
 enum directions {UP, DOWN, LEFT, RIGHT}
 enum states {FLYING, DYING, DEAD}
 
-var direction:directions
-var state:states
+var direction: directions
+var state: states = states.FLYING
 
 func _ready():
 	super()
@@ -18,6 +18,7 @@ func _ready():
 	move_timer.start(1)
 	move_timer.timeout.connect(_on_move_timer_timeout)
 	death_timer.timeout.connect(die)
+	change_direction()
 
 func _on_move_timer_timeout():
 	change_direction()

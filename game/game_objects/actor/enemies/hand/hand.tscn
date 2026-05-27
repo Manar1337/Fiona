@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dgs4h1gq7a6mw"]
+
+[ext_resource type="PackedScene" uid="uid://bxqo66k6111ej" path="res://game/game_objects/actor/actor.tscn" id="1_1mm58"]
+[ext_resource type="Script" uid="uid://38m1cby5h7lu" path="res://game/game_objects/actor/enemies/hand/hand.gd" id="2_jh2o1"]
+[ext_resource type="Texture2D" uid="uid://o6d12m1gembq" path="res://assets/graphics/walking_level/Hand2.png" id="3_sssim"]
+[ext_resource type="Script" uid="uid://b4pjq4g5q3ceg" path="res://game/components/move_components/move_fall_component.gd" id="6_2rb1o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4ggg"]
+atlas = ExtResource("3_sssim")
+region = Rect2(0, 0, 24, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpcub"]
+atlas = ExtResource("3_sssim")
+region = Rect2(0, 13, 24, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxeii"]
+atlas = ExtResource("3_sssim")
+region = Rect2(0, 26, 24, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri7t4"]
+atlas = ExtResource("3_sssim")
+region = Rect2(0, 39, 24, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ri7t4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4ggg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpcub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxeii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri7t4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hand_hurt"]
+size = Vector2(24, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hand_hit"]
+size = Vector2(23, 12)
+
+[node name="Hand" unique_id=945056940 instance=ExtResource("1_1mm58")]
+script = ExtResource("2_jh2o1")
+move_speed = 100.0
+landing_y = 184.0
+fall_spawns_pickup_magic = true
+score = 400
+
+[node name="Body" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_ri7t4")
+autoplay = "default"
+frame_progress = 0.42261636
+
+[node name="VisibleOnScreenEnabler2D" parent="." index="1"]
+scale = Vector2(1.3, 1)
+rect = Rect2(-12, -8, 24, 16)
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_hand_hurt")
+
+[node name="MoveSteadyComponent" parent="MoveComponent" index="0"]
+direction = Vector2(1, 0)
+speed = 100.0
+
+[node name="MoveFallComponent" type="Node" parent="MoveComponent" index="1" unique_id=536359512]
+script = ExtResource("6_2rb1o")
+acceleration = 1.5
+metadata/_custom_type_script = "uid://b4pjq4g5q3ceg"
+
+[node name="HitboxComponent" parent="." index="4"]
+damage = 1500
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_hand_hit")

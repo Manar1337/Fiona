@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxmwgmoamr1b1"]
+[gd_scene load_steps=11 format=3 uid="uid://bxmwgmoamr1b1"]
 
 [ext_resource type="Script" uid="uid://7gysyp81co20" path="res://game/levels/death_level/tunnel.gd" id="1_1cchf"]
 [ext_resource type="Script" uid="uid://crljfa7f4e76n" path="res://game/levels/death_level/left_walls.gd" id="2_hqvyy"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dnikgkn6wsdel" path="res://game/game_objects/items/walls/wall.tscn" id="3_qoqh4"]
 [ext_resource type="Script" uid="uid://ja08gaosjnf3" path="res://game/levels/death_level/right_walls.gd" id="4_i075q"]
 [ext_resource type="Script" uid="uid://b5qsxub642dlu" path="res://game/components/wall_components/wall_path_component.gd" id="4_tp7yo"]
+[ext_resource type="Script" path="res://game/components/wall_components/wall_drift_component.gd" id="5_0ba8t"]
+[ext_resource type="Script" path="res://game/components/wall_components/wall_lane_target_component.gd" id="6_hs65n"]
+[ext_resource type="Script" path="res://game/components/wall_components/wall_exit_component.gd" id="7_vcso3"]
 
 [node name="Tunnel" type="Node2D"]
 script = ExtResource("1_1cchf")
@@ -20,6 +23,15 @@ script = ExtResource("3_3jpj6")
 
 [node name="WallPathComponent" type="Node" parent="WallComponentController"]
 script = ExtResource("4_tp7yo")
+
+[node name="WallDriftComponent" type="Node" parent="WallComponentController"]
+script = ExtResource("5_0ba8t")
+
+[node name="WallLaneTargetComponent" type="Node" parent="WallComponentController"]
+script = ExtResource("6_hs65n")
+
+[node name="WallExitComponent" type="Node" parent="WallComponentController"]
+script = ExtResource("7_vcso3")
 
 [node name="LeftWalls" type="Node2D" parent="."]
 script = ExtResource("2_hqvyy")

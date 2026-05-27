@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://xnwve7s5vw7p"]
+[gd_scene format=3 uid="uid://xnwve7s5vw7p"]
 
 [ext_resource type="PackedScene" uid="uid://dxqvelackaop3" path="res://game/levels/walking_level/walking_level.tscn" id="1_om7mb"]
 [ext_resource type="Texture2D" uid="uid://cwdi40qmsj4cf" path="res://assets/graphics/walking_level/BackgroundHut.png" id="2_kv7u8"]
+[ext_resource type="Texture2D" uid="uid://cy4gprasq6njy" path="res://assets/graphics/walking_level/Cauldron2.png" id="2_u22g4"]
 [ext_resource type="PackedScene" uid="uid://dseoau3m3u7ju" path="res://game/spawners/timed_random_singlespawner.tscn" id="3_1nfcb"]
 [ext_resource type="PackedScene" uid="uid://b3htr5norhkn8" path="res://game/game_objects/actor/enemies/foot/foot.tscn" id="4_gke3m"]
-[ext_resource type="PackedScene" uid="uid://bmlrk6i8kljwm" path="res://game/game_objects/bullets/blood_bomb.tscn" id="5_gke3m"]
+[ext_resource type="PackedScene" uid="uid://dgs4h1gq7a6mw" path="res://game/game_objects/actor/enemies/hand/hand.tscn" id="5_gx3cf"]
+[ext_resource type="PackedScene" path="res://game/game_objects/actor/enemies/bat/walking_bat.tscn" id="6_6fv2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kv7u8"]
-size = Vector2(56, 39)
+size = Vector2(56, 7.5)
 
-[node name="Level_4" instance=ExtResource("1_om7mb")]
+[node name="Level_4" unique_id=1280528651 instance=ExtResource("1_om7mb")]
+magic_to_win = 6000
 
 [node name="Background" parent="Graphics" index="0"]
 texture = ExtResource("2_kv7u8")
@@ -17,16 +20,39 @@ texture = ExtResource("2_kv7u8")
 [node name="CollisionPolygon2D" parent="Graphics/Walls" index="0"]
 polygon = PackedVector2Array(294, 166, 262, 166, 262, 158, 198, 158, 198, 182, 78, 182, 78, 158, 8, 158, 8, 86, 70, 86, 70, 78, 8, 78, 8, 62, 30, 40, 30, 32, 270, 32, 270, 40, 294, 64, 294, 158, 310, 158, 310, 0, -10, 0, -10, 190, 310, 190, 310, 166)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Walls" index="1"]
-position = Vector2(236, 100)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Walls" index="1" unique_id=1744219092]
+position = Vector2(236, 84.25)
 shape = SubResource("RectangleShape2D_kv7u8")
 
-[node name="FootSpawner" parent="WalkingEnemyGenerator" index="0" instance=ExtResource("3_1nfcb")]
+[node name="Treasure" parent="." index="1"]
+visible = false
+
+[node name="Sprite2D" parent="Treasure" index="0"]
+texture = ExtResource("2_u22g4")
+
+[node name="FootSpawner" parent="WalkingEnemyGenerator" index="0" unique_id=2064109681 instance=ExtResource("3_1nfcb")]
 spawn_top = 184.0
 spawn_bottom = 184.0
 what_to_spawn = ExtResource("4_gke3m")
-timer_min = 1.0
-timer_max = 2.0
+timer_min = 2.0
+timer_max = 4.0
 
-[node name="BloodBomb" parent="." index="5" instance=ExtResource("5_gke3m")]
-position = Vector2(84, 120)
+[node name="BatSpawner" parent="WalkingEnemyGenerator" index="1" unique_id=629672581 instance=ExtResource("3_1nfcb")]
+spawn_top = 12.0
+spawn_bottom = 12.0
+spawn_left = 148.0
+spawn_right = 148.0
+what_to_spawn = ExtResource("6_6fv2g")
+timer_min = 1.0
+timer_max = 4.0
+target_player = true
+
+[node name="HandSpawner" parent="WalkingEnemyGenerator" index="2" unique_id=627333870 instance=ExtResource("3_1nfcb")]
+spawn_top = 40.0
+spawn_bottom = 100.0
+what_to_spawn = ExtResource("5_gx3cf")
+timer_min = 4.0
+timer_max = 8.0
+
+[node name="PlayerWalking" parent="." index="4"]
+position = Vector2(231, 148)

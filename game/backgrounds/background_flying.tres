@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cmjcs63pxyrx1"]
+[gd_resource type="TileSet" format=3 uid="uid://cmjcs63pxyrx1"]
 
 [ext_resource type="Texture2D" uid="uid://cfsge4i2px6yt" path="res://assets/graphics/flying_level/BackgroundTiles.png" id="1_ejgxi"]
 
